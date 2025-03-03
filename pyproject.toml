@@ -3,6 +3,7 @@ name = 'trmnl'
 version = '0.0.1'
 requires-python = '==3.13.*'
 dependencies = [
+    "pillow ==11.1.0",
 ]
 
 [tool.uv]
