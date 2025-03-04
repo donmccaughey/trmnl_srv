@@ -5,7 +5,7 @@ from pathlib import Path
 from PIL import Image, ImageDraw, ImageFont
 
 
-def write_at(draw, x, y, text):
+def write_at(draw: ImageDraw, x: int, y: int, text: str):
     draw.text((x, y), text, fill=0, font=font)
 
 

@@ -3,18 +3,20 @@ import sys
 
 from http.server import HTTPServer, BaseHTTPRequestHandler
 from pathlib import Path
+from typing import Any
 
 
 class Handler(BaseHTTPRequestHandler):
     def do_GET(self):
-        if self.path == '/api/display':
-            self.get_display()
-        elif self.path == '/api/setup':
-            self.get_setup()
-        elif self.path == '/bitmap':
-            self.get_bitmap()
-        else:
-            self.not_found()
+        match self.path:
+            case '/api/display':
+                self.get_display()
+            case '/api/setup':
+                self.get_setup()
+            case '/bitmap':
+                self.get_bitmap()
+            case _:
+                self.not_found()
 
     def get_bitmap(self):
         self.send_response(200)
@@ -53,15 +55,15 @@ class Handler(BaseHTTPRequestHandler):
         self.end_headers()
         self.wfile.write(b'Not Found')
 
-    def send_json_response(self, body):
+    def send_json_response(self, json_body: dict[str, Any] | list[Any]):
         self.send_response(200)
         self.send_header('Content-Type', 'application/json')
         self.end_headers()
-        self.wfile.write(json.dumps(body).encode('utf-8'))
+        self.wfile.write(json.dumps(json_body).encode('utf-8'))
 
 
 class Server(HTTPServer):
-    def __init__(self, host, port, content_file):
+    def __init__(self, host: str, port: int, content_file: Path):
         super().__init__((host, port), Handler)
         self.content_file = content_file
 
@@ -72,11 +74,14 @@ content_dir = Path('../tmp')
 content_dir.mkdir(parents=True, exist_ok=True)
 content_file = content_dir / 'content.bmp'
 
+server = None
 try:
     server = Server('localhost', 4000, content_file)
     server.serve_forever()
 except KeyboardInterrupt:
-    server.server_close()
+    server and server.server_close()
+except Exception as e:
+    print(e)
+    sys.exit(1)
 
 sys.exit(0)
-
