@@ -23,7 +23,9 @@ draw = ImageDraw.Draw(image)
 font = ImageFont.load_default()
 
 write_at(draw, 20, 20, 'Hello, TRMNL!')
-write_at(draw, 20, 40, content['updated'])
+write_at(draw, 20, 40, content['forecast']['period_name'])
+write_at(draw, 20, 60, content['forecast']['detailed_forecast'])
+write_at(draw, 20, 80, content['updated'])
 
 image_dir = Path('../tmp')
 image_dir.mkdir(parents=True, exist_ok=True)
