@@ -12,6 +12,10 @@ all : check
 check : $(TMP)/pytest.stamp.txt
 
 
+.PHONY : deploy
+deploy : $(TMP)/deploy.stamp.txt
+
+
 .PHONY : clean
 clean :
 	rm -rf $(TMP)
@@ -41,6 +45,22 @@ test_files := $(filter %_test.py, $(python_files))
 uv.lock : pyproject.toml .python-version
 	uv sync
 	touch $@
+
+
+$(TMP)/deploy.stamp.txt : \
+		$(TMP)/pytest.stamp.txt
+	rsync \
+		--compress \
+		--delete \
+		--exclude '__pycache__' \
+		--exclude '*_test.py' \
+		--quiet \
+		--recursive \
+		--rsh ssh \
+		--times \
+		src/ \
+		donmcc@10.1.1.1:~/trmnl_srv/
+	date > $@
 
 
 $(TMP)/pytest.stamp.txt : \
