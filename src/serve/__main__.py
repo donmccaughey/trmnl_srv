@@ -18,6 +18,16 @@ class Handler(BaseHTTPRequestHandler):
             case _:
                 self.not_found()
 
+    def get_base_url(self):
+        protocol = 'http'
+        if self.headers.get('X-Forwarded-Proto'):
+            protocol = self.headers['X-Forwarded-Proto']
+        host = self.headers.get('Host', None)
+        if host:
+            return f'{protocol}://{host}'
+        else:
+            return f'/'
+
     def get_bitmap(self):
         self.send_response(200)
         self.send_header('Content-Type', 'image/bmp')
@@ -26,10 +36,11 @@ class Handler(BaseHTTPRequestHandler):
             self.wfile.write(f.read())
 
     def get_display(self):
+        base_url = self.get_base_url()
         self.send_json_response(
             {
                 'status': 0,
-                'image_url': 'https://localhost:4000/bitmap',
+                'image_url': f'{base_url}/bitmap',
                 'filename': 'content',
                 'update_firmware': False,
                 'firmware_url': None,
@@ -39,12 +50,13 @@ class Handler(BaseHTTPRequestHandler):
         )
 
     def get_setup(self):
+        base_url = self.get_base_url()
         self.send_json_response(
             {
                 'status': 200,
                 'api_key': '123456789',
                 'friendly_id': 'TRMNL-123',
-                'image_url': 'https://localhost:4000/bitmap',
+                'image_url': f'{base_url}/bitmap',
                 'filename': 'content',
             }
         )
@@ -76,7 +88,7 @@ content_file = content_dir / 'content.bmp'
 
 server = None
 try:
-    server = Server('localhost', 4000, content_file)
+    server = Server('', 4000, content_file)
     server.serve_forever()
 except KeyboardInterrupt:
     server and server.server_close()
