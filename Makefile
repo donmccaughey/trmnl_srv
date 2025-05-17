@@ -39,25 +39,30 @@ alpine_files := \
 		alpine/etc/cron.d/trmnl \
 		alpine/etc/init.d/trmnl_srv
 
-python_files := \
+src_files := \
 		src/gather/__init__.py \
 		src/gather/__main__.py \
 		src/gather/weather.py \
 		src/gather/weather_test.py \
+		\
 		src/render/__init__.py \
 		src/render/__main__.py \
+		src/render/AtkinsonHyperlegibleMono-Regular.otf \
+		src/render/screen.py \
+		\
 		src/serve/__init__.py \
-		src/serve/__main__.py
+		src/serve/__main__.py \
+		\
+		src/serve_trmnl \
+		src/update_trmnl
 
-python_source := \
-		$(filter-out %_test.py, $(python_files)) \
-		$(shell_files)
+python_files := $(filter %.py, $(src_files))
+
+python_sources := $(filter-out %_test.py, $(python_files))
 
 python_tests := $(filter %_test.py, $(python_files))
 
-shell_files := \
-		src/serve_trmnl \
-		src/update_trmnl
+resource_files := $(filter-out %.py, $(src_files))
 
 
 uv.lock : pyproject.toml .python-version
@@ -68,7 +73,7 @@ uv.lock : pyproject.toml .python-version
 $(TMP)/deploy.stamp.txt : \
 		$(TMP)/pytest.stamp.txt \
 		$(alpine_files) \
-		$(shell_files)
+		$(src_files)
 	rsync \
 		$(RSYNC_FLAGS) \
 		src/ \
