@@ -8,6 +8,7 @@ from typing import Any
 
 class Handler(BaseHTTPRequestHandler):
     def do_GET(self):
+        self.log_request_details()
         match self.path:
             case '/api/display':
                 self.get_display()
@@ -15,6 +16,14 @@ class Handler(BaseHTTPRequestHandler):
                 self.get_setup()
             case '/bitmap':
                 self.get_bitmap()
+            case _:
+                self.not_found()
+
+    def do_POST(self):
+        self.log_request_details()
+        match self.path:
+            case '/api/log':
+                self.post_log()
             case _:
                 self.not_found()
 
@@ -34,18 +43,20 @@ class Handler(BaseHTTPRequestHandler):
         self.end_headers()
         with content_file.open('rb') as f:
             self.wfile.write(f.read())
+        self.log_request(200)
 
     def get_display(self):
         base_url = self.get_base_url()
         self.send_json_response(
             {
-                'status': 0,
-                'image_url': f'{base_url}/bitmap',
-                'filename': 'content',
-                'update_firmware': False,
+                'filename': 'content.bmp',
                 'firmware_url': None,
-                'refresh_rate': '1800',
-                'reset_firmware': False
+                'image_url': f'{base_url}/bitmap',
+                'image_url_timeout': 0,
+                'refresh_rate': '300',
+                'reset_firmware': False,
+                'special_function': 'none',
+                'update_firmware': False,
             }
         )
 
@@ -53,25 +64,47 @@ class Handler(BaseHTTPRequestHandler):
         base_url = self.get_base_url()
         self.send_json_response(
             {
-                'status': 200,
                 'api_key': '123456789',
-                'friendly_id': 'TRMNL-123',
+                'friendly_id': 'TRMNL123',
                 'image_url': f'{base_url}/bitmap',
-                'filename': 'content',
+                'message': 'Welcome to trmnl_srv',
             }
         )
+
+    def post_log(self):
+        try:
+            body = self.rfile.read(65536)
+            text = body.decode('utf-8')
+            logs = json.loads(text)
+            self.log_message('Logs received:')
+            formatted_logs = json.dumps(logs, indent=4, sort_keys=True)
+            for line in formatted_logs.splitlines():
+                self.log_message('%s', line)
+            self.send_response(204)
+            self.log_request(204)
+        except Exception as exception:
+            self.send_response(500)
+            self.log_error('500 Error: %s', str(exception))
 
     def not_found(self):
         self.send_response(404)
         self.send_header('Content-Type', 'text/plain')
         self.end_headers()
         self.wfile.write(b'Not Found')
+        self.log_error('404 Not Found: %s', self.path)
 
     def send_json_response(self, json_body: dict[str, Any] | list[Any]):
         self.send_response(200)
         self.send_header('Content-Type', 'application/json')
         self.end_headers()
         self.wfile.write(json.dumps(json_body).encode('utf-8'))
+        self.log_request(200)
+
+    def log_request_details(self):
+        self.log_message('Request details:')
+        self.log_message('    %s', self.requestline)
+        for key, value in sorted(self.headers.items()):
+            self.log_message('    %s: %s', key, value)
 
 
 class Server(HTTPServer):
