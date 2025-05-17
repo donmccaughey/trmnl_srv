@@ -76,6 +76,8 @@ class Handler(BaseHTTPRequestHandler):
 
 class Server(HTTPServer):
     def __init__(self, host: str, port: int, content_file: Path):
+        self.allow_reuse_address = True
+        self.allow_reuse_port = True
         super().__init__((host, port), Handler)
         self.content_file = content_file
 

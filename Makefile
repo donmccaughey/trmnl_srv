@@ -1,5 +1,14 @@
 TMP ?= $(abspath tmp)
 
+RSYNC_FLAGS ?= \
+		--compress \
+		--delete \
+		--exclude '__pycache__' \
+		--exclude '*_test.py' \
+		--quiet \
+		--recursive \
+		--rsh ssh \
+		--times
 
 .SECONDEXPANSION :
 
@@ -26,6 +35,10 @@ clobber : clean
 	rm -rf .venv
 
 
+alpine_files := \
+		alpine/etc/cron.d/trmnl \
+		alpine/etc/init.d/trmnl_srv
+
 python_files := \
 		src/gather/__init__.py \
 		src/gather/__main__.py \
@@ -34,12 +47,17 @@ python_files := \
 		src/render/__init__.py \
 		src/render/__main__.py \
 		src/serve/__init__.py \
-		src/serve/__main__.py \
+		src/serve/__main__.py
 
+python_source := \
+		$(filter-out %_test.py, $(python_files)) \
+		$(shell_files)
 
-source_files := $(filter-out %_test.py, $(python_files))
+python_tests := $(filter %_test.py, $(python_files))
 
-test_files := $(filter %_test.py, $(python_files))
+shell_files := \
+		src/serve_trmnl \
+		src/update_trmnl
 
 
 uv.lock : pyproject.toml .python-version
@@ -48,24 +66,22 @@ uv.lock : pyproject.toml .python-version
 
 
 $(TMP)/deploy.stamp.txt : \
-		$(TMP)/pytest.stamp.txt
+		$(TMP)/pytest.stamp.txt \
+		$(alpine_files) \
+		$(shell_files)
 	rsync \
-		--compress \
-		--delete \
-		--exclude '__pycache__' \
-		--exclude '*_test.py' \
-		--quiet \
-		--recursive \
-		--rsh ssh \
-		--times \
+		$(RSYNC_FLAGS) \
 		src/ \
 		donmcc@10.1.1.1:~/trmnl_srv/
+	rsync \
+		$(RSYNC_FLAGS) \
+		alpine/ \
+		donmcc@10.1.1.1:~/trmnl_setup/
 	date > $@
 
 
 $(TMP)/pytest.stamp.txt : \
-		$(source_files) \
-		$(test_files) \
+		$(python_files) \
 		$(TMP)/uv-sync.stamp.txt \
 		| $$(dir $$@)
 	uv run -m pytest --quiet --quiet
