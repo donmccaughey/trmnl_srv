@@ -1,17 +1,7 @@
 TMP ?= $(abspath tmp)
 
-RSYNC_FLAGS ?= \
-		--compress \
-		--delete \
-		--exclude '__pycache__' \
-		--exclude '*_test.py' \
-		--quiet \
-		--recursive \
-		--rsh ssh \
-		--times
-
-container_name := trmnl_srv
-image_name := trmnl_srv
+container := trmnl_srv
+image := trmnl_srv
 
 
 .SECONDEXPANSION :
@@ -52,18 +42,14 @@ shell : $(TMP)/docker-run.stamp.txt
 	docker exec \
 		--interactive \
 		--tty \
-		$(container_name) sh -l
+		$(container) sh -l
 
 
 .PHONY : stop
 stop :
-	-docker stop $(container_name)
+	-docker stop $(container)
 	rm -rf $(TMP)/docker-run.stamp.txt
 
-
-alpine_files := \
-		alpine/etc/cron.d/trmnl \
-		alpine/etc/init.d/trmnl_srv
 
 container_files := \
 		.dockerignore \
@@ -104,19 +90,8 @@ uv.lock : pyproject.toml .python-version
 	touch $@
 
 
-$(TMP)/deploy.stamp.txt : \
-		$(TMP)/pytest.stamp.txt \
-		$(alpine_files) \
-		$(src_files)
-	rsync \
-		$(RSYNC_FLAGS) \
-		src/ \
-		donmcc@10.1.1.1:~/trmnl_srv/
-	rsync \
-		$(RSYNC_FLAGS) \
-		alpine/ \
-		donmcc@10.1.1.1:~/trmnl_setup/
-	date > $@
+$(TMP)/deploy.stamp.txt : $(TMP)/trmnl_srv.tar.gz
+	rsync --archive $< don@10.0.0.100:~
 
 
 $(TMP)/docker-build.stamp.txt : \
@@ -126,7 +101,7 @@ $(TMP)/docker-build.stamp.txt : \
 	docker build \
 		--file container/Dockerfile \
 		--platform linux/amd64 \
-		--tag $(image_name) \
+		--tag $(image) \
 		--quiet \
 		.
 	date > $@
@@ -136,13 +111,13 @@ $(TMP)/docker-run.stamp.txt : \
 		$(TMP)/docker-build.stamp.txt \
 		stop \
 		| $$(dir $$@)
-	-docker rm $(container_name)
+	-docker rm $(container)
 	docker run \
 		--detach \
-		--name $(container_name) \
+		--name $(container) \
 		--platform linux/amd64 \
 		--publish 4002:80 \
-		$(image_name)
+		$(image)
 	date > $@
 
 
@@ -152,6 +127,12 @@ $(TMP)/pytest.stamp.txt : \
 		| $$(dir $$@)
 	uv run -m pytest --quiet --quiet
 	date > $@
+
+
+$(TMP)/trmnl_srv.tar.gz : \
+		$(TMP)/docker-build.stamp.txt \
+		| $$(dir $$@)
+	docker image save $(image) | gzip > tmp/$(image).tar.gz
 
 
 $(TMP)/uv-sync.stamp.txt : uv.lock | $$(dir $$@)
