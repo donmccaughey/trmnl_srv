@@ -14,6 +14,7 @@ from zoneinfo import ZoneInfo
 from .screen import Screen
 
 
+BASE_URL = 'http://10.0.0.239:4000'
 BLACK = 0
 CELL_HEIGHT = 32  # alternate values: 40, 24, 20
 ONE_BIT = '1'
@@ -88,7 +89,28 @@ for j, line in enumerate(screen.grid):
 
 image_dir = Path('../tmp')
 image_dir.mkdir(parents=True, exist_ok=True)
-image_file = image_dir / 'content.bmp'
-image.save(image_file)
+
+png_file = image_dir / 'image.png'
+image.save(png_file)
+
+
+api_display_json = {
+    'filename': content['updated'],
+    'firmware_url': None,
+    'image_url': BASE_URL + '/bitmap',
+    'image_url_timeout': 5,
+    'refresh_rate': 30,
+    'reset_firmware': False,
+    'special_function': 'sleep',
+    'update_firmware': False,
+}
+
+api_display_dir = Path('../tmp')
+api_display_dir.mkdir(parents=True, exist_ok=True)
+
+api_display_file = api_display_dir / 'api_display.json'
+with open(api_display_file, 'w') as f:
+    json.dump(api_display_json, f, indent=4, sort_keys=True)
+
 
 sys.exit(0)

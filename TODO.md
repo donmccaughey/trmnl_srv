@@ -8,8 +8,10 @@
 - Giants schedule
 - Warriors schedule
 
+
 ## Maybe
 
+- Giants Stadium events
 - Chase Center events
 - Spark events
 - Bay Bridge eastbound traffic

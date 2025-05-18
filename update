@@ -1,0 +1,9 @@
+#!/bin/bash
+
+cd src || exit 0
+uv run -m gather
+uv run -m render
+cd ..
+
+cp tmp/image.png static/bitmap/index.png
+cp tmp/api_display.json static/api/display/index.json

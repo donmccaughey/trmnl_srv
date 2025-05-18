@@ -1,0 +1,724 @@
+10.0.0.107 - - [16/May/2025 23:46:24] Logs received:
+10.0.0.107 - - [16/May/2025 23:46:24] {
+10.0.0.107 - - [16/May/2025 23:46:24]     "log": {
+10.0.0.107 - - [16/May/2025 23:46:24]         "logs_array": [
+10.0.0.107 - - [16/May/2025 23:46:24]             {
+10.0.0.107 - - [16/May/2025 23:46:24]                 "additional_info": {
+10.0.0.107 - - [16/May/2025 23:46:24]                     "filename_current": "",
+10.0.0.107 - - [16/May/2025 23:46:24]                     "filename_new": "",
+10.0.0.107 - - [16/May/2025 23:46:24]                     "retry_attempt": 21
+10.0.0.107 - - [16/May/2025 23:46:24]                 },
+10.0.0.107 - - [16/May/2025 23:46:24]                 "creation_timestamp": 1747464242,
+10.0.0.107 - - [16/May/2025 23:46:24]                 "device_status_stamp": {
+10.0.0.107 - - [16/May/2025 23:46:24]                     "battery_voltage": 3.858,
+10.0.0.107 - - [16/May/2025 23:46:24]                     "current_fw_version": "1.5.2",
+10.0.0.107 - - [16/May/2025 23:46:24]                     "free_heap_size": 214528,
+10.0.0.107 - - [16/May/2025 23:46:24]                     "max_alloc_size": 192500,
+10.0.0.107 - - [16/May/2025 23:46:24]                     "refresh_rate": 900,
+10.0.0.107 - - [16/May/2025 23:46:24]                     "special_function": "none",
+10.0.0.107 - - [16/May/2025 23:46:24]                     "time_since_last_sleep_start": 242,
+10.0.0.107 - - [16/May/2025 23:46:24]                     "wakeup_reason": "button",
+10.0.0.107 - - [16/May/2025 23:46:24]                     "wifi_rssi_level": -54,
+10.0.0.107 - - [16/May/2025 23:46:24]                     "wifi_status": "connected"
+10.0.0.107 - - [16/May/2025 23:46:24]                 },
+10.0.0.107 - - [16/May/2025 23:46:24]                 "log_codeline": 554,
+10.0.0.107 - - [16/May/2025 23:46:24]                 "log_id": 12,
+10.0.0.107 - - [16/May/2025 23:46:24]                 "log_message": "Error fetching API display: 7, detail: HTTP Client failed with error: read Timeout(-11)",
+10.0.0.107 - - [16/May/2025 23:46:24]                 "log_sourcefile": "src/bl.cpp"
+10.0.0.107 - - [16/May/2025 23:46:24]             },
+10.0.0.107 - - [16/May/2025 23:46:24]             {
+10.0.0.107 - - [16/May/2025 23:46:24]                 "additional_info": {
+10.0.0.107 - - [16/May/2025 23:46:24]                     "filename_current": "",
+10.0.0.107 - - [16/May/2025 23:46:24]                     "filename_new": "",
+10.0.0.107 - - [16/May/2025 23:46:24]                     "retry_attempt": 22
+10.0.0.107 - - [16/May/2025 23:46:24]                 },
+10.0.0.107 - - [16/May/2025 23:46:24]                 "creation_timestamp": 1747464373,
+10.0.0.107 - - [16/May/2025 23:46:24]                 "device_status_stamp": {
+10.0.0.107 - - [16/May/2025 23:46:24]                     "battery_voltage": 3.858,
+10.0.0.107 - - [16/May/2025 23:46:24]                     "current_fw_version": "1.5.2",
+10.0.0.107 - - [16/May/2025 23:46:24]                     "free_heap_size": 214500,
+10.0.0.107 - - [16/May/2025 23:46:24]                     "max_alloc_size": 192500,
+10.0.0.107 - - [16/May/2025 23:46:24]                     "refresh_rate": 300,
+10.0.0.107 - - [16/May/2025 23:46:24]                     "special_function": "none",
+10.0.0.107 - - [16/May/2025 23:46:24]                     "time_since_last_sleep_start": 116,
+10.0.0.107 - - [16/May/2025 23:46:24]                     "wakeup_reason": "powercycle",
+10.0.0.107 - - [16/May/2025 23:46:24]                     "wifi_rssi_level": -64,
+10.0.0.107 - - [16/May/2025 23:46:24]                     "wifi_status": "connected"
+10.0.0.107 - - [16/May/2025 23:46:24]                 },
+10.0.0.107 - - [16/May/2025 23:46:24]                 "log_codeline": 554,
+10.0.0.107 - - [16/May/2025 23:46:24]                 "log_id": 13,
+10.0.0.107 - - [16/May/2025 23:46:24]                 "log_message": "Error fetching API display: 7, detail: HTTP Client failed with error: read Timeout(-11)",
+10.0.0.107 - - [16/May/2025 23:46:24]                 "log_sourcefile": "src/bl.cpp"
+10.0.0.107 - - [16/May/2025 23:46:24]             },
+10.0.0.107 - - [16/May/2025 23:46:24]             {
+10.0.0.107 - - [16/May/2025 23:46:24]                 "additional_info": {
+10.0.0.107 - - [16/May/2025 23:46:24]                     "filename_current": "",
+10.0.0.107 - - [16/May/2025 23:46:24]                     "filename_new": "",
+10.0.0.107 - - [16/May/2025 23:46:24]                     "retry_attempt": 18
+10.0.0.107 - - [16/May/2025 23:46:24]                 },
+10.0.0.107 - - [16/May/2025 23:46:24]                 "creation_timestamp": 1747463541,
+10.0.0.107 - - [16/May/2025 23:46:24]                 "device_status_stamp": {
+10.0.0.107 - - [16/May/2025 23:46:24]                     "battery_voltage": 3.858,
+10.0.0.107 - - [16/May/2025 23:46:24]                     "current_fw_version": "1.5.2",
+10.0.0.107 - - [16/May/2025 23:46:24]                     "free_heap_size": 213004,
+10.0.0.107 - - [16/May/2025 23:46:24]                     "max_alloc_size": 192500,
+10.0.0.107 - - [16/May/2025 23:46:24]                     "refresh_rate": 300,
+10.0.0.107 - - [16/May/2025 23:46:24]                     "special_function": "none",
+10.0.0.107 - - [16/May/2025 23:46:24]                     "time_since_last_sleep_start": 624,
+10.0.0.107 - - [16/May/2025 23:46:24]                     "wakeup_reason": "powercycle",
+10.0.0.107 - - [16/May/2025 23:46:24]                     "wifi_rssi_level": -61,
+10.0.0.107 - - [16/May/2025 23:46:24]                     "wifi_status": "connected"
+10.0.0.107 - - [16/May/2025 23:46:24]                 },
+10.0.0.107 - - [16/May/2025 23:46:24]                 "log_codeline": 554,
+10.0.0.107 - - [16/May/2025 23:46:24]                 "log_id": 9,
+10.0.0.107 - - [16/May/2025 23:46:24]                 "log_message": "Error fetching API display: 7, detail: HTTP Client failed with error: read Timeout(-11)",
+10.0.0.107 - - [16/May/2025 23:46:24]                 "log_sourcefile": "src/bl.cpp"
+10.0.0.107 - - [16/May/2025 23:46:24]             },
+10.0.0.107 - - [16/May/2025 23:46:24]             {
+10.0.0.107 - - [16/May/2025 23:46:24]                 "additional_info": {
+10.0.0.107 - - [16/May/2025 23:46:24]                     "filename_current": "",
+10.0.0.107 - - [16/May/2025 23:46:24]                     "filename_new": "content.bmp",
+10.0.0.107 - - [16/May/2025 23:46:24]                     "retry_attempt": 19
+10.0.0.107 - - [16/May/2025 23:46:24]                 },
+10.0.0.107 - - [16/May/2025 23:46:24]                 "creation_timestamp": 1747463698,
+10.0.0.107 - - [16/May/2025 23:46:24]                 "device_status_stamp": {
+10.0.0.107 - - [16/May/2025 23:46:24]                     "battery_voltage": 3.86,
+10.0.0.107 - - [16/May/2025 23:46:24]                     "current_fw_version": "1.5.2",
+10.0.0.107 - - [16/May/2025 23:46:24]                     "free_heap_size": 212000,
+10.0.0.107 - - [16/May/2025 23:46:24]                     "max_alloc_size": 188404,
+10.0.0.107 - - [16/May/2025 23:46:24]                     "refresh_rate": 300,
+10.0.0.107 - - [16/May/2025 23:46:24]                     "special_function": "none",
+10.0.0.107 - - [16/May/2025 23:46:24]                     "time_since_last_sleep_start": 151,
+10.0.0.107 - - [16/May/2025 23:46:24]                     "wakeup_reason": "button",
+10.0.0.107 - - [16/May/2025 23:46:24]                     "wifi_rssi_level": -64,
+10.0.0.107 - - [16/May/2025 23:46:24]                     "wifi_status": "connected"
+10.0.0.107 - - [16/May/2025 23:46:24]                 },
+10.0.0.107 - - [16/May/2025 23:46:24]                 "log_codeline": 628,
+10.0.0.107 - - [16/May/2025 23:46:24]                 "log_id": 10,
+10.0.0.107 - - [16/May/2025 23:46:24]                 "log_message": "HTTP Client failed with error: read Timeout",
+10.0.0.107 - - [16/May/2025 23:46:24]                 "log_sourcefile": "src/bl.cpp"
+10.0.0.107 - - [16/May/2025 23:46:24]             },
+10.0.0.107 - - [16/May/2025 23:46:24]             {
+10.0.0.107 - - [16/May/2025 23:46:24]                 "additional_info": {
+10.0.0.107 - - [16/May/2025 23:46:24]                     "filename_current": "",
+10.0.0.107 - - [16/May/2025 23:46:24]                     "filename_new": "",
+10.0.0.107 - - [16/May/2025 23:46:24]                     "retry_attempt": 20
+10.0.0.107 - - [16/May/2025 23:46:24]                 },
+10.0.0.107 - - [16/May/2025 23:46:24]                 "creation_timestamp": 1747463982,
+10.0.0.107 - - [16/May/2025 23:46:24]                 "device_status_stamp": {
+10.0.0.107 - - [16/May/2025 23:46:24]                     "battery_voltage": 3.86,
+10.0.0.107 - - [16/May/2025 23:46:24]                     "current_fw_version": "1.5.2",
+10.0.0.107 - - [16/May/2025 23:46:24]                     "free_heap_size": 214372,
+10.0.0.107 - - [16/May/2025 23:46:24]                     "max_alloc_size": 192500,
+10.0.0.107 - - [16/May/2025 23:46:24]                     "refresh_rate": 900,
+10.0.0.107 - - [16/May/2025 23:46:24]                     "special_function": "none",
+10.0.0.107 - - [16/May/2025 23:46:24]                     "time_since_last_sleep_start": 267,
+10.0.0.107 - - [16/May/2025 23:46:24]                     "wakeup_reason": "button",
+10.0.0.107 - - [16/May/2025 23:46:24]                     "wifi_rssi_level": -46,
+10.0.0.107 - - [16/May/2025 23:46:24]                     "wifi_status": "connected"
+10.0.0.107 - - [16/May/2025 23:46:24]                 },
+10.0.0.107 - - [16/May/2025 23:46:24]                 "log_codeline": 554,
+10.0.0.107 - - [16/May/2025 23:46:24]                 "log_id": 11,
+10.0.0.107 - - [16/May/2025 23:46:24]                 "log_message": "Error fetching API display: 7, detail: HTTP Client failed with error: read Timeout(-11)",
+10.0.0.107 - - [16/May/2025 23:46:24]                 "log_sourcefile": "src/bl.cpp"
+10.0.0.107 - - [16/May/2025 23:46:24]             }
+10.0.0.107 - - [16/May/2025 23:46:24]         ]
+10.0.0.107 - - [16/May/2025 23:46:24]     }
+10.0.0.107 - - [16/May/2025 23:46:24] }
+10.0.0.107 - - [16/May/2025 23:46:24] "POST /api/log HTTP/1.1" 204 -
+10.0.0.107 - - [16/May/2025 23:46:24] "POST /api/log HTTP/1.1" 204 -
+
+
+
+10.0.0.107 - - [17/May/2025 00:07:15] Request details:
+10.0.0.107 - - [17/May/2025 00:07:15]     GET /bitmap HTTP/1.1
+10.0.0.107 - - [17/May/2025 00:07:15]     Accept-Encoding: identity;q=1,chunked;q=0.1,*;q=0
+10.0.0.107 - - [17/May/2025 00:07:15]     Connection: keep-alive
+10.0.0.107 - - [17/May/2025 00:07:15]     Host: 10.1.1.1:4000
+10.0.0.107 - - [17/May/2025 00:07:15]     User-Agent: ESP32HTTPClient
+10.0.0.107 - - [17/May/2025 00:07:15] "GET /bitmap HTTP/1.1" 200 -
+10.0.0.107 - - [17/May/2025 00:07:15] "GET /bitmap HTTP/1.1" 200 -
+
+
+10.0.0.107 - - [17/May/2025 00:09:16] Logs received:
+10.0.0.107 - - [17/May/2025 00:09:16] {
+10.0.0.107 - - [17/May/2025 00:09:16]     "log": {
+10.0.0.107 - - [17/May/2025 00:09:16]         "logs_array": [
+10.0.0.107 - - [17/May/2025 00:09:16]             {
+10.0.0.107 - - [17/May/2025 00:09:16]                 "additional_info": {
+10.0.0.107 - - [17/May/2025 00:09:16]                     "filename_current": "",
+10.0.0.107 - - [17/May/2025 00:09:16]                     "filename_new": "",
+10.0.0.107 - - [17/May/2025 00:09:16]                     "retry_attempt": 21
+10.0.0.107 - - [17/May/2025 00:09:16]                 },
+10.0.0.107 - - [17/May/2025 00:09:16]                 "creation_timestamp": 1747464242,
+10.0.0.107 - - [17/May/2025 00:09:16]                 "device_status_stamp": {
+10.0.0.107 - - [17/May/2025 00:09:16]                     "battery_voltage": 3.858,
+10.0.0.107 - - [17/May/2025 00:09:16]                     "current_fw_version": "1.5.2",
+10.0.0.107 - - [17/May/2025 00:09:16]                     "free_heap_size": 214528,
+10.0.0.107 - - [17/May/2025 00:09:16]                     "max_alloc_size": 192500,
+10.0.0.107 - - [17/May/2025 00:09:16]                     "refresh_rate": 900,
+10.0.0.107 - - [17/May/2025 00:09:16]                     "special_function": "none",
+10.0.0.107 - - [17/May/2025 00:09:16]                     "time_since_last_sleep_start": 242,
+10.0.0.107 - - [17/May/2025 00:09:16]                     "wakeup_reason": "button",
+10.0.0.107 - - [17/May/2025 00:09:16]                     "wifi_rssi_level": -54,
+10.0.0.107 - - [17/May/2025 00:09:16]                     "wifi_status": "connected"
+10.0.0.107 - - [17/May/2025 00:09:16]                 },
+10.0.0.107 - - [17/May/2025 00:09:16]                 "log_codeline": 554,
+10.0.0.107 - - [17/May/2025 00:09:16]                 "log_id": 12,
+10.0.0.107 - - [17/May/2025 00:09:16]                 "log_message": "Error fetching API display: 7, detail: HTTP Client failed with error: read Timeout(-11)",
+10.0.0.107 - - [17/May/2025 00:09:16]                 "log_sourcefile": "src/bl.cpp"
+10.0.0.107 - - [17/May/2025 00:09:16]             },
+10.0.0.107 - - [17/May/2025 00:09:16]             {
+10.0.0.107 - - [17/May/2025 00:09:16]                 "additional_info": {
+10.0.0.107 - - [17/May/2025 00:09:16]                     "filename_current": "",
+10.0.0.107 - - [17/May/2025 00:09:16]                     "filename_new": "",
+10.0.0.107 - - [17/May/2025 00:09:16]                     "retry_attempt": 22
+10.0.0.107 - - [17/May/2025 00:09:16]                 },
+10.0.0.107 - - [17/May/2025 00:09:16]                 "creation_timestamp": 1747464373,
+10.0.0.107 - - [17/May/2025 00:09:16]                 "device_status_stamp": {
+10.0.0.107 - - [17/May/2025 00:09:16]                     "battery_voltage": 3.858,
+10.0.0.107 - - [17/May/2025 00:09:16]                     "current_fw_version": "1.5.2",
+10.0.0.107 - - [17/May/2025 00:09:16]                     "free_heap_size": 214500,
+10.0.0.107 - - [17/May/2025 00:09:16]                     "max_alloc_size": 192500,
+10.0.0.107 - - [17/May/2025 00:09:16]                     "refresh_rate": 300,
+10.0.0.107 - - [17/May/2025 00:09:16]                     "special_function": "none",
+10.0.0.107 - - [17/May/2025 00:09:16]                     "time_since_last_sleep_start": 116,
+10.0.0.107 - - [17/May/2025 00:09:16]                     "wakeup_reason": "powercycle",
+10.0.0.107 - - [17/May/2025 00:09:16]                     "wifi_rssi_level": -64,
+10.0.0.107 - - [17/May/2025 00:09:16]                     "wifi_status": "connected"
+10.0.0.107 - - [17/May/2025 00:09:16]                 },
+10.0.0.107 - - [17/May/2025 00:09:16]                 "log_codeline": 554,
+10.0.0.107 - - [17/May/2025 00:09:16]                 "log_id": 13,
+10.0.0.107 - - [17/May/2025 00:09:16]                 "log_message": "Error fetching API display: 7, detail: HTTP Client failed with error: read Timeout(-11)",
+10.0.0.107 - - [17/May/2025 00:09:16]                 "log_sourcefile": "src/bl.cpp"
+10.0.0.107 - - [17/May/2025 00:09:16]             },
+10.0.0.107 - - [17/May/2025 00:09:16]             {
+10.0.0.107 - - [17/May/2025 00:09:16]                 "additional_info": {
+10.0.0.107 - - [17/May/2025 00:09:16]                     "filename_current": "",
+10.0.0.107 - - [17/May/2025 00:09:16]                     "filename_new": ""
+10.0.0.107 - - [17/May/2025 00:09:16]                 },
+10.0.0.107 - - [17/May/2025 00:09:16]                 "creation_timestamp": 1747465545,
+10.0.0.107 - - [17/May/2025 00:09:16]                 "device_status_stamp": {
+10.0.0.107 - - [17/May/2025 00:09:16]                     "battery_voltage": 3.866,
+10.0.0.107 - - [17/May/2025 00:09:16]                     "current_fw_version": "1.5.2",
+10.0.0.107 - - [17/May/2025 00:09:16]                     "free_heap_size": 227400,
+10.0.0.107 - - [17/May/2025 00:09:16]                     "max_alloc_size": 151540,
+10.0.0.107 - - [17/May/2025 00:09:16]                     "refresh_rate": 900,
+10.0.0.107 - - [17/May/2025 00:09:16]                     "special_function": "none",
+10.0.0.107 - - [17/May/2025 00:09:16]                     "time_since_last_sleep_start": 0,
+10.0.0.107 - - [17/May/2025 00:09:16]                     "wakeup_reason": "button",
+10.0.0.107 - - [17/May/2025 00:09:16]                     "wifi_rssi_level": 0,
+10.0.0.107 - - [17/May/2025 00:09:16]                     "wifi_status": "no_shield"
+10.0.0.107 - - [17/May/2025 00:09:16]                 },
+10.0.0.107 - - [17/May/2025 00:09:16]                 "log_codeline": 286,
+10.0.0.107 - - [17/May/2025 00:09:16]                 "log_id": 14,
+10.0.0.107 - - [17/May/2025 00:09:16]                 "log_message": "connection to the new WiFi failed",
+10.0.0.107 - - [17/May/2025 00:09:16]                 "log_sourcefile": "src/bl.cpp"
+10.0.0.107 - - [17/May/2025 00:09:16]             },
+10.0.0.107 - - [17/May/2025 00:09:16]             {
+10.0.0.107 - - [17/May/2025 00:09:16]                 "additional_info": {
+10.0.0.107 - - [17/May/2025 00:09:16]                     "filename_current": "",
+10.0.0.107 - - [17/May/2025 00:09:16]                     "filename_new": "",
+10.0.0.107 - - [17/May/2025 00:09:16]                     "retry_attempt": 23
+10.0.0.107 - - [17/May/2025 00:09:16]                 },
+10.0.0.107 - - [17/May/2025 00:09:16]                 "creation_timestamp": 1747465645,
+10.0.0.107 - - [17/May/2025 00:09:16]                 "device_status_stamp": {
+10.0.0.107 - - [17/May/2025 00:09:16]                     "battery_voltage": 3.852,
+10.0.0.107 - - [17/May/2025 00:09:16]                     "current_fw_version": "1.5.2",
+10.0.0.107 - - [17/May/2025 00:09:16]                     "free_heap_size": 214928,
+10.0.0.107 - - [17/May/2025 00:09:16]                     "max_alloc_size": 192500,
+10.0.0.107 - - [17/May/2025 00:09:16]                     "refresh_rate": 300,
+10.0.0.107 - - [17/May/2025 00:09:16]                     "special_function": "none",
+10.0.0.107 - - [17/May/2025 00:09:16]                     "time_since_last_sleep_start": 110,
+10.0.0.107 - - [17/May/2025 00:09:16]                     "wakeup_reason": "powercycle",
+10.0.0.107 - - [17/May/2025 00:09:16]                     "wifi_rssi_level": -52,
+10.0.0.107 - - [17/May/2025 00:09:16]                     "wifi_status": "connected"
+10.0.0.107 - - [17/May/2025 00:09:16]                 },
+10.0.0.107 - - [17/May/2025 00:09:16]                 "log_codeline": 554,
+10.0.0.107 - - [17/May/2025 00:09:16]                 "log_id": 15,
+10.0.0.107 - - [17/May/2025 00:09:16]                 "log_message": "Error fetching API display: 7, detail: HTTP Client failed with error: connection refused(-1)",
+10.0.0.107 - - [17/May/2025 00:09:16]                 "log_sourcefile": "src/bl.cpp"
+10.0.0.107 - - [17/May/2025 00:09:16]             },
+10.0.0.107 - - [17/May/2025 00:09:16]             {
+10.0.0.107 - - [17/May/2025 00:09:16]                 "additional_info": {
+10.0.0.107 - - [17/May/2025 00:09:16]                     "filename_current": "",
+10.0.0.107 - - [17/May/2025 00:09:16]                     "filename_new": "",
+10.0.0.107 - - [17/May/2025 00:09:16]                     "retry_attempt": 24
+10.0.0.107 - - [17/May/2025 00:09:16]                 },
+10.0.0.107 - - [17/May/2025 00:09:16]                 "creation_timestamp": 1747465742,
+10.0.0.107 - - [17/May/2025 00:09:16]                 "device_status_stamp": {
+10.0.0.107 - - [17/May/2025 00:09:16]                     "battery_voltage": 3.85,
+10.0.0.107 - - [17/May/2025 00:09:16]                     "current_fw_version": "1.5.2",
+10.0.0.107 - - [17/May/2025 00:09:16]                     "free_heap_size": 213028,
+10.0.0.107 - - [17/May/2025 00:09:16]                     "max_alloc_size": 192500,
+10.0.0.107 - - [17/May/2025 00:09:16]                     "refresh_rate": 900,
+10.0.0.107 - - [17/May/2025 00:09:16]                     "special_function": "none",
+10.0.0.107 - - [17/May/2025 00:09:16]                     "time_since_last_sleep_start": 82,
+10.0.0.107 - - [17/May/2025 00:09:16]                     "wakeup_reason": "button",
+10.0.0.107 - - [17/May/2025 00:09:16]                     "wifi_rssi_level": -58,
+10.0.0.107 - - [17/May/2025 00:09:16]                     "wifi_status": "connected"
+10.0.0.107 - - [17/May/2025 00:09:16]                 },
+10.0.0.107 - - [17/May/2025 00:09:16]                 "log_codeline": 554,
+10.0.0.107 - - [17/May/2025 00:09:16]                 "log_id": 16,
+10.0.0.107 - - [17/May/2025 00:09:16]                 "log_message": "Error fetching API display: 7, detail: HTTP Client failed with error: read Timeout(-11)",
+10.0.0.107 - - [17/May/2025 00:09:16]                 "log_sourcefile": "src/bl.cpp"
+10.0.0.107 - - [17/May/2025 00:09:16]             }
+10.0.0.107 - - [17/May/2025 00:09:16]         ]
+10.0.0.107 - - [17/May/2025 00:09:16]     }
+10.0.0.107 - - [17/May/2025 00:09:16] }
+10.0.0.107 - - [17/May/2025 00:09:16] "POST /api/log HTTP/1.1" 204 -
+10.0.0.107 - - [17/May/2025 00:09:16] "POST /api/log HTTP/1.1" 204 -
+
+
+10.0.0.107 - - [17/May/2025 00:39:34] Request details:
+10.0.0.107 - - [17/May/2025 00:39:34]     GET /api/display HTTP/1.1
+10.0.0.107 - - [17/May/2025 00:39:34]     Accept-Encoding: identity;q=1,chunked;q=0.1,*;q=0
+10.0.0.107 - - [17/May/2025 00:39:34]     Access-Token: vDblM3mlIbxCC2w5pax9DQ
+10.0.0.107 - - [17/May/2025 00:39:34]     Battery-Voltage: 3.86
+10.0.0.107 - - [17/May/2025 00:39:34]     Connection: keep-alive
+10.0.0.107 - - [17/May/2025 00:39:34]     FW-Version: 1.5.2
+10.0.0.107 - - [17/May/2025 00:39:34]     Height: 480
+10.0.0.107 - - [17/May/2025 00:39:34]     Host: 10.0.0.239:4000
+10.0.0.107 - - [17/May/2025 00:39:34]     ID: 28:37:2F:C5:F5:50
+10.0.0.107 - - [17/May/2025 00:39:34]     RSSI: -55
+10.0.0.107 - - [17/May/2025 00:39:34]     Refresh-Rate: 900
+10.0.0.107 - - [17/May/2025 00:39:34]     User-Agent: ESP32HTTPClient
+10.0.0.107 - - [17/May/2025 00:39:34]     Width: 800
+10.0.0.107 - - [17/May/2025 00:39:34] "GET /api/display HTTP/1.1" 200 -
+10.0.0.107 - - [17/May/2025 00:39:34] "GET /api/display HTTP/1.1" 200 -
+10.0.0.107 - - [17/May/2025 00:39:34] Request details:
+10.0.0.107 - - [17/May/2025 00:39:34]     POST /api/log HTTP/1.1
+10.0.0.107 - - [17/May/2025 00:39:34]     Accept: application/json
+10.0.0.107 - - [17/May/2025 00:39:34]     Accept-Encoding: identity;q=1,chunked;q=0.1,*;q=0
+10.0.0.107 - - [17/May/2025 00:39:34]     Access-Token: vDblM3mlIbxCC2w5pax9DQ
+10.0.0.107 - - [17/May/2025 00:39:34]     Connection: keep-alive
+10.0.0.107 - - [17/May/2025 00:39:34]     Content-Length: 579
+10.0.0.107 - - [17/May/2025 00:39:34]     Content-Type: application/json
+10.0.0.107 - - [17/May/2025 00:39:34]     Host: 10.0.0.239:4000
+10.0.0.107 - - [17/May/2025 00:39:34]     ID: 28:37:2F:C5:F5:50
+10.0.0.107 - - [17/May/2025 00:39:34]     User-Agent: ESP32HTTPClient
+10.0.0.107 - - [17/May/2025 00:39:34] Logs received:
+10.0.0.107 - - [17/May/2025 00:39:34] {
+10.0.0.107 - - [17/May/2025 00:39:34]     "log": {
+10.0.0.107 - - [17/May/2025 00:39:34]         "logs_array": [
+10.0.0.107 - - [17/May/2025 00:39:34]             {
+10.0.0.107 - - [17/May/2025 00:39:34]                 "additional_info": {
+10.0.0.107 - - [17/May/2025 00:39:34]                     "filename_current": "",
+10.0.0.107 - - [17/May/2025 00:39:34]                     "filename_new": "",
+10.0.0.107 - - [17/May/2025 00:39:34]                     "retry_attempt": 27
+10.0.0.107 - - [17/May/2025 00:39:34]                 },
+10.0.0.107 - - [17/May/2025 00:39:34]                 "creation_timestamp": 1747467561,
+10.0.0.107 - - [17/May/2025 00:39:34]                 "device_status_stamp": {
+10.0.0.107 - - [17/May/2025 00:39:34]                     "battery_voltage": 3.844,
+10.0.0.107 - - [17/May/2025 00:39:34]                     "current_fw_version": "1.5.2",
+10.0.0.107 - - [17/May/2025 00:39:34]                     "free_heap_size": 185812,
+10.0.0.107 - - [17/May/2025 00:39:34]                     "max_alloc_size": 155636,
+10.0.0.107 - - [17/May/2025 00:39:34]                     "refresh_rate": 900,
+10.0.0.107 - - [17/May/2025 00:39:34]                     "special_function": "none",
+10.0.0.107 - - [17/May/2025 00:39:34]                     "time_since_last_sleep_start": 276,
+10.0.0.107 - - [17/May/2025 00:39:34]                     "wakeup_reason": "button",
+10.0.0.107 - - [17/May/2025 00:39:34]                     "wifi_rssi_level": -55,
+10.0.0.107 - - [17/May/2025 00:39:34]                     "wifi_status": "connected"
+10.0.0.107 - - [17/May/2025 00:39:34]                 },
+10.0.0.107 - - [17/May/2025 00:39:34]                 "log_codeline": 554,
+10.0.0.107 - - [17/May/2025 00:39:34]                 "log_id": 19,
+10.0.0.107 - - [17/May/2025 00:39:34]                 "log_message": "Error fetching API display: 7, detail: HTTP Client failed with error: read Timeout(-11)",
+10.0.0.107 - - [17/May/2025 00:39:34]                 "log_sourcefile": "src/bl.cpp"
+10.0.0.107 - - [17/May/2025 00:39:34]             }
+10.0.0.107 - - [17/May/2025 00:39:34]         ]
+10.0.0.107 - - [17/May/2025 00:39:34]     }
+10.0.0.107 - - [17/May/2025 00:39:34] }
+10.0.0.107 - - [17/May/2025 00:39:34] "POST /api/log HTTP/1.1" 204 -
+10.0.0.107 - - [17/May/2025 00:39:34] "POST /api/log HTTP/1.1" 204 -
+10.0.0.107 - - [17/May/2025 00:39:34] Request details:
+10.0.0.107 - - [17/May/2025 00:39:34]     POST /api/log HTTP/1.1
+10.0.0.107 - - [17/May/2025 00:39:34]     Accept: application/json
+10.0.0.107 - - [17/May/2025 00:39:34]     Accept-Encoding: identity;q=1,chunked;q=0.1,*;q=0
+10.0.0.107 - - [17/May/2025 00:39:34]     Access-Token: vDblM3mlIbxCC2w5pax9DQ
+10.0.0.107 - - [17/May/2025 00:39:34]     Connection: keep-alive
+10.0.0.107 - - [17/May/2025 00:39:34]     Content-Length: 2814
+10.0.0.107 - - [17/May/2025 00:39:34]     Content-Type: application/json
+10.0.0.107 - - [17/May/2025 00:39:34]     Host: 10.0.0.239:4000
+10.0.0.107 - - [17/May/2025 00:39:34]     ID: 28:37:2F:C5:F5:50
+10.0.0.107 - - [17/May/2025 00:39:34]     User-Agent: ESP32HTTPClient
+10.0.0.107 - - [17/May/2025 00:39:34] Logs received:
+10.0.0.107 - - [17/May/2025 00:39:34] {
+10.0.0.107 - - [17/May/2025 00:39:34]     "log": {
+10.0.0.107 - - [17/May/2025 00:39:34]         "logs_array": [
+10.0.0.107 - - [17/May/2025 00:39:34]             {
+10.0.0.107 - - [17/May/2025 00:39:34]                 "additional_info": {
+10.0.0.107 - - [17/May/2025 00:39:34]                     "filename_current": "",
+10.0.0.107 - - [17/May/2025 00:39:34]                     "filename_new": "",
+10.0.0.107 - - [17/May/2025 00:39:34]                     "retry_attempt": 25
+10.0.0.107 - - [17/May/2025 00:39:34]                 },
+10.0.0.107 - - [17/May/2025 00:39:34]                 "creation_timestamp": 1747466359,
+10.0.0.107 - - [17/May/2025 00:39:34]                 "device_status_stamp": {
+10.0.0.107 - - [17/May/2025 00:39:34]                     "battery_voltage": 3.854,
+10.0.0.107 - - [17/May/2025 00:39:34]                     "current_fw_version": "1.5.2",
+10.0.0.107 - - [17/May/2025 00:39:34]                     "free_heap_size": 214644,
+10.0.0.107 - - [17/May/2025 00:39:34]                     "max_alloc_size": 192500,
+10.0.0.107 - - [17/May/2025 00:39:34]                     "refresh_rate": 300,
+10.0.0.107 - - [17/May/2025 00:39:34]                     "special_function": "none",
+10.0.0.107 - - [17/May/2025 00:39:34]                     "time_since_last_sleep_start": 598,
+10.0.0.107 - - [17/May/2025 00:39:34]                     "wakeup_reason": "powercycle",
+10.0.0.107 - - [17/May/2025 00:39:34]                     "wifi_rssi_level": -50,
+10.0.0.107 - - [17/May/2025 00:39:34]                     "wifi_status": "connected"
+10.0.0.107 - - [17/May/2025 00:39:34]                 },
+10.0.0.107 - - [17/May/2025 00:39:34]                 "log_codeline": 554,
+10.0.0.107 - - [17/May/2025 00:39:34]                 "log_id": 17,
+10.0.0.107 - - [17/May/2025 00:39:34]                 "log_message": "Error fetching API display: 7, detail: HTTP Client failed with error: read Timeout(-11)",
+10.0.0.107 - - [17/May/2025 00:39:34]                 "log_sourcefile": "src/bl.cpp"
+10.0.0.107 - - [17/May/2025 00:39:34]             },
+10.0.0.107 - - [17/May/2025 00:39:34]             {
+10.0.0.107 - - [17/May/2025 00:39:34]                 "additional_info": {
+10.0.0.107 - - [17/May/2025 00:39:34]                     "filename_current": "",
+10.0.0.107 - - [17/May/2025 00:39:34]                     "filename_new": "",
+10.0.0.107 - - [17/May/2025 00:39:34]                     "retry_attempt": 26
+10.0.0.107 - - [17/May/2025 00:39:34]                 },
+10.0.0.107 - - [17/May/2025 00:39:34]                 "creation_timestamp": 1747467267,
+10.0.0.107 - - [17/May/2025 00:39:34]                 "device_status_stamp": {
+10.0.0.107 - - [17/May/2025 00:39:34]                     "battery_voltage": 3.852,
+10.0.0.107 - - [17/May/2025 00:39:34]                     "current_fw_version": "1.5.2",
+10.0.0.107 - - [17/May/2025 00:39:34]                     "free_heap_size": 214812,
+10.0.0.107 - - [17/May/2025 00:39:34]                     "max_alloc_size": 192500,
+10.0.0.107 - - [17/May/2025 00:39:34]                     "refresh_rate": 900,
+10.0.0.107 - - [17/May/2025 00:39:34]                     "special_function": "none",
+10.0.0.107 - - [17/May/2025 00:39:34]                     "time_since_last_sleep_start": 902,
+10.0.0.107 - - [17/May/2025 00:39:34]                     "wakeup_reason": "timer",
+10.0.0.107 - - [17/May/2025 00:39:34]                     "wifi_rssi_level": -51,
+10.0.0.107 - - [17/May/2025 00:39:34]                     "wifi_status": "connected"
+10.0.0.107 - - [17/May/2025 00:39:34]                 },
+10.0.0.107 - - [17/May/2025 00:39:34]                 "log_codeline": 554,
+10.0.0.107 - - [17/May/2025 00:39:34]                 "log_id": 18,
+10.0.0.107 - - [17/May/2025 00:39:34]                 "log_message": "Error fetching API display: 7, detail: HTTP Client failed with error: connection refused(-1)",
+10.0.0.107 - - [17/May/2025 00:39:34]                 "log_sourcefile": "src/bl.cpp"
+10.0.0.107 - - [17/May/2025 00:39:34]             },
+10.0.0.107 - - [17/May/2025 00:39:34]             {
+10.0.0.107 - - [17/May/2025 00:39:34]                 "additional_info": {
+10.0.0.107 - - [17/May/2025 00:39:34]                     "filename_current": "",
+10.0.0.107 - - [17/May/2025 00:39:34]                     "filename_new": "",
+10.0.0.107 - - [17/May/2025 00:39:34]                     "retry_attempt": 27
+10.0.0.107 - - [17/May/2025 00:39:34]                 },
+10.0.0.107 - - [17/May/2025 00:39:34]                 "creation_timestamp": 1747467561,
+10.0.0.107 - - [17/May/2025 00:39:34]                 "device_status_stamp": {
+10.0.0.107 - - [17/May/2025 00:39:34]                     "battery_voltage": 3.844,
+10.0.0.107 - - [17/May/2025 00:39:34]                     "current_fw_version": "1.5.2",
+10.0.0.107 - - [17/May/2025 00:39:34]                     "free_heap_size": 185812,
+10.0.0.107 - - [17/May/2025 00:39:34]                     "max_alloc_size": 155636,
+10.0.0.107 - - [17/May/2025 00:39:34]                     "refresh_rate": 900,
+10.0.0.107 - - [17/May/2025 00:39:34]                     "special_function": "none",
+10.0.0.107 - - [17/May/2025 00:39:34]                     "time_since_last_sleep_start": 276,
+10.0.0.107 - - [17/May/2025 00:39:34]                     "wakeup_reason": "button",
+10.0.0.107 - - [17/May/2025 00:39:34]                     "wifi_rssi_level": -55,
+10.0.0.107 - - [17/May/2025 00:39:34]                     "wifi_status": "connected"
+10.0.0.107 - - [17/May/2025 00:39:34]                 },
+10.0.0.107 - - [17/May/2025 00:39:34]                 "log_codeline": 554,
+10.0.0.107 - - [17/May/2025 00:39:34]                 "log_id": 19,
+10.0.0.107 - - [17/May/2025 00:39:34]                 "log_message": "Error fetching API display: 7, detail: HTTP Client failed with error: read Timeout(-11)",
+10.0.0.107 - - [17/May/2025 00:39:34]                 "log_sourcefile": "src/bl.cpp"
+10.0.0.107 - - [17/May/2025 00:39:34]             },
+10.0.0.107 - - [17/May/2025 00:39:34]             {
+10.0.0.107 - - [17/May/2025 00:39:34]                 "additional_info": {
+10.0.0.107 - - [17/May/2025 00:39:34]                     "filename_current": "",
+10.0.0.107 - - [17/May/2025 00:39:34]                     "filename_new": "",
+10.0.0.107 - - [17/May/2025 00:39:34]                     "retry_attempt": 23
+10.0.0.107 - - [17/May/2025 00:39:34]                 },
+10.0.0.107 - - [17/May/2025 00:39:34]                 "creation_timestamp": 1747465645,
+10.0.0.107 - - [17/May/2025 00:39:34]                 "device_status_stamp": {
+10.0.0.107 - - [17/May/2025 00:39:34]                     "battery_voltage": 3.852,
+10.0.0.107 - - [17/May/2025 00:39:34]                     "current_fw_version": "1.5.2",
+10.0.0.107 - - [17/May/2025 00:39:34]                     "free_heap_size": 214928,
+10.0.0.107 - - [17/May/2025 00:39:34]                     "max_alloc_size": 192500,
+10.0.0.107 - - [17/May/2025 00:39:34]                     "refresh_rate": 300,
+10.0.0.107 - - [17/May/2025 00:39:34]                     "special_function": "none",
+10.0.0.107 - - [17/May/2025 00:39:34]                     "time_since_last_sleep_start": 110,
+10.0.0.107 - - [17/May/2025 00:39:34]                     "wakeup_reason": "powercycle",
+10.0.0.107 - - [17/May/2025 00:39:34]                     "wifi_rssi_level": -52,
+10.0.0.107 - - [17/May/2025 00:39:34]                     "wifi_status": "connected"
+10.0.0.107 - - [17/May/2025 00:39:34]                 },
+10.0.0.107 - - [17/May/2025 00:39:34]                 "log_codeline": 554,
+10.0.0.107 - - [17/May/2025 00:39:34]                 "log_id": 15,
+10.0.0.107 - - [17/May/2025 00:39:34]                 "log_message": "Error fetching API display: 7, detail: HTTP Client failed with error: connection refused(-1)",
+10.0.0.107 - - [17/May/2025 00:39:34]                 "log_sourcefile": "src/bl.cpp"
+10.0.0.107 - - [17/May/2025 00:39:34]             },
+10.0.0.107 - - [17/May/2025 00:39:34]             {
+10.0.0.107 - - [17/May/2025 00:39:34]                 "additional_info": {
+10.0.0.107 - - [17/May/2025 00:39:34]                     "filename_current": "",
+10.0.0.107 - - [17/May/2025 00:39:34]                     "filename_new": "",
+10.0.0.107 - - [17/May/2025 00:39:34]                     "retry_attempt": 24
+10.0.0.107 - - [17/May/2025 00:39:34]                 },
+10.0.0.107 - - [17/May/2025 00:39:34]                 "creation_timestamp": 1747465742,
+10.0.0.107 - - [17/May/2025 00:39:34]                 "device_status_stamp": {
+10.0.0.107 - - [17/May/2025 00:39:34]                     "battery_voltage": 3.85,
+10.0.0.107 - - [17/May/2025 00:39:34]                     "current_fw_version": "1.5.2",
+10.0.0.107 - - [17/May/2025 00:39:34]                     "free_heap_size": 213028,
+10.0.0.107 - - [17/May/2025 00:39:34]                     "max_alloc_size": 192500,
+10.0.0.107 - - [17/May/2025 00:39:34]                     "refresh_rate": 900,
+10.0.0.107 - - [17/May/2025 00:39:34]                     "special_function": "none",
+10.0.0.107 - - [17/May/2025 00:39:34]                     "time_since_last_sleep_start": 82,
+10.0.0.107 - - [17/May/2025 00:39:34]                     "wakeup_reason": "button",
+10.0.0.107 - - [17/May/2025 00:39:34]                     "wifi_rssi_level": -58,
+10.0.0.107 - - [17/May/2025 00:39:34]                     "wifi_status": "connected"
+10.0.0.107 - - [17/May/2025 00:39:34]                 },
+10.0.0.107 - - [17/May/2025 00:39:34]                 "log_codeline": 554,
+10.0.0.107 - - [17/May/2025 00:39:34]                 "log_id": 16,
+10.0.0.107 - - [17/May/2025 00:39:34]                 "log_message": "Error fetching API display: 7, detail: HTTP Client failed with error: read Timeout(-11)",
+10.0.0.107 - - [17/May/2025 00:39:34]                 "log_sourcefile": "src/bl.cpp"
+10.0.0.107 - - [17/May/2025 00:39:34]             }
+10.0.0.107 - - [17/May/2025 00:39:34]         ]
+10.0.0.107 - - [17/May/2025 00:39:34]     }
+10.0.0.107 - - [17/May/2025 00:39:34] }
+10.0.0.107 - - [17/May/2025 00:39:34] "POST /api/log HTTP/1.1" 204 -
+10.0.0.107 - - [17/May/2025 00:39:34] "POST /api/log HTTP/1.1" 204 -
+
+
+/Users/donmcc/Developer/Don/trmnl_srv/.venv/bin/python -m serve
+Serving...
+10.0.0.107 - - [17/May/2025 00:56:02] Request details:
+10.0.0.107 - - [17/May/2025 00:56:02]     GET /api/display HTTP/1.1
+10.0.0.107 - - [17/May/2025 00:56:02]     Accept-Encoding: identity;q=1,chunked;q=0.1,*;q=0
+10.0.0.107 - - [17/May/2025 00:56:02]     Access-Token: vDblM3mlIbxCC2w5pax9DQ
+10.0.0.107 - - [17/May/2025 00:56:02]     Battery-Voltage: 3.85
+10.0.0.107 - - [17/May/2025 00:56:02]     Connection: keep-alive
+10.0.0.107 - - [17/May/2025 00:56:02]     FW-Version: 1.5.2
+10.0.0.107 - - [17/May/2025 00:56:02]     Height: 480
+10.0.0.107 - - [17/May/2025 00:56:02]     Host: 10.0.0.239:4000
+10.0.0.107 - - [17/May/2025 00:56:02]     ID: 28:37:2F:C5:F5:50
+10.0.0.107 - - [17/May/2025 00:56:02]     RSSI: -63
+10.0.0.107 - - [17/May/2025 00:56:02]     Refresh-Rate: 900
+10.0.0.107 - - [17/May/2025 00:56:02]     User-Agent: ESP32HTTPClient
+10.0.0.107 - - [17/May/2025 00:56:02]     Width: 800
+10.0.0.107 - - [17/May/2025 00:56:02] "GET /api/display HTTP/1.1" 200 -
+10.0.0.107 - - [17/May/2025 00:56:02] "GET /api/display HTTP/1.1" 200 -
+10.0.0.107 - - [17/May/2025 00:56:02] Request details:
+10.0.0.107 - - [17/May/2025 00:56:02]     GET /bitmap HTTP/1.1
+10.0.0.107 - - [17/May/2025 00:56:02]     Accept-Encoding: identity;q=1,chunked;q=0.1,*;q=0
+10.0.0.107 - - [17/May/2025 00:56:02]     Connection: keep-alive
+10.0.0.107 - - [17/May/2025 00:56:02]     Host: 10.0.0.239:4000
+10.0.0.107 - - [17/May/2025 00:56:02]     User-Agent: ESP32HTTPClient
+10.0.0.107 - - [17/May/2025 00:56:02] "GET /bitmap HTTP/1.1" 200 -
+10.0.0.107 - - [17/May/2025 00:56:02] "GET /bitmap HTTP/1.1" 200 -
+10.0.0.107 - - [17/May/2025 00:56:06] Request details:
+10.0.0.107 - - [17/May/2025 00:56:06]     GET /api/display HTTP/1.1
+10.0.0.107 - - [17/May/2025 00:56:06]     Accept-Encoding: identity;q=1,chunked;q=0.1,*;q=0
+10.0.0.107 - - [17/May/2025 00:56:06]     Access-Token: vDblM3mlIbxCC2w5pax9DQ
+10.0.0.107 - - [17/May/2025 00:56:06]     Battery-Voltage: 3.85
+10.0.0.107 - - [17/May/2025 00:56:06]     Connection: keep-alive
+10.0.0.107 - - [17/May/2025 00:56:06]     FW-Version: 1.5.2
+10.0.0.107 - - [17/May/2025 00:56:06]     Height: 480
+10.0.0.107 - - [17/May/2025 00:56:06]     Host: 10.0.0.239:4000
+10.0.0.107 - - [17/May/2025 00:56:06]     ID: 28:37:2F:C5:F5:50
+10.0.0.107 - - [17/May/2025 00:56:06]     RSSI: -59
+10.0.0.107 - - [17/May/2025 00:56:06]     Refresh-Rate: 300
+10.0.0.107 - - [17/May/2025 00:56:06]     User-Agent: ESP32HTTPClient
+10.0.0.107 - - [17/May/2025 00:56:06]     Width: 800
+10.0.0.107 - - [17/May/2025 00:56:06] "GET /api/display HTTP/1.1" 200 -
+10.0.0.107 - - [17/May/2025 00:56:06] "GET /api/display HTTP/1.1" 200 -
+10.0.0.107 - - [17/May/2025 00:56:06] Request details:
+10.0.0.107 - - [17/May/2025 00:56:06]     GET /bitmap HTTP/1.1
+10.0.0.107 - - [17/May/2025 00:56:06]     Accept-Encoding: identity;q=1,chunked;q=0.1,*;q=0
+10.0.0.107 - - [17/May/2025 00:56:06]     Connection: keep-alive
+10.0.0.107 - - [17/May/2025 00:56:06]     Host: 10.0.0.239:4000
+10.0.0.107 - - [17/May/2025 00:56:06]     User-Agent: ESP32HTTPClient
+10.0.0.107 - - [17/May/2025 00:56:06] "GET /bitmap HTTP/1.1" 200 -
+10.0.0.107 - - [17/May/2025 00:56:06] "GET /bitmap HTTP/1.1" 200 -
+10.0.0.107 - - [17/May/2025 00:56:27] Request details:
+10.0.0.107 - - [17/May/2025 00:56:27]     GET /api/display HTTP/1.1
+10.0.0.107 - - [17/May/2025 00:56:27]     Accept-Encoding: identity;q=1,chunked;q=0.1,*;q=0
+10.0.0.107 - - [17/May/2025 00:56:27]     Access-Token: vDblM3mlIbxCC2w5pax9DQ
+10.0.0.107 - - [17/May/2025 00:56:27]     Battery-Voltage: 3.85
+10.0.0.107 - - [17/May/2025 00:56:27]     Connection: keep-alive
+10.0.0.107 - - [17/May/2025 00:56:27]     FW-Version: 1.5.2
+10.0.0.107 - - [17/May/2025 00:56:27]     Height: 480
+10.0.0.107 - - [17/May/2025 00:56:27]     Host: 10.0.0.239:4000
+10.0.0.107 - - [17/May/2025 00:56:27]     ID: 28:37:2F:C5:F5:50
+10.0.0.107 - - [17/May/2025 00:56:27]     RSSI: -59
+10.0.0.107 - - [17/May/2025 00:56:27]     Refresh-Rate: 300
+10.0.0.107 - - [17/May/2025 00:56:27]     User-Agent: ESP32HTTPClient
+10.0.0.107 - - [17/May/2025 00:56:27]     Width: 800
+10.0.0.107 - - [17/May/2025 00:56:27] "GET /api/display HTTP/1.1" 200 -
+10.0.0.107 - - [17/May/2025 00:56:27] "GET /api/display HTTP/1.1" 200 -
+10.0.0.107 - - [17/May/2025 00:56:27] Request details:
+10.0.0.107 - - [17/May/2025 00:56:27]     POST /api/log HTTP/1.1
+10.0.0.107 - - [17/May/2025 00:56:27]     Accept: application/json
+10.0.0.107 - - [17/May/2025 00:56:27]     Accept-Encoding: identity;q=1,chunked;q=0.1,*;q=0
+10.0.0.107 - - [17/May/2025 00:56:27]     Access-Token: vDblM3mlIbxCC2w5pax9DQ
+10.0.0.107 - - [17/May/2025 00:56:27]     Connection: keep-alive
+10.0.0.107 - - [17/May/2025 00:56:27]     Content-Length: 582
+10.0.0.107 - - [17/May/2025 00:56:27]     Content-Type: application/json
+10.0.0.107 - - [17/May/2025 00:56:27]     Host: 10.0.0.239:4000
+10.0.0.107 - - [17/May/2025 00:56:27]     ID: 28:37:2F:C5:F5:50
+10.0.0.107 - - [17/May/2025 00:56:27]     User-Agent: ESP32HTTPClient
+10.0.0.107 - - [17/May/2025 00:56:27] Logs received:
+10.0.0.107 - - [17/May/2025 00:56:27] {
+10.0.0.107 - - [17/May/2025 00:56:27]     "log": {
+10.0.0.107 - - [17/May/2025 00:56:27]         "logs_array": [
+10.0.0.107 - - [17/May/2025 00:56:27]             {
+10.0.0.107 - - [17/May/2025 00:56:27]                 "additional_info": {
+10.0.0.107 - - [17/May/2025 00:56:27]                     "filename_current": "",
+10.0.0.107 - - [17/May/2025 00:56:27]                     "filename_new": "",
+10.0.0.107 - - [17/May/2025 00:56:27]                     "retry_attempt": 29
+10.0.0.107 - - [17/May/2025 00:56:27]                 },
+10.0.0.107 - - [17/May/2025 00:56:27]                 "creation_timestamp": 1747468577,
+10.0.0.107 - - [17/May/2025 00:56:27]                 "device_status_stamp": {
+10.0.0.107 - - [17/May/2025 00:56:27]                     "battery_voltage": 3.848,
+10.0.0.107 - - [17/May/2025 00:56:27]                     "current_fw_version": "1.5.2",
+10.0.0.107 - - [17/May/2025 00:56:27]                     "free_heap_size": 213056,
+10.0.0.107 - - [17/May/2025 00:56:27]                     "max_alloc_size": 192500,
+10.0.0.107 - - [17/May/2025 00:56:27]                     "refresh_rate": 300,
+10.0.0.107 - - [17/May/2025 00:56:27]                     "special_function": "none",
+10.0.0.107 - - [17/May/2025 00:56:27]                     "time_since_last_sleep_start": 73,
+10.0.0.107 - - [17/May/2025 00:56:27]                     "wakeup_reason": "powercycle",
+10.0.0.107 - - [17/May/2025 00:56:27]                     "wifi_rssi_level": -60,
+10.0.0.107 - - [17/May/2025 00:56:27]                     "wifi_status": "connected"
+10.0.0.107 - - [17/May/2025 00:56:27]                 },
+10.0.0.107 - - [17/May/2025 00:56:27]                 "log_codeline": 554,
+10.0.0.107 - - [17/May/2025 00:56:27]                 "log_id": 21,
+10.0.0.107 - - [17/May/2025 00:56:27]                 "log_message": "Error fetching API display: 7, detail: HTTP Client failed with error: read Timeout(-11)",
+10.0.0.107 - - [17/May/2025 00:56:27]                 "log_sourcefile": "src/bl.cpp"
+10.0.0.107 - - [17/May/2025 00:56:27]             }
+10.0.0.107 - - [17/May/2025 00:56:27]         ]
+10.0.0.107 - - [17/May/2025 00:56:27]     }
+10.0.0.107 - - [17/May/2025 00:56:27] }
+10.0.0.107 - - [17/May/2025 00:56:27] "POST /api/log HTTP/1.1" 204 -
+10.0.0.107 - - [17/May/2025 00:56:27] "POST /api/log HTTP/1.1" 204 -
+10.0.0.107 - - [17/May/2025 00:56:27] Request details:
+10.0.0.107 - - [17/May/2025 00:56:27]     POST /api/log HTTP/1.1
+10.0.0.107 - - [17/May/2025 00:56:27]     Accept: application/json
+10.0.0.107 - - [17/May/2025 00:56:27]     Accept-Encoding: identity;q=1,chunked;q=0.1,*;q=0
+10.0.0.107 - - [17/May/2025 00:56:27]     Access-Token: vDblM3mlIbxCC2w5pax9DQ
+10.0.0.107 - - [17/May/2025 00:56:27]     Connection: keep-alive
+10.0.0.107 - - [17/May/2025 00:56:27]     Content-Length: 2814
+10.0.0.107 - - [17/May/2025 00:56:27]     Content-Type: application/json
+10.0.0.107 - - [17/May/2025 00:56:27]     Host: 10.0.0.239:4000
+10.0.0.107 - - [17/May/2025 00:56:27]     ID: 28:37:2F:C5:F5:50
+10.0.0.107 - - [17/May/2025 00:56:27]     User-Agent: ESP32HTTPClient
+10.0.0.107 - - [17/May/2025 00:56:28] Logs received:
+10.0.0.107 - - [17/May/2025 00:56:28] {
+10.0.0.107 - - [17/May/2025 00:56:28]     "log": {
+10.0.0.107 - - [17/May/2025 00:56:28]         "logs_array": [
+10.0.0.107 - - [17/May/2025 00:56:28]             {
+10.0.0.107 - - [17/May/2025 00:56:28]                 "additional_info": {
+10.0.0.107 - - [17/May/2025 00:56:28]                     "filename_current": "",
+10.0.0.107 - - [17/May/2025 00:56:28]                     "filename_new": "",
+10.0.0.107 - - [17/May/2025 00:56:28]                     "retry_attempt": 25
+10.0.0.107 - - [17/May/2025 00:56:28]                 },
+10.0.0.107 - - [17/May/2025 00:56:28]                 "creation_timestamp": 1747466359,
+10.0.0.107 - - [17/May/2025 00:56:28]                 "device_status_stamp": {
+10.0.0.107 - - [17/May/2025 00:56:28]                     "battery_voltage": 3.854,
+10.0.0.107 - - [17/May/2025 00:56:28]                     "current_fw_version": "1.5.2",
+10.0.0.107 - - [17/May/2025 00:56:28]                     "free_heap_size": 214644,
+10.0.0.107 - - [17/May/2025 00:56:28]                     "max_alloc_size": 192500,
+10.0.0.107 - - [17/May/2025 00:56:28]                     "refresh_rate": 300,
+10.0.0.107 - - [17/May/2025 00:56:28]                     "special_function": "none",
+10.0.0.107 - - [17/May/2025 00:56:28]                     "time_since_last_sleep_start": 598,
+10.0.0.107 - - [17/May/2025 00:56:28]                     "wakeup_reason": "powercycle",
+10.0.0.107 - - [17/May/2025 00:56:28]                     "wifi_rssi_level": -50,
+10.0.0.107 - - [17/May/2025 00:56:28]                     "wifi_status": "connected"
+10.0.0.107 - - [17/May/2025 00:56:28]                 },
+10.0.0.107 - - [17/May/2025 00:56:28]                 "log_codeline": 554,
+10.0.0.107 - - [17/May/2025 00:56:28]                 "log_id": 17,
+10.0.0.107 - - [17/May/2025 00:56:28]                 "log_message": "Error fetching API display: 7, detail: HTTP Client failed with error: read Timeout(-11)",
+10.0.0.107 - - [17/May/2025 00:56:28]                 "log_sourcefile": "src/bl.cpp"
+10.0.0.107 - - [17/May/2025 00:56:28]             },
+10.0.0.107 - - [17/May/2025 00:56:28]             {
+10.0.0.107 - - [17/May/2025 00:56:28]                 "additional_info": {
+10.0.0.107 - - [17/May/2025 00:56:28]                     "filename_current": "",
+10.0.0.107 - - [17/May/2025 00:56:28]                     "filename_new": "",
+10.0.0.107 - - [17/May/2025 00:56:28]                     "retry_attempt": 26
+10.0.0.107 - - [17/May/2025 00:56:28]                 },
+10.0.0.107 - - [17/May/2025 00:56:28]                 "creation_timestamp": 1747467267,
+10.0.0.107 - - [17/May/2025 00:56:28]                 "device_status_stamp": {
+10.0.0.107 - - [17/May/2025 00:56:28]                     "battery_voltage": 3.852,
+10.0.0.107 - - [17/May/2025 00:56:28]                     "current_fw_version": "1.5.2",
+10.0.0.107 - - [17/May/2025 00:56:28]                     "free_heap_size": 214812,
+10.0.0.107 - - [17/May/2025 00:56:28]                     "max_alloc_size": 192500,
+10.0.0.107 - - [17/May/2025 00:56:28]                     "refresh_rate": 900,
+10.0.0.107 - - [17/May/2025 00:56:28]                     "special_function": "none",
+10.0.0.107 - - [17/May/2025 00:56:28]                     "time_since_last_sleep_start": 902,
+10.0.0.107 - - [17/May/2025 00:56:28]                     "wakeup_reason": "timer",
+10.0.0.107 - - [17/May/2025 00:56:28]                     "wifi_rssi_level": -51,
+10.0.0.107 - - [17/May/2025 00:56:28]                     "wifi_status": "connected"
+10.0.0.107 - - [17/May/2025 00:56:28]                 },
+10.0.0.107 - - [17/May/2025 00:56:28]                 "log_codeline": 554,
+10.0.0.107 - - [17/May/2025 00:56:28]                 "log_id": 18,
+10.0.0.107 - - [17/May/2025 00:56:28]                 "log_message": "Error fetching API display: 7, detail: HTTP Client failed with error: connection refused(-1)",
+10.0.0.107 - - [17/May/2025 00:56:28]                 "log_sourcefile": "src/bl.cpp"
+10.0.0.107 - - [17/May/2025 00:56:28]             },
+10.0.0.107 - - [17/May/2025 00:56:28]             {
+10.0.0.107 - - [17/May/2025 00:56:28]                 "additional_info": {
+10.0.0.107 - - [17/May/2025 00:56:28]                     "filename_current": "",
+10.0.0.107 - - [17/May/2025 00:56:28]                     "filename_new": "",
+10.0.0.107 - - [17/May/2025 00:56:28]                     "retry_attempt": 27
+10.0.0.107 - - [17/May/2025 00:56:28]                 },
+10.0.0.107 - - [17/May/2025 00:56:28]                 "creation_timestamp": 1747467561,
+10.0.0.107 - - [17/May/2025 00:56:28]                 "device_status_stamp": {
+10.0.0.107 - - [17/May/2025 00:56:28]                     "battery_voltage": 3.844,
+10.0.0.107 - - [17/May/2025 00:56:28]                     "current_fw_version": "1.5.2",
+10.0.0.107 - - [17/May/2025 00:56:28]                     "free_heap_size": 185812,
+10.0.0.107 - - [17/May/2025 00:56:28]                     "max_alloc_size": 155636,
+10.0.0.107 - - [17/May/2025 00:56:28]                     "refresh_rate": 900,
+10.0.0.107 - - [17/May/2025 00:56:28]                     "special_function": "none",
+10.0.0.107 - - [17/May/2025 00:56:28]                     "time_since_last_sleep_start": 276,
+10.0.0.107 - - [17/May/2025 00:56:28]                     "wakeup_reason": "button",
+10.0.0.107 - - [17/May/2025 00:56:28]                     "wifi_rssi_level": -55,
+10.0.0.107 - - [17/May/2025 00:56:28]                     "wifi_status": "connected"
+10.0.0.107 - - [17/May/2025 00:56:28]                 },
+10.0.0.107 - - [17/May/2025 00:56:28]                 "log_codeline": 554,
+10.0.0.107 - - [17/May/2025 00:56:28]                 "log_id": 19,
+10.0.0.107 - - [17/May/2025 00:56:28]                 "log_message": "Error fetching API display: 7, detail: HTTP Client failed with error: read Timeout(-11)",
+10.0.0.107 - - [17/May/2025 00:56:28]                 "log_sourcefile": "src/bl.cpp"
+10.0.0.107 - - [17/May/2025 00:56:28]             },
+10.0.0.107 - - [17/May/2025 00:56:28]             {
+10.0.0.107 - - [17/May/2025 00:56:28]                 "additional_info": {
+10.0.0.107 - - [17/May/2025 00:56:28]                     "filename_current": "",
+10.0.0.107 - - [17/May/2025 00:56:28]                     "filename_new": "",
+10.0.0.107 - - [17/May/2025 00:56:28]                     "retry_attempt": 28
+10.0.0.107 - - [17/May/2025 00:56:28]                 },
+10.0.0.107 - - [17/May/2025 00:56:28]                 "creation_timestamp": 1747468480,
+10.0.0.107 - - [17/May/2025 00:56:28]                 "device_status_stamp": {
+10.0.0.107 - - [17/May/2025 00:56:28]                     "battery_voltage": 3.848,
+10.0.0.107 - - [17/May/2025 00:56:28]                     "current_fw_version": "1.5.2",
+10.0.0.107 - - [17/May/2025 00:56:28]                     "free_heap_size": 214848,
+10.0.0.107 - - [17/May/2025 00:56:28]                     "max_alloc_size": 192500,
+10.0.0.107 - - [17/May/2025 00:56:28]                     "refresh_rate": 900,
+10.0.0.107 - - [17/May/2025 00:56:28]                     "special_function": "none",
+10.0.0.107 - - [17/May/2025 00:56:28]                     "time_since_last_sleep_start": 902,
+10.0.0.107 - - [17/May/2025 00:56:28]                     "wakeup_reason": "timer",
+10.0.0.107 - - [17/May/2025 00:56:28]                     "wifi_rssi_level": -63,
+10.0.0.107 - - [17/May/2025 00:56:28]                     "wifi_status": "connected"
+10.0.0.107 - - [17/May/2025 00:56:28]                 },
+10.0.0.107 - - [17/May/2025 00:56:28]                 "log_codeline": 554,
+10.0.0.107 - - [17/May/2025 00:56:28]                 "log_id": 20,
+10.0.0.107 - - [17/May/2025 00:56:28]                 "log_message": "Error fetching API display: 7, detail: HTTP Client failed with error: connection refused(-1)",
+10.0.0.107 - - [17/May/2025 00:56:28]                 "log_sourcefile": "src/bl.cpp"
+10.0.0.107 - - [17/May/2025 00:56:28]             },
+10.0.0.107 - - [17/May/2025 00:56:28]             {
+10.0.0.107 - - [17/May/2025 00:56:28]                 "additional_info": {
+10.0.0.107 - - [17/May/2025 00:56:28]                     "filename_current": "",
+10.0.0.107 - - [17/May/2025 00:56:28]                     "filename_new": "",
+10.0.0.107 - - [17/May/2025 00:56:28]                     "retry_attempt": 29
+10.0.0.107 - - [17/May/2025 00:56:28]                 },
+10.0.0.107 - - [17/May/2025 00:56:28]                 "creation_timestamp": 1747468577,
+10.0.0.107 - - [17/May/2025 00:56:28]                 "device_status_stamp": {
+10.0.0.107 - - [17/May/2025 00:56:28]                     "battery_voltage": 3.848,
+10.0.0.107 - - [17/May/2025 00:56:28]                     "current_fw_version": "1.5.2",
+10.0.0.107 - - [17/May/2025 00:56:28]                     "free_heap_size": 213056,
+10.0.0.107 - - [17/May/2025 00:56:28]                     "max_alloc_size": 192500,
+10.0.0.107 - - [17/May/2025 00:56:28]                     "refresh_rate": 300,
+10.0.0.107 - - [17/May/2025 00:56:29]                     "special_function": "none",
+10.0.0.107 - - [17/May/2025 00:56:29]                     "time_since_last_sleep_start": 73,
+10.0.0.107 - - [17/May/2025 00:56:29]                     "wakeup_reason": "powercycle",
+10.0.0.107 - - [17/May/2025 00:56:29]                     "wifi_rssi_level": -60,
+10.0.0.107 - - [17/May/2025 00:56:29]                     "wifi_status": "connected"
+10.0.0.107 - - [17/May/2025 00:56:29]                 },
+10.0.0.107 - - [17/May/2025 00:56:29]                 "log_codeline": 554,
+10.0.0.107 - - [17/May/2025 00:56:29]                 "log_id": 21,
+10.0.0.107 - - [17/May/2025 00:56:29]                 "log_message": "Error fetching API display: 7, detail: HTTP Client failed with error: read Timeout(-11)",
+10.0.0.107 - - [17/May/2025 00:56:29]                 "log_sourcefile": "src/bl.cpp"
+10.0.0.107 - - [17/May/2025 00:56:29]             }
+10.0.0.107 - - [17/May/2025 00:56:29]         ]
+10.0.0.107 - - [17/May/2025 00:56:29]     }
+10.0.0.107 - - [17/May/2025 00:56:29] }
+10.0.0.107 - - [17/May/2025 00:56:29] "POST /api/log HTTP/1.1" 204 -
+10.0.0.107 - - [17/May/2025 00:56:29] "POST /api/log HTTP/1.1" 204 -

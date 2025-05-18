@@ -39,9 +39,11 @@ class Handler(BaseHTTPRequestHandler):
 
     def get_bitmap(self):
         self.send_response(200)
-        self.send_header('Content-Type', 'image/bmp')
+        # self.send_header('Content-Type', 'image/bmp')
+        self.send_header('Content-Type', 'image/png')
         self.end_headers()
-        with content_file.open('rb') as f:
+        # with content_file.open('rb') as f:
+        with content_file2.open('rb') as f:
             self.wfile.write(f.read())
         self.log_request(200)
 
@@ -120,10 +122,11 @@ print('Serving...')
 content_dir = Path('../tmp')
 content_dir.mkdir(parents=True, exist_ok=True)
 content_file = content_dir / 'content.bmp'
+content_file2 = content_dir / 'content.png'
 
 server = None
 try:
-    server = Server('', 4000, content_file)
+    server = Server('', 4001, content_file)
     server.serve_forever()
 except KeyboardInterrupt:
     server and server.server_close()
