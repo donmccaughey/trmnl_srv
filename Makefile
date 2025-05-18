@@ -116,7 +116,7 @@ $(TMP)/docker-run.stamp.txt : \
 		--detach \
 		--name $(container) \
 		--platform linux/amd64 \
-		--publish 4002:80 \
+		--publish 4000:80 \
 		$(image)
 	date > $@
 
