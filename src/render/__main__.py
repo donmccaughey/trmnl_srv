@@ -14,11 +14,13 @@ from zoneinfo import ZoneInfo
 from .screen import Screen
 
 
-BASE_URL = 'http://10.0.0.239:4000'
+BASE_URL = 'http://10.0.0.100:4000'
 BLACK = 0
 CELL_HEIGHT = 32  # alternate values: 40, 24, 20
 ONE_BIT = '1'
 WHITE = 1
+WIDTH = 800
+HEIGHT = 480
 
 
 def load_font(cell_height: int) -> FreeTypeFont | ImageFont:
@@ -40,7 +42,7 @@ with content_file.open('r') as f:
     content = json.load(f)
 
 
-screen = Screen(800, 480, CELL_HEIGHT)
+screen = Screen(WIDTH, HEIGHT, CELL_HEIGHT)
 
 
 # date / time
@@ -72,6 +74,24 @@ detail_lines = wrap(
 row = 4
 for j, line in enumerate(detail_lines):
     screen.write(1, row + j, line)
+
+
+def write_intro_screen():
+    screen = Screen(WIDTH, HEIGHT, 64)
+
+    line1 = 'Welcome to'
+    line2 = 'trmnl_srv!'
+    line_width = max(len(line1), len(line2))
+    col = (screen.cols - line_width + 1) // 2
+    row = (screen.rows - 2 + 1) // 2
+
+    screen.write(col, row, line1)
+    screen.write(col, row + 1, line2)
+
+    return screen
+
+
+# screen = write_intro_screen()
 
 
 image = Image.new(ONE_BIT, screen.size, color=WHITE)

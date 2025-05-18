@@ -4,6 +4,91 @@
 <meta charset=utf-8>
 <meta name=viewport content='initial-scale=0.9, width=device-width'>
 <title>trmnl_srv</title>
+<style>
+    @media (prefers-color-scheme: light) {
+        :root {
+            --page: white;
+            --highlight: whitesmoke;
+            --dim-text: darkgray;
+            --text: black;
+        }
+    }
+    @media (prefers-color-scheme: dark) {
+        :root {
+            --page: black;
+            --highlight: dimgray;
+            --dim-text: darkgray;
+            --text: white;
+        }
+    }
+    @font-face {
+        font-family: 'Atkinson Hyperlegible';
+        src: url('/fonts/Atkinson-Hyperlegible-Regular-102a.woff2');
+        font-weight: normal;
+        font-style: normal;
+    }
+    @font-face {
+        font-family: 'Atkinson Hyperlegible';
+        src: url('/fonts/Atkinson-Hyperlegible-Bold-102a.woff2');
+        font-weight: bold;
+        font-style: normal;
+    }
+    @font-face {
+        font-family: 'Atkinson Hyperlegible';
+        src: url('/fonts/Atkinson-Hyperlegible-Italic-102a.woff2');
+        font-weight: normal;
+        font-style: italic;
+    }
+    @font-face {
+        font-family: 'Atkinson Hyperlegible';
+        src: url('/fonts/Atkinson-Hyperlegible-BoldItalic-102a.woff2');
+        font-weight: bold;
+        font-style: italic;
+    }
+    a {
+        color: var(--text);
+        text-decoration: none;
+    }
+    a:visited {
+        color: var(--dim-text);
+    }
+    body {
+        margin: 1.5rem auto;
+        max-width: 40rem;
+        padding: 0 1.5rem;
+    }
+    footer {
+        color: var(--dim-text);
+        margin: 0;
+        padding: 0;
+    }
+    h1 {
+        color: var(--text);
+    }
+    header {
+        color: var(--dim-text);
+        margin: 0;
+        padding: 0;
+        position: relative;
+    }
+    html {
+        background: var(--page);
+        border: 0;
+        color: var(--text);
+        font: 14pt "Atkinson Hyperlegible", Helvetica, Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+    main {
+        margin: 0;
+        padding: 0;
+    }
+</style>
 <main>
     <h1>trmnl_srv</h1>
+    <ul>
+        <li><p></p><a href=/api/setup>/api/setup</a>
+        <li><p><a href=/api/display>/api/display</a>
+        <li><p><a href=/bitmap>/bitmap</a>
+    </ul>
 </main>
