@@ -10,11 +10,19 @@ RSYNC_FLAGS ?= \
 		--rsh ssh \
 		--times
 
+container_name := trmnl_srv
+image_name := trmnl_srv
+
+
 .SECONDEXPANSION :
 
 
 .PHONY : all
 all : check
+
+
+.PHONY : build
+build : $(TMP)/docker-build.stamp.txt
 
 
 .PHONY : check
@@ -35,9 +43,35 @@ clobber : clean
 	rm -rf .venv
 
 
+.PHONY : run
+run : $(TMP)/docker-run.stamp.txt
+
+
+.PHONY : shell
+shell : $(TMP)/docker-run.stamp.txt
+	docker exec \
+		--interactive \
+		--tty \
+		$(container_name) sh -l
+
+
+.PHONY : stop
+stop :
+	-docker stop $(container_name)
+	rm -rf $(TMP)/docker-run.stamp.txt
+
+
 alpine_files := \
 		alpine/etc/cron.d/trmnl \
 		alpine/etc/init.d/trmnl_srv
+
+container_files := \
+		.dockerignore \
+		container/etc/nginx/nginx.conf \
+		container/etc/profile.d/dir.sh \
+		container/srv/www/index.html \
+		container/usr/local/sbin/trmnl_srv \
+		container/Dockerfile
 
 src_files := \
 		src/gather/__init__.py \
@@ -82,6 +116,33 @@ $(TMP)/deploy.stamp.txt : \
 		$(RSYNC_FLAGS) \
 		alpine/ \
 		donmcc@10.1.1.1:~/trmnl_setup/
+	date > $@
+
+
+$(TMP)/docker-build.stamp.txt : \
+		$(container_files) \
+		$(src_files) \
+		| $$(dir $$@)
+	docker build \
+		--file container/Dockerfile \
+		--platform linux/amd64 \
+		--tag $(image_name) \
+		--quiet \
+		.
+	date > $@
+
+
+$(TMP)/docker-run.stamp.txt : \
+		$(TMP)/docker-build.stamp.txt \
+		stop \
+		| $$(dir $$@)
+	-docker rm $(container_name)
+	docker run \
+		--detach \
+		--name $(container_name) \
+		--platform linux/amd64 \
+		--publish 4002:80 \
+		$(image_name)
 	date > $@
 
 
