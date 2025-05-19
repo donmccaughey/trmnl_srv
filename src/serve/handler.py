@@ -1,3 +1,4 @@
+import email.utils
 import json
 
 from http.server import BaseHTTPRequestHandler
@@ -84,20 +85,38 @@ class Handler(BaseHTTPRequestHandler):
         self.wfile.write(b'Not Found')
         self.log_error('404 Not Found: %s', self.path)
 
-    def send_json_response(self, json_body: dict[str, Any] | list[Any]):
-        self.send_response(200)
-        self.send_header('Content-Type', 'application/json')
-        self.end_headers()
-        self.wfile.write(json.dumps(json_body, indent='    ', sort_keys=True).encode('utf-8'))
-
     def log_request_details(self):
         self.log_message('    %s', self.requestline)
         for key, value in sorted(self.headers.items()):
             self.log_message('    %s: %s', key, value)
 
     def __get_json_file(self, path: Path):
-        if path.exists():
-            with path.open('r') as f:
-                self.send_json_response(json.load(f))
-        else:
-            self.not_found()
+        if not path.exists():
+            self.__service_unavailable()
+            return
+
+        last_modified = path.stat().st_mtime
+
+        with path.open('r') as f:
+            json_object = json.load(f)
+
+        json_text = json.dumps(json_object, indent='    ', sort_keys=True)
+        body = json_text.encode('utf-8')
+        content_length = len(body)
+
+        self.send_response(200)
+        self.send_header('Content-Length', str(content_length))
+        self.send_header('Content-Type', 'application/json')
+        self.send_header(
+            'Last-Modified',
+            email.utils.formatdate(last_modified, localtime=False, usegmt=True),
+        )
+        self.end_headers()
+        self.wfile.write(body)
+
+    def __service_unavailable(self):
+        self.send_response(503)
+        self.send_header('Content-Type', 'text/plain')
+        self.end_headers()
+        self.wfile.write(b'Service Unavailable')
+        self.log_error('503 Service Unavailable')
