@@ -8,6 +8,7 @@ from importlib import resources
 from PIL import Image, ImageDraw, ImageFont
 from PIL.ImageFont import FreeTypeFont
 from textwrap import wrap
+from utils import atomic_write
 from zoneinfo import ZoneInfo
 
 from .options import Options
@@ -36,9 +37,7 @@ base_url = options.base_url
 
 print('Rendering...')
 
-
-content_dir = options.web_root / 'content'
-content_file = content_dir / 'index.json'
+content_file = options.web_root / 'content/index.json'
 with content_file.open('r') as f:
     content = json.load(f)
 
@@ -114,12 +113,11 @@ for j, line in enumerate(screen.grid):
         y = j * screen.cell_height
         draw.text((x, y), ch, fill=BLACK, font=font)
 
-
-image_dir = options.web_root / 'content/bitmap'
-image_dir.mkdir(parents=True, exist_ok=True)
-
-image_file = image_dir / 'index.png'
-image.save(image_file)
+atomic_write(
+    options.web_root / 'content/bitmap/index.png',
+    lambda f: image.save(f),
+    is_binary=True
+)
 
 
 api_display_json = {
@@ -132,13 +130,10 @@ api_display_json = {
     'special_function': 'sleep',
     'update_firmware': False,
 }
-
-api_display_dir = options.web_root / 'api/display'
-api_display_dir.mkdir(parents=True, exist_ok=True)
-
-api_display_file = api_display_dir / 'index.json'
-with open(api_display_file, 'w') as f:
-    json.dump(api_display_json, f, indent=4, sort_keys=True)
+atomic_write(
+    options.web_root / 'api/display/index.json',
+    lambda f: json.dump(api_display_json, f, indent=4, sort_keys=True)
+)
 
 
 api_setup_json = {
@@ -147,13 +142,10 @@ api_setup_json = {
     'image_url': base_url + '/content/bitmap/index.png',
     'message': 'Welcome to trmnl_srv!'
 }
-
-api_setup_dir = options.web_root / 'api/setup'
-api_setup_dir.mkdir(parents=True, exist_ok=True)
-
-api_setup_file = api_setup_dir / 'index.json'
-with open(api_setup_file, 'w') as f:
-    json.dump(api_setup_json, f, indent=4, sort_keys=True)
+atomic_write(
+    options.web_root / 'api/setup/index.json',
+    lambda f: json.dump(api_setup_json, f, indent=4, sort_keys=True)
+)
 
 
 sys.exit(0)

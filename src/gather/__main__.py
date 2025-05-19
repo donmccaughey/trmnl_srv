@@ -3,6 +3,7 @@ import sys
 
 from datetime import datetime, timezone
 from gather.weather import Weather
+from utils import atomic_write
 
 from .options import Options
 
@@ -31,10 +32,10 @@ else:
 updated = datetime.now(timezone.utc)
 content['updated'] = updated.isoformat(sep=' ', timespec='seconds')
 
-content_dir = options.web_root / 'content'
-content_dir.mkdir(parents=True, exist_ok=True)
-content_file = content_dir / 'index.json'
-with content_file.open('w') as f:
-    json.dump(content, f, indent=4, sort_keys=True)
+atomic_write(
+    options.web_root / 'content/index.json',
+    lambda f: json.dump(content, f, indent=4, sort_keys=True),
+)
+
 
 sys.exit(0)

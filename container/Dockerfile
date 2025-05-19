@@ -56,6 +56,7 @@ RUN mkdir -p /usr/lib
 COPY src/gather /usr/lib/gather
 COPY src/render /usr/lib/render
 COPY src/serve /usr/lib/serve
+COPY src/utils /usr/lib/utils
 
 
 WORKDIR /root

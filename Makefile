@@ -95,7 +95,9 @@ src_files := \
 		\
 		src/serve/__init__.py \
 		src/serve/__main__.py \
-		src/serve/options.py
+		src/serve/options.py \
+		\
+		src/utils/__init__.py
 
 python_files := $(filter %.py, $(src_files))
 
