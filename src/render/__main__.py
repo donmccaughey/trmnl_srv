@@ -125,9 +125,9 @@ image.save(image_file)
 api_display_json = {
     'filename': content['updated'],
     'firmware_url': None,
-    'image_url': BASE_URL + '/bitmap',
+    'image_url': BASE_URL + '/content/bitmap/index.png',
     'image_url_timeout': 5,
-    'refresh_rate': 30,
+    'refresh_rate': 60,
     'reset_firmware': False,
     'special_function': 'sleep',
     'update_firmware': False,
@@ -144,7 +144,7 @@ with open(api_display_file, 'w') as f:
 api_setup_json = {
     'api_key': '123456789',
     'friendly_id': 'TRMNL123',
-    'image_url': 'http://10.0.0.100:4000/content/bitmap/index.png',
+    'image_url': BASE_URL + '/content/bitmap/index.png',
     'message': 'Welcome to trmnl_srv!'
 }
 
