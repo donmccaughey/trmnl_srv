@@ -1,7 +1,5 @@
 # TODO
 
-- atomically update files in render
-
 
 ## Feeds
 
