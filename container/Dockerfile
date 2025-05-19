@@ -1,4 +1,5 @@
 FROM alpine:latest
+ARG BASE_URL
 
 EXPOSE 80
 
@@ -31,6 +32,9 @@ RUN chown -R nginx:nginx /var/cache/nginx
 
 COPY container/etc/nginx/nginx.conf /etc/nginx/nginx.conf
 COPY --chown=nginx:www-data container/srv/www /srv/www
+
+RUN sed -i "s|BASE_URL|$BASE_URL|g" /srv/www/api/display/index.json
+RUN sed -i "s|BASE_URL|$BASE_URL|g" /srv/www/api/setup/index.json
 
 
 # cron jobs

@@ -14,7 +14,6 @@ from .options import Options
 from .screen import Screen
 
 
-BASE_URL = 'http://10.0.0.100:4000'
 BLACK = 0
 CELL_HEIGHT = 32  # alternate values: 40, 24, 20
 ONE_BIT = '1'
@@ -33,6 +32,7 @@ def load_font(cell_height: int) -> FreeTypeFont | ImageFont:
 
 
 options = Options.parse()
+base_url = options.base_url
 
 print('Rendering...')
 
@@ -125,7 +125,7 @@ image.save(image_file)
 api_display_json = {
     'filename': content['updated'],
     'firmware_url': None,
-    'image_url': BASE_URL + '/content/bitmap/index.png',
+    'image_url': base_url + '/content/bitmap/index.png',
     'image_url_timeout': 5,
     'refresh_rate': 60,
     'reset_firmware': False,
@@ -144,7 +144,7 @@ with open(api_display_file, 'w') as f:
 api_setup_json = {
     'api_key': '123456789',
     'friendly_id': 'TRMNL123',
-    'image_url': BASE_URL + '/content/bitmap/index.png',
+    'image_url': base_url + '/content/bitmap/index.png',
     'message': 'Welcome to trmnl_srv!'
 }
 

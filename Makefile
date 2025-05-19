@@ -1,3 +1,5 @@
+BASE_URL ?= http://127.0.0.1:4000
+PORT ?= 4000
 TMP ?= $(abspath tmp)
 
 container := trmnl_srv
@@ -116,6 +118,7 @@ $(TMP)/docker-build.stamp.txt : \
 		$(src_files) \
 		| $$(dir $$@)
 	docker build \
+		--build-arg BASE_URL="$(BASE_URL)" \
 		--file container/Dockerfile \
 		--platform linux/amd64 \
 		--tag $(image) \
@@ -131,10 +134,11 @@ $(TMP)/docker-run.stamp.txt : \
 	-docker rm $(container)
 	docker run \
 		--detach \
+		--env BASE_URL="$(BASE_URL)" \
 		--init \
 		--name $(container) \
 		--platform linux/amd64 \
-		--publish 4000:80 \
+		--publish $(PORT):80 \
 		$(image)
 	date > $@
 

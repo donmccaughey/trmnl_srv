@@ -31,7 +31,13 @@ Be sure to follow "Step D" and append your public key to `~/.ssh/authorized_keys
     
     $ docker image load --input <image>.tar.gz
     $ docker image prune --force
-    $ docker run --detach --init --name <container> --publish 4000:80 <image>
+    $ docker run \
+            --detach \
+            --env BASE_URL='http://10.0.0.100:4000' \
+            --init \
+            --name <container> \
+            --publish 4000:80 \
+            <image>
     
     # container runs ...
     

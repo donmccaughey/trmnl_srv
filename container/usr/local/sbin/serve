@@ -2,4 +2,6 @@
 
 cd /usr/lib || exit 1
 
-python -m serve --web-root /srv/www --port 4001
+python -m serve \
+    --port 4001 \
+    --web-root /srv/www

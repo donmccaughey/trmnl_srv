@@ -3,4 +3,7 @@
 cd /usr/lib || exit 1
 
 python -m gather --web-root /srv/www
-python -m render --web-root /srv/www
+
+python -m render \
+    --base-url "$BASE_URL" \
+    --web-root /srv/www

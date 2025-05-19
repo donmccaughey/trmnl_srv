@@ -10,6 +10,7 @@ from typing import Self
 
 @dataclass
 class Options:
+    base_url: str
     web_root: Path
 
     @classmethod
@@ -18,6 +19,12 @@ class Options:
             args = sys.argv[1:]
 
         parser = ArgumentParser()
+        parser.add_argument(
+            '--base-url', type=str, default='http://127.0.0.1:4000'
+        )
         parser.add_argument('--web-root', type=Path, required=True)
         namespace = parser.parse_args(args)
-        return cls(namespace.web_root)
+        return cls(
+            base_url=namespace.base_url,
+            web_root=namespace.web_root,
+        )

@@ -1,7 +1,7 @@
 {
     "filename": "1970-01-01 00:00:00+00:00",
     "firmware_url": null,
-    "image_url": "http://10.0.0.100:4000/content/bitmap",
+    "image_url": "BASE_URL/content/bitmap/index.png",
     "image_url_timeout": 5,
     "refresh_rate": 60,
     "reset_firmware": false,
