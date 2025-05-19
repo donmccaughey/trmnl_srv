@@ -1,6 +1,6 @@
 {
     "api_key": "123456789",
     "friendly_id": "TRMNL123",
-    "image_url": "http://10.0.0.100:4000/bitmap",
+    "image_url": "http://10.0.0.100:4000/content/bitmap/index.png",
     "message": "Welcome to trmnl_srv!"
 }

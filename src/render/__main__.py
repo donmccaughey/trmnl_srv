@@ -5,12 +5,12 @@ import sys
 
 from datetime import datetime
 from importlib import resources
-from pathlib import Path
 from PIL import Image, ImageDraw, ImageFont
 from PIL.ImageFont import FreeTypeFont
 from textwrap import wrap
 from zoneinfo import ZoneInfo
 
+from .options import Options
 from .screen import Screen
 
 
@@ -32,12 +32,13 @@ def load_font(cell_height: int) -> FreeTypeFont | ImageFont:
         return ImageFont.load_default(size=cell_height - 1)
 
 
+options = Options.parse()
+
 print('Rendering...')
 
 
-content_dir = Path('../tmp')
-content_dir.mkdir(parents=True, exist_ok=True)
-content_file = content_dir / 'content.json'
+content_dir = options.web_root / 'content'
+content_file = content_dir / 'index.json'
 with content_file.open('r') as f:
     content = json.load(f)
 
@@ -58,22 +59,29 @@ screen.write_reverse(screen.cols - 1 - 1, 1, updated_time)
 
 
 # forecast
-period = content['forecast']['period_name']
-forecast_title = f'Weather {period}:'
-screen.write(1, 3, forecast_title)
+if 'error' in content['forecast']:
+    screen.write(1, 3, 'Weather:')
 
-details = content['forecast']['detailed_forecast']
-detail_lines = wrap(
-    details,
-    width=screen.cols - 2,
-    initial_indent='    ',
-    break_long_words=True,
-    break_on_hyphens=True,
-    fix_sentence_endings=True,
-)
-row = 4
-for j, line in enumerate(detail_lines):
-    screen.write(1, row + j, line)
+    status_code = content['forecast']['error']['status_code']
+    reason = content['forecast']['error']['reason']
+    screen.write(1, 4, f'    {status_code} {reason}')
+else:
+    period = content['forecast']['period_name']
+    forecast_title = f'Weather {period}:'
+    screen.write(1, 3, forecast_title)
+
+    details = content['forecast']['detailed_forecast']
+    detail_lines = wrap(
+        details,
+        width=screen.cols - 2,
+        initial_indent='    ',
+        break_long_words=True,
+        break_on_hyphens=True,
+        fix_sentence_endings=True,
+    )
+    row = 4
+    for j, line in enumerate(detail_lines):
+        screen.write(1, row + j, line)
 
 
 def write_intro_screen():
@@ -107,11 +115,11 @@ for j, line in enumerate(screen.grid):
         draw.text((x, y), ch, fill=BLACK, font=font)
 
 
-image_dir = Path('../tmp')
+image_dir = options.web_root / 'content/bitmap'
 image_dir.mkdir(parents=True, exist_ok=True)
 
-png_file = image_dir / 'image.png'
-image.save(png_file)
+image_file = image_dir / 'index.png'
+image.save(image_file)
 
 
 api_display_json = {
@@ -125,12 +133,27 @@ api_display_json = {
     'update_firmware': False,
 }
 
-api_display_dir = Path('../tmp')
+api_display_dir = options.web_root / 'api/display'
 api_display_dir.mkdir(parents=True, exist_ok=True)
 
-api_display_file = api_display_dir / 'api_display.json'
+api_display_file = api_display_dir / 'index.json'
 with open(api_display_file, 'w') as f:
     json.dump(api_display_json, f, indent=4, sort_keys=True)
+
+
+api_setup_json = {
+    'api_key': '123456789',
+    'friendly_id': 'TRMNL123',
+    'image_url': 'http://10.0.0.100:4000/content/bitmap/index.png',
+    'message': 'Welcome to trmnl_srv!'
+}
+
+api_setup_dir = options.web_root / 'api/setup'
+api_setup_dir.mkdir(parents=True, exist_ok=True)
+
+api_setup_file = api_setup_dir / 'index.json'
+with open(api_setup_file, 'w') as f:
+    json.dump(api_setup_json, f, indent=4, sort_keys=True)
 
 
 sys.exit(0)

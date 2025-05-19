@@ -15,8 +15,11 @@ class Weather:
 
         self.lat = lat
         self.lon = lon
+        self.error = None
+        self.forecast_response = {}
         self.forecast_url = ''
         self.period_name = ''
+        self.points_response = {}
         self.detailed_forecast = ''
         self.updated = datetime.now(timezone.utc)
 
@@ -24,20 +27,44 @@ class Weather:
         url = f'https://api.weather.gov/points/{self.lat},{self.lon}'
         response = requests.get(url, headers=self.headers)
         if response.status_code == 200:
-            json_body = response.json()
-            self.forecast_url = json_body['forecast']
+            self.points_response = response.json()
+            self.forecast_url = self.points_response['forecast']
             return True
         else:
-            print(response.status_code)
+            try:
+                message = response.json()
+            except requests.exceptions.JSONDecodeError:
+                message = response.text or '(no message)'
+
+            self.error = {
+                'timestamp': self.updated.isoformat(sep=' ', timespec='seconds'),
+                'url': url,
+                'status_code': response.status_code,
+                'reason': response.reason,
+                'message': message,
+            }
             return False
 
     def get_forecast(self):
         response = requests.get(self.forecast_url, headers=self.headers)
         if response.status_code == 200:
-            json_body = response.json()
-            first_period = json_body['periods'][0]
+            self.forecast_response = response.json()
+            first_period = self.forecast_response['periods'][0]
             self.period_name = first_period['name']
             self.detailed_forecast = first_period['detailedForecast']
             self.updated = datetime.now(timezone.utc)
+            return True
         else:
-            print(response.status_code)
+            try:
+                message = response.json()
+            except requests.exceptions.JSONDecodeError:
+                message = response.text or '(no message)'
+
+            self.error = {
+                'timestamp': self.updated.isoformat(sep=' ', timespec='seconds'),
+                'url': self.forecast_url,
+                'status_code': response.status_code,
+                'reason': response.reason,
+                'message': message,
+            }
+            return False

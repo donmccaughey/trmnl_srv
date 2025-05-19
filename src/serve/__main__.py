@@ -5,16 +5,40 @@ from http.server import HTTPServer, BaseHTTPRequestHandler
 from pathlib import Path
 from typing import Any
 
+from .options import Options
+
+
+class Server(HTTPServer):
+    def __init__(self, host: str, port: int, web_root: Path):
+        super().__init__((host, port), Handler)
+
+        self.allow_reuse_address = True
+        self.allow_reuse_port = True
+
+        api_dir = web_root / 'api'
+        self.api_display_file = api_dir / 'display/index.json'
+        self.api_setup_file = api_dir / 'setup/index.json'
+
+        content_dir = web_root / 'content'
+        self.content_file = content_dir / 'index.json'
+        self.bitmap_file = content_dir / 'bitmap/index.png'
+
 
 class Handler(BaseHTTPRequestHandler):
+    server: Server
+
     def do_GET(self):
         self.log_request_details()
         match self.path:
+            case '/':
+                self.get_index()
             case '/api/display':
                 self.get_display()
             case '/api/setup':
                 self.get_setup()
-            case '/bitmap':
+            case '/content':
+                self.get_content()
+            case '/content/bitmap':
                 self.get_bitmap()
             case _:
                 self.not_found()
@@ -39,39 +63,46 @@ class Handler(BaseHTTPRequestHandler):
 
     def get_bitmap(self):
         self.send_response(200)
-        # self.send_header('Content-Type', 'image/bmp')
         self.send_header('Content-Type', 'image/png')
         self.end_headers()
-        # with content_file.open('rb') as f:
-        with content_file2.open('rb') as f:
+        with self.server.bitmap_file.open('rb') as f:
             self.wfile.write(f.read())
         self.log_request(200)
 
+    def get_content(self):
+        with self.server.content_file.open('r') as f:
+            content = json.load(f)
+            self.send_json_response(content)
+
     def get_display(self):
-        base_url = self.get_base_url()
-        self.send_json_response(
-            {
-                'filename': 'content.bmp',
-                'firmware_url': None,
-                'image_url': f'{base_url}/bitmap',
-                'image_url_timeout': 0,
-                'refresh_rate': '300',
-                'reset_firmware': False,
-                'special_function': 'none',
-                'update_firmware': False,
-            }
-        )
+        with self.server.api_display_file.open('r') as f:
+            display = json.load(f)
+            self.send_json_response(display)
+
+    def get_index(self):
+        self.send_response(200)
+        self.send_header('Content-Type', 'text/html')
+        self.end_headers()
+        page = '\n'.join([
+            '<!doctype html>',
+            '<html lang=en>',
+            '<title>trmnl_srv</title>',
+            '<main>',
+            '    <h1>trmnl_srv</h1>',
+            '    <ul>',
+            '        <li><p></p><a href=/api/setup>/api/setup</a>',
+            '        <li><p><a href=/api/display>/api/display</a>',
+            '        <li><p><a href=/content>/content</a>',
+            '        <li><p><a href=/content/bitmap>/content/bitmap</a>',
+            '    </ul>',
+            '</main>',
+        ])
+        self.wfile.write(page.encode())
 
     def get_setup(self):
-        base_url = self.get_base_url()
-        self.send_json_response(
-            {
-                'api_key': '123456789',
-                'friendly_id': 'TRMNL123',
-                'image_url': f'{base_url}/bitmap',
-                'message': 'Welcome to trmnl_srv',
-            }
-        )
+        with self.server.api_setup_file.open('r') as f:
+            setup = json.load(f)
+            self.send_json_response(setup)
 
     def post_log(self):
         try:
@@ -99,7 +130,7 @@ class Handler(BaseHTTPRequestHandler):
         self.send_response(200)
         self.send_header('Content-Type', 'application/json')
         self.end_headers()
-        self.wfile.write(json.dumps(json_body).encode('utf-8'))
+        self.wfile.write(json.dumps(json_body, indent='    ', sort_keys=True).encode('utf-8'))
         self.log_request(200)
 
     def log_request_details(self):
@@ -109,24 +140,13 @@ class Handler(BaseHTTPRequestHandler):
             self.log_message('    %s: %s', key, value)
 
 
-class Server(HTTPServer):
-    def __init__(self, host: str, port: int, content_file: Path):
-        self.allow_reuse_address = True
-        self.allow_reuse_port = True
-        super().__init__((host, port), Handler)
-        self.content_file = content_file
-
+options = Options.parse()
 
 print('Serving...')
 
-content_dir = Path('../tmp')
-content_dir.mkdir(parents=True, exist_ok=True)
-content_file = content_dir / 'content.bmp'
-content_file2 = content_dir / 'content.png'
-
 server = None
 try:
-    server = Server('', 4001, content_file)
+    server = Server('', options.port, options.web_root)
     server.serve_forever()
 except KeyboardInterrupt:
     server and server.server_close()
