@@ -30,7 +30,7 @@ Be sure to follow "Step D" and append your public key to `~/.ssh/authorized_keys
     # on the synology box
     
     $ docker image load --input <image>.tar.gz
-    $ docker run --detach --name <container> --publish 4000:80 <image>
+    $ docker run --detach --init --name <container> --publish 4000:80 <image>
     
     # container runs ...
     

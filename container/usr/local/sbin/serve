@@ -1,0 +1,5 @@
+#!/bin/sh
+
+cd /usr/lib || exit 1
+
+python -m serve --web-root /srv/www --port 4001

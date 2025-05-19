@@ -7,7 +7,8 @@ RUN apk add --no-cache \
     nginx \
     python3 \
     py3-pillow \
-    py3-requests
+    py3-requests \
+    tzdata
 
 
 # nginx
@@ -32,6 +33,10 @@ COPY container/etc/nginx/nginx.conf /etc/nginx/nginx.conf
 COPY --chown=nginx:www-data container/srv/www /srv/www
 
 
+# cron jobs
+COPY container/etc/crontabs /etc/crontabs
+
+
 # control scripts
 COPY container/usr/local/sbin /usr/local/sbin
 
@@ -42,4 +47,12 @@ RUN ln -sf /etc/profile.d/color_prompt.sh.disabled \
         /etc/profile.d/color_prompt.sh
 
 
-ENTRYPOINT ["nginx"]
+# python modules
+RUN mkdir -p /usr/lib
+COPY src/gather /usr/lib/gather
+COPY src/render /usr/lib/render
+COPY src/serve /usr/lib/serve
+
+
+WORKDIR /root
+ENTRYPOINT ["/usr/local/sbin/trmnl_srv"]

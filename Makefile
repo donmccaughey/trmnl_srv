@@ -53,28 +53,45 @@ stop :
 
 container_files := \
 		.dockerignore \
+		container/etc/crontabs/root \
 		container/etc/nginx/nginx.conf \
 		container/etc/profile.d/dir.sh \
+		\
+		container/srv/www/api/display/index.json \
+		container/srv/www/api/setup/index.json \
+		\
+		container/srv/www/content/bitmap/index.png \
+		container/srv/www/content/index.json \
+		\
+		container/srv/www/fonts/Atkinson-Hyperlegible-Bold-102a.woff2 \
+		container/srv/www/fonts/Atkinson-Hyperlegible-BoldItalic-102a.woff2 \
+		container/srv/www/fonts/Atkinson-Hyperlegible-Italic-102a.woff2 \
+		container/srv/www/fonts/Atkinson-Hyperlegible-Regular-102a.woff2 \
+		\
 		container/srv/www/index.html \
+		\
+		container/usr/local/sbin/gather-render \
+		container/usr/local/sbin/serve \
 		container/usr/local/sbin/trmnl_srv \
+		\
 		container/Dockerfile
 
 src_files := \
 		src/gather/__init__.py \
 		src/gather/__main__.py \
+		src/gather/options.py \
 		src/gather/weather.py \
 		src/gather/weather_test.py \
 		\
 		src/render/__init__.py \
 		src/render/__main__.py \
 		src/render/AtkinsonHyperlegibleMono-Regular.otf \
+		src/render/options.py \
 		src/render/screen.py \
 		\
 		src/serve/__init__.py \
 		src/serve/__main__.py \
-		\
-		src/serve_trmnl \
-		src/update_trmnl
+		src/serve/options.py
 
 python_files := $(filter %.py, $(src_files))
 
@@ -109,11 +126,12 @@ $(TMP)/docker-build.stamp.txt : \
 
 $(TMP)/docker-run.stamp.txt : \
 		$(TMP)/docker-build.stamp.txt \
-		stop \
 		| $$(dir $$@)
+	-docker stop $(container)
 	-docker rm $(container)
 	docker run \
 		--detach \
+		--init \
 		--name $(container) \
 		--platform linux/amd64 \
 		--publish 4000:80 \

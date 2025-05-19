@@ -1,0 +1,6 @@
+#!/bin/sh
+
+cd /usr/lib || exit 1
+
+python -m gather --web-root /srv/www
+python -m render --web-root /srv/www
