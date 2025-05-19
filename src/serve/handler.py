@@ -1,6 +1,7 @@
 import json
 
 from http.server import BaseHTTPRequestHandler
+from pathlib import Path
 from typing import Any
 
 from .server import Server
@@ -10,20 +11,20 @@ class Handler(BaseHTTPRequestHandler):
     server: Server
 
     def do_GET(self):
-        self.log_request_details()
         match self.path:
             case '/':
                 self.get_index()
             case '/api/display':
-                self.get_display()
+                self.__get_json_file(self.server.api_display_file)
             case '/api/setup':
-                self.get_setup()
+                self.__get_json_file(self.server.api_setup_file)
             case '/content':
-                self.get_content()
+                self.__get_json_file(self.server.content_file)
             case '/content/bitmap':
                 self.get_bitmap()
             case _:
                 self.not_found()
+        self.log_request_details()
 
     def do_POST(self):
         self.log_request_details()
@@ -33,16 +34,6 @@ class Handler(BaseHTTPRequestHandler):
             case _:
                 self.not_found()
 
-    def get_base_url(self):
-        protocol = 'http'
-        if self.headers.get('X-Forwarded-Proto'):
-            protocol = self.headers['X-Forwarded-Proto']
-        host = self.headers.get('Host', None)
-        if host:
-            return f'{protocol}://{host}'
-        else:
-            return f'/'
-
     def get_bitmap(self):
         self.send_response(200)
         self.send_header('Content-Type', 'image/png')
@@ -50,16 +41,6 @@ class Handler(BaseHTTPRequestHandler):
         with self.server.bitmap_file.open('rb') as f:
             self.wfile.write(f.read())
         self.log_request(200)
-
-    def get_content(self):
-        with self.server.content_file.open('r') as f:
-            content = json.load(f)
-            self.send_json_response(content)
-
-    def get_display(self):
-        with self.server.api_display_file.open('r') as f:
-            display = json.load(f)
-            self.send_json_response(display)
 
     def get_index(self):
         self.send_response(200)
@@ -80,11 +61,6 @@ class Handler(BaseHTTPRequestHandler):
             '</main>',
         ])
         self.wfile.write(page.encode())
-
-    def get_setup(self):
-        with self.server.api_setup_file.open('r') as f:
-            setup = json.load(f)
-            self.send_json_response(setup)
 
     def post_log(self):
         try:
@@ -113,10 +89,15 @@ class Handler(BaseHTTPRequestHandler):
         self.send_header('Content-Type', 'application/json')
         self.end_headers()
         self.wfile.write(json.dumps(json_body, indent='    ', sort_keys=True).encode('utf-8'))
-        self.log_request(200)
 
     def log_request_details(self):
-        self.log_message('Request details:')
         self.log_message('    %s', self.requestline)
         for key, value in sorted(self.headers.items()):
             self.log_message('    %s: %s', key, value)
+
+    def __get_json_file(self, path: Path):
+        if path.exists():
+            with path.open('r') as f:
+                self.send_json_response(json.load(f))
+        else:
+            self.not_found()
