@@ -1,9 +1,11 @@
-BASE_URL ?= http://127.0.0.1:4000
+DEPLOY_BASE_URL := http://10.0.0.100:4000
+DEV_BASE_URL ?= http://127.0.0.1:4000
 PORT ?= 4000
 TMP ?= $(abspath tmp)
 
 container := trmnl_srv
-image := trmnl_srv
+deploy_image := trmnl_srv_deploy
+dev_image := trmnl_srv_dev
 
 
 .SECONDEXPANSION :
@@ -14,7 +16,7 @@ all : check
 
 
 .PHONY : build
-build : $(TMP)/docker-build.stamp.txt
+build : $(TMP)/docker-build-dev.stamp.txt
 
 
 .PHONY : check
@@ -111,35 +113,50 @@ uv.lock : pyproject.toml .python-version
 
 $(TMP)/deploy.stamp.txt : $(TMP)/trmnl_srv.tar.gz
 	rsync --archive $< don@10.0.0.100:~
+	date > $@
 
 
-$(TMP)/docker-build.stamp.txt : \
+$(TMP)/docker-build-deploy.stamp.txt : \
 		$(container_files) \
 		$(src_files) \
 		| $$(dir $$@)
 	docker build \
-		--build-arg BASE_URL="$(BASE_URL)" \
+		--build-arg DEPLOY_BASE_URL="$(DEPLOY_BASE_URL)" \
 		--file container/Dockerfile \
 		--platform linux/amd64 \
-		--tag $(image) \
+		--tag $(deploy_image) \
+		--quiet \
+		.
+	date > $@
+
+
+$(TMP)/docker-build-dev.stamp.txt : \
+		$(container_files) \
+		$(src_files) \
+		| $$(dir $$@)
+	docker build \
+		--build-arg DEV_BASE_URL="$(DEV_BASE_URL)" \
+		--file container/Dockerfile \
+		--platform linux/amd64 \
+		--tag $(dev_image) \
 		--quiet \
 		.
 	date > $@
 
 
 $(TMP)/docker-run.stamp.txt : \
-		$(TMP)/docker-build.stamp.txt \
+		$(TMP)/docker-build-dev.stamp.txt \
 		| $$(dir $$@)
 	-docker stop $(container)
 	-docker rm $(container)
 	docker run \
 		--detach \
-		--env BASE_URL="$(BASE_URL)" \
+		--env DEV_BASE_URL="$(DEV_BASE_URL)" \
 		--init \
 		--name $(container) \
 		--platform linux/amd64 \
 		--publish $(PORT):80 \
-		$(image)
+		$(dev_image)
 	date > $@
 
 
@@ -152,9 +169,9 @@ $(TMP)/pytest.stamp.txt : \
 
 
 $(TMP)/trmnl_srv.tar.gz : \
-		$(TMP)/docker-build.stamp.txt \
+		$(TMP)/docker-build-deploy.stamp.txt \
 		| $$(dir $$@)
-	docker image save $(image) | gzip > tmp/$(image).tar.gz
+	docker image save $(deploy_image) | gzip > $@
 
 
 $(TMP)/uv-sync.stamp.txt : uv.lock | $$(dir $$@)
