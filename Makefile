@@ -16,15 +16,15 @@ all : check
 
 
 .PHONY : build
-build : $(TMP)/docker-build-dev.stamp.txt
+build : $(TMP)/docker-build-dev.stamp
 
 
 .PHONY : check
-check : $(TMP)/pytest.stamp.txt
+check : $(TMP)/pytest.stamp
 
 
 .PHONY : deploy
-deploy : $(TMP)/deploy.stamp.txt
+deploy : $(TMP)/deploy.stamp
 
 
 .PHONY : clean
@@ -38,11 +38,11 @@ clobber : clean
 
 
 .PHONY : run
-run : $(TMP)/docker-run.stamp.txt
+run : $(TMP)/docker-run.stamp
 
 
 .PHONY : shell
-shell : $(TMP)/docker-run.stamp.txt
+shell : $(TMP)/docker-run.stamp
 	docker exec \
 		--interactive \
 		--tty \
@@ -52,7 +52,7 @@ shell : $(TMP)/docker-run.stamp.txt
 .PHONY : stop
 stop :
 	-docker stop $(container)
-	rm -rf $(TMP)/docker-run.stamp.txt
+	rm -rf $(TMP)/docker-run.stamp
 
 
 container_files := \
@@ -111,12 +111,12 @@ uv.lock : pyproject.toml .python-version
 	touch $@
 
 
-$(TMP)/deploy.stamp.txt : $(TMP)/trmnl_srv.tar.gz
+$(TMP)/deploy.stamp : $(TMP)/trmnl_srv.tar.gz
 	rsync --archive $< don@10.0.0.100:~
-	date > $@
+	touch $@
 
 
-$(TMP)/docker-build-deploy.stamp.txt : \
+$(TMP)/docker-build-deploy.stamp : \
 		$(container_files) \
 		$(src_files) \
 		| $$(dir $$@)
@@ -127,10 +127,10 @@ $(TMP)/docker-build-deploy.stamp.txt : \
 		--tag $(deploy_image) \
 		--quiet \
 		.
-	date > $@
+	touch $@
 
 
-$(TMP)/docker-build-dev.stamp.txt : \
+$(TMP)/docker-build-dev.stamp : \
 		$(container_files) \
 		$(src_files) \
 		| $$(dir $$@)
@@ -141,11 +141,11 @@ $(TMP)/docker-build-dev.stamp.txt : \
 		--tag $(dev_image) \
 		--quiet \
 		.
-	date > $@
+	touch $@
 
 
-$(TMP)/docker-run.stamp.txt : \
-		$(TMP)/docker-build-dev.stamp.txt \
+$(TMP)/docker-run.stamp : \
+		$(TMP)/docker-build-dev.stamp \
 		| $$(dir $$@)
 	-docker stop $(container)
 	-docker rm $(container)
@@ -157,26 +157,26 @@ $(TMP)/docker-run.stamp.txt : \
 		--platform linux/amd64 \
 		--publish $(PORT):80 \
 		$(dev_image)
-	date > $@
+	touch $@
 
 
-$(TMP)/pytest.stamp.txt : \
+$(TMP)/pytest.stamp : \
 		$(python_files) \
-		$(TMP)/uv-sync.stamp.txt \
+		$(TMP)/uv-sync.stamp \
 		| $$(dir $$@)
 	uv run -m pytest --quiet --quiet
-	date > $@
+	touch $@
 
 
 $(TMP)/trmnl_srv.tar.gz : \
-		$(TMP)/docker-build-deploy.stamp.txt \
+		$(TMP)/docker-build-deploy.stamp \
 		| $$(dir $$@)
 	docker image save $(deploy_image) | gzip > $@
 
 
-$(TMP)/uv-sync.stamp.txt : uv.lock | $$(dir $$@)
+$(TMP)/uv-sync.stamp : uv.lock | $$(dir $$@)
 	uv sync --frozen
-	date > $@
+	touch $@
 
 
 $(TMP)/ :
