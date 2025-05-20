@@ -1,0 +1,126 @@
+{
+    "log": {
+        "logs_array": [
+            {
+                "additional_info": {
+                    "filename_current": "",
+                    "filename_new": "",
+                    "retry_attempt": 21
+                },
+                "creation_timestamp": 1747464242,
+                "device_status_stamp": {
+                    "battery_voltage": 3.858,
+                    "current_fw_version": "1.5.2",
+                    "free_heap_size": 214528,
+                    "max_alloc_size": 192500,
+                    "refresh_rate": 900,
+                    "special_function": "none",
+                    "time_since_last_sleep_start": 242,
+                    "wakeup_reason": "button",
+                    "wifi_rssi_level": -54,
+                    "wifi_status": "connected"
+                },
+                "log_codeline": 554,
+                "log_id": 12,
+                "log_message": "Error fetching API display: 7, detail: HTTP Client failed with error: read Timeout(-11)",
+                "log_sourcefile": "src/bl.cpp"
+            },
+            {
+                "additional_info": {
+                    "filename_current": "",
+                    "filename_new": "",
+                    "retry_attempt": 22
+                },
+                "creation_timestamp": 1747464373,
+                "device_status_stamp": {
+                    "battery_voltage": 3.858,
+                    "current_fw_version": "1.5.2",
+                    "free_heap_size": 214500,
+                    "max_alloc_size": 192500,
+                    "refresh_rate": 300,
+                    "special_function": "none",
+                    "time_since_last_sleep_start": 116,
+                    "wakeup_reason": "powercycle",
+                    "wifi_rssi_level": -64,
+                    "wifi_status": "connected"
+                },
+                "log_codeline": 554,
+                "log_id": 13,
+                "log_message": "Error fetching API display: 7, detail: HTTP Client failed with error: read Timeout(-11)",
+                "log_sourcefile": "src/bl.cpp"
+            },
+            {
+                "additional_info": {
+                    "filename_current": "",
+                    "filename_new": "",
+                    "retry_attempt": 18
+                },
+                "creation_timestamp": 1747463541,
+                "device_status_stamp": {
+                    "battery_voltage": 3.858,
+                    "current_fw_version": "1.5.2",
+                    "free_heap_size": 213004,
+                    "max_alloc_size": 192500,
+                    "refresh_rate": 300,
+                    "special_function": "none",
+                    "time_since_last_sleep_start": 624,
+                    "wakeup_reason": "powercycle",
+                    "wifi_rssi_level": -61,
+                    "wifi_status": "connected"
+                },
+                "log_codeline": 554,
+                "log_id": 9,
+                "log_message": "Error fetching API display: 7, detail: HTTP Client failed with error: read Timeout(-11)",
+                "log_sourcefile": "src/bl.cpp"
+            },
+            {
+                "additional_info": {
+                    "filename_current": "",
+                    "filename_new": "content.bmp",
+                    "retry_attempt": 19
+                },
+                "creation_timestamp": 1747463698,
+                "device_status_stamp": {
+                    "battery_voltage": 3.86,
+                    "current_fw_version": "1.5.2",
+                    "free_heap_size": 212000,
+                    "max_alloc_size": 188404,
+                    "refresh_rate": 300,
+                    "special_function": "none",
+                    "time_since_last_sleep_start": 151,
+                    "wakeup_reason": "button",
+                    "wifi_rssi_level": -64,
+                    "wifi_status": "connected"
+                },
+                "log_codeline": 628,
+                "log_id": 10,
+                "log_message": "HTTP Client failed with error: read Timeout",
+                "log_sourcefile": "src/bl.cpp"
+            },
+            {
+                "additional_info": {
+                    "filename_current": "",
+                    "filename_new": "",
+                    "retry_attempt": 20
+                },
+                "creation_timestamp": 1747463982,
+                "device_status_stamp": {
+                    "battery_voltage": 3.86,
+                    "current_fw_version": "1.5.2",
+                    "free_heap_size": 214372,
+                    "max_alloc_size": 192500,
+                    "refresh_rate": 900,
+                    "special_function": "none",
+                    "time_since_last_sleep_start": 267,
+                    "wakeup_reason": "button",
+                    "wifi_rssi_level": -46,
+                    "wifi_status": "connected"
+                },
+                "log_codeline": 554,
+                "log_id": 11,
+                "log_message": "Error fetching API display: 7, detail: HTTP Client failed with error: read Timeout(-11)",
+                "log_sourcefile": "src/bl.cpp"
+            }
+        ]
+    }
+}

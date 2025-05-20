@@ -95,7 +95,10 @@ src_files := \
 		\
 		src/serve/__init__.py \
 		src/serve/__main__.py \
+		src/serve/handler.py \
+		src/serve/log_entry.py \
 		src/serve/options.py \
+		src/serve/server.py \
 		\
 		src/utils/__init__.py
 

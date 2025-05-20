@@ -1,0 +1,27 @@
+### home page
+GET http://localhost:4001/
+Accept: text/html; application/json
+
+
+### send logs, local
+POST http://localhost:4001/api/log
+Content-Type: application/json
+
+< ./log.json
+
+
+### send logs, local nginx proxy
+POST http://localhost:4004/api/log
+Content-Type: application/json
+
+< ./log.json
+
+
+### send logs, dev container
+POST http://localhost:4000/api/log
+Content-Type: application/json
+
+< ./log.json
+
+
+###
