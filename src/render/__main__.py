@@ -4,26 +4,15 @@ import json
 import sys
 
 from datetime import datetime
-from importlib import resources
-from PIL import Image, ImageDraw, ImageFont
-from PIL.ImageFont import FreeTypeFont
 from textwrap import wrap
 from utils import atomic_write
 from zoneinfo import ZoneInfo
 
-from .constants import BLACK, CELL_HEIGHT, HEIGHT, ONE_BIT, WHITE, WIDTH
+from .bitmap import write_bitmap
+from .constants import CELL_HEIGHT, HEIGHT, WIDTH
 from .intro_screen import write_intro_screen
 from .options import Options
 from .screen import Screen
-
-
-def load_font(cell_height: int) -> FreeTypeFont | ImageFont:
-    if package_name := __package__:
-        with resources.path(package_name, 'AtkinsonHyperlegibleMono-Regular.otf') as font_path:
-            return ImageFont.truetype(font_path, cell_height)
-    else:
-        sys.stderr.write('Unable to load font.\n')
-        return ImageFont.load_default(size=cell_height - 1)
 
 
 options = Options.parse()
@@ -81,23 +70,7 @@ if options.intro_screen:
     screen = write_intro_screen()
 
 
-image = Image.new(ONE_BIT, screen.size, color=WHITE)
-draw = ImageDraw.Draw(image)
-
-draw.rectangle(screen.rectangle, outline=BLACK, width=1)
-
-font = load_font(screen.cell_height)
-for j, line in enumerate(screen.grid):
-    for i, ch in enumerate(line):
-        x = i * screen.cell_width
-        y = j * screen.cell_height
-        draw.text((x, y), ch, fill=BLACK, font=font)
-
-atomic_write(
-    options.web_root / 'content/bitmap/index.png',
-    lambda f: image.save(f),
-    is_binary=True
-)
+write_bitmap(screen, options.web_root)
 
 
 api_display_json = {
