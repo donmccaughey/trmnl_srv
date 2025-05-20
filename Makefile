@@ -89,12 +89,15 @@ src_files := \
 		\
 		src/render/__init__.py \
 		src/render/__main__.py \
+		src/render/api_display.py \
+		src/render/api_setup.py \
 		src/render/AtkinsonHyperlegibleMono-Regular.otf \
 		src/render/bitmap.py \
 		src/render/constants.py \
 		src/render/date_and_time.py \
 		src/render/forecast.py \
 		src/render/intro_screen.py \
+		src/render/logs.py \
 		src/render/options.py \
 		src/render/screen.py \
 		\
