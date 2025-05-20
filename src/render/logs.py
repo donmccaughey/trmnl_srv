@@ -45,7 +45,7 @@ def write_log_message(log_file: Path, screen: Screen, skip_old: bool = True):
             break_on_hyphens=True,
             fix_sentence_endings=True,
         )
-        row = screen.rows - 1 - len(message_lines)
+        row = screen.rows - len(message_lines)
         for j, line in enumerate(message_lines):
             screen.write(1, row + j, line)
     else:

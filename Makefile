@@ -126,6 +126,10 @@ uv.lock : pyproject.toml .python-version
 
 $(TMP)/deploy.stamp : $(TMP)/trmnl_srv.tar.gz
 	rsync --archive $< don@10.0.0.100:~
+	ssh don@10.0.0.100 '/bin/bash -l -c "docker image load --input trmnl_srv.tar.gz"'
+	ssh don@10.0.0.100 '/bin/bash -l -c "docker image prune --force"'
+	ssh don@10.0.0.100 '/bin/bash -l -c "docker stop trmnl_srv"'
+	ssh don@10.0.0.100 '/bin/bash -l -c "docker rm trmnl_srv"'
 	touch $@
 
 
