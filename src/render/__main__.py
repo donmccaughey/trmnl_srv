@@ -11,16 +11,10 @@ from textwrap import wrap
 from utils import atomic_write
 from zoneinfo import ZoneInfo
 
+from .constants import BLACK, CELL_HEIGHT, HEIGHT, ONE_BIT, WHITE, WIDTH
+from .intro_screen import write_intro_screen
 from .options import Options
 from .screen import Screen
-
-
-BLACK = 0
-CELL_HEIGHT = 32  # alternate values: 40, 24, 20
-ONE_BIT = '1'
-WHITE = 1
-WIDTH = 800
-HEIGHT = 480
 
 
 def load_font(cell_height: int) -> FreeTypeFont | ImageFont:
@@ -83,22 +77,8 @@ else:
         screen.write(1, row + j, line)
 
 
-def write_intro_screen():
-    screen = Screen(WIDTH, HEIGHT, 64)
-
-    line1 = 'Welcome to'
-    line2 = 'trmnl_srv!'
-    line_width = max(len(line1), len(line2))
-    col = (screen.cols - line_width + 1) // 2
-    row = (screen.rows - 2 + 1) // 2
-
-    screen.write(col, row, line1)
-    screen.write(col, row + 1, line2)
-
-    return screen
-
-
-# screen = write_intro_screen()
+if options.intro_screen:
+    screen = write_intro_screen()
 
 
 image = Image.new(ONE_BIT, screen.size, color=WHITE)
