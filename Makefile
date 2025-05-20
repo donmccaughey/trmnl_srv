@@ -90,6 +90,11 @@ src_files := \
 		src/render/__init__.py \
 		src/render/__main__.py \
 		src/render/AtkinsonHyperlegibleMono-Regular.otf \
+		src/render/bitmap.py \
+		src/render/constants.py \
+		src/render/date_and_time.py \
+		src/render/forecast.py \
+		src/render/intro_screen.py \
 		src/render/options.py \
 		src/render/screen.py \
 		\

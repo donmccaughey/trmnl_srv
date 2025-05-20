@@ -3,13 +3,12 @@ from __future__ import annotations
 import json
 import sys
 
-from datetime import datetime
-from textwrap import wrap
 from utils import atomic_write
-from zoneinfo import ZoneInfo
 
 from .bitmap import write_bitmap
 from .constants import CELL_HEIGHT, HEIGHT, WIDTH
+from .date_and_time import write_date_and_time
+from .forecast import write_forecast
 from .intro_screen import write_intro_screen
 from .options import Options
 from .screen import Screen
@@ -25,51 +24,12 @@ with content_file.open('r') as f:
     content = json.load(f)
 
 
-screen = Screen(WIDTH, HEIGHT, CELL_HEIGHT)
-
-
-# date / time
-time_zone = ZoneInfo('America/Los_Angeles')
-updated_utc = datetime.fromisoformat(content['updated'])
-updated_pt = updated_utc.astimezone(time_zone)
-
-updated_date = updated_pt.strftime('%A %d %B %Y')
-screen.write(1, 1, updated_date)
-
-updated_time = updated_pt.strftime('%I:%M %p')
-screen.write_reverse(screen.cols - 1 - 1, 1, updated_time)
-
-
-# forecast
-if 'error' in content['forecast']:
-    screen.write(1, 3, 'Weather:')
-
-    status_code = content['forecast']['error']['status_code']
-    reason = content['forecast']['error']['reason']
-    screen.write(1, 4, f'    {status_code} {reason}')
-else:
-    period = content['forecast']['period_name']
-    forecast_title = f'Weather {period}:'
-    screen.write(1, 3, forecast_title)
-
-    details = content['forecast']['detailed_forecast']
-    detail_lines = wrap(
-        details,
-        width=screen.cols - 2,
-        initial_indent='    ',
-        break_long_words=True,
-        break_on_hyphens=True,
-        fix_sentence_endings=True,
-    )
-    row = 4
-    for j, line in enumerate(detail_lines):
-        screen.write(1, row + j, line)
-
-
 if options.intro_screen:
     screen = write_intro_screen()
-
-
+else:
+    screen = Screen(WIDTH, HEIGHT, CELL_HEIGHT)
+    write_date_and_time(content, screen)
+    write_forecast(content, screen)
 write_bitmap(screen, options.web_root)
 
 
