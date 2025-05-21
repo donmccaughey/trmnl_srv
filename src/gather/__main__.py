@@ -5,6 +5,7 @@ from datetime import datetime, timezone
 from gather.weather import Weather
 from utils import atomic_write
 
+from .giants_games import GiantsGame
 from .options import Options
 
 
@@ -27,6 +28,17 @@ if weather.get_points():
         content['forecast']['error'] = weather.error
 else:
     content['forecast']['error'] = weather.error
+
+
+giants_games = GiantsGame.get_games()
+now = datetime.now()
+todays_games = [game for game in giants_games if game.is_today(now)]
+if todays_games:
+    content['giants_games_today'] = [
+        game.time.isoformat(timespec='minutes') for game in todays_games
+    ]
+else:
+    content['giants_games_today'] = []
 
 
 updated = datetime.now(timezone.utc)

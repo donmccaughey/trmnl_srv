@@ -83,6 +83,9 @@ container_files := \
 src_files := \
 		src/gather/__init__.py \
 		src/gather/__main__.py \
+		src/gather/giants-schedule.json \
+		src/gather/giants_games.py \
+		src/gather/giants_games_test.py \
 		src/gather/options.py \
 		src/gather/weather.py \
 		src/gather/weather_test.py \

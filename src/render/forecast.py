@@ -6,15 +6,15 @@ from .screen import Screen
 
 def write_forecast(content: dict[str, Any], screen: Screen):
     if 'error' in content['forecast']:
-        screen.write(1, 3, 'Weather:')
+        screen.write(1, 2, 'Weather:')
 
         status_code = content['forecast']['error']['status_code']
         reason = content['forecast']['error']['reason']
-        screen.write(1, 4, f'    {status_code} {reason}')
+        screen.write(1, 3, f'    {status_code} {reason}')
     else:
         period = content['forecast']['period_name']
         forecast_title = f'Weather {period}:'
-        screen.write(1, 3, forecast_title)
+        screen.write(1, 2, forecast_title)
 
         details = content['forecast']['detailed_forecast']
         detail_lines = wrap(
@@ -25,6 +25,6 @@ def write_forecast(content: dict[str, Any], screen: Screen):
             break_on_hyphens=True,
             fix_sentence_endings=True,
         )
-        row = 4
+        row = 3
         for j, line in enumerate(detail_lines):
             screen.write(1, row + j, line)
