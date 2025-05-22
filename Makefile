@@ -4,7 +4,7 @@ PORT ?= 4000
 TMP ?= $(abspath tmp)
 
 container := trmnl_srv
-deploy_image := trmnl_srv_deploy
+deploy_image := trmnl_srv
 dev_image := trmnl_srv_dev
 
 
