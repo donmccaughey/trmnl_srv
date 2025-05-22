@@ -33,6 +33,8 @@ with content_file.open('r') as f:
 log_files = list_log_files(options.web_root)
 most_recent_log_file = log_files[-1] if log_files else None
 
+refresh_rate = get_refresh_rate(now)
+
 
 if options.intro_screen:
     screen = write_intro_screen()
@@ -44,8 +46,6 @@ else:
     if most_recent_log_file:
         write_log_message(most_recent_log_file, screen)
 write_bitmap(screen, options.web_root)
-
-refresh_rate = get_refresh_rate(now)
 write_api_display(content, options.base_url, refresh_rate, options.web_root)
 write_api_setup(options.base_url, options.web_root)
 

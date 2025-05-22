@@ -7,6 +7,11 @@ from textwrap import wrap
 from .screen import Screen
 
 
+SKIPPED_MESSAGES = [
+    'Failed to resolve hostname after 5 attempts, continuing...',
+]
+
+
 def is_log_file(path: Path) -> bool:
     return (
         path.is_file()
@@ -35,8 +40,21 @@ def write_log_message(log_file: Path, screen: Screen, skip_old: bool = True):
     if skip_old and (now_utc - creation_utc > timedelta(hours=1)):
         return
 
+    device_status_stamp = log_json.get('device_status_stamp')
+    if device_status_stamp:
+        battery_voltage = device_status_stamp.get('battery_voltage')
+        log_volts = f'{battery_voltage:.1f} v'
+    else:
+        log_volts = ''
+
+    if log_json['log_message'] in SKIPPED_MESSAGES:
+        if log_volts:
+            screen.write_reverse(screen.cols - 1 - 1, screen.rows - 1, log_volts)
+        return
+
     log_id = log_json['log_id']
-    message = f'Log {log_id}: ' + log_json['log_message']
+    log_message = log_json['log_message']
+    message = f'Log {log_id}: {log_message} ({log_volts})'
     if len(message) > screen.cols - 2:
         message_lines = wrap(
             message,
