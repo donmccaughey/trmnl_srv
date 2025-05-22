@@ -13,17 +13,31 @@ options = Options.parse()
 
 print('Gathering...')
 
-content = {}
+updated = datetime.now(timezone.utc)
+content = {
+    'forecast': {},
+    'giants_games_today': [],
+    '~source_data': {
+        'forecast_response': {},
+        'forecast_hourly_response': {},
+        'points_response': {},
+    },
+    'updated': updated.isoformat(sep=' ', timespec='seconds'),
+}
 
 weather = Weather()
-content['forecast'] = {}
 if weather.get_points():
-    content['forecast']['points_response'] = weather.points_response
+    content['~source_data']['points_response'] = weather.points_response
 
     if weather.get_forecast():
-        content['forecast']['forecast_response'] = weather.points_response
+        content['~source_data']['forecast_response'] = weather.forecast_response
         content['forecast']['period_name'] = weather.period_name
         content['forecast']['detailed_forecast'] = weather.detailed_forecast
+    else:
+        content['forecast']['error'] = weather.error
+
+    if weather.get_forecast_hourly():
+        content['~source_data']['forecast_hourly_response'] = weather.forecast_hourly_response
     else:
         content['forecast']['error'] = weather.error
 else:
@@ -40,9 +54,6 @@ if todays_games:
 else:
     content['giants_games_today'] = []
 
-
-updated = datetime.now(timezone.utc)
-content['updated'] = updated.isoformat(sep=' ', timespec='seconds')
 
 atomic_write(
     options.web_root / 'content/index.json',

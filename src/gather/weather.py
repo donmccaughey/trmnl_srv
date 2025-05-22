@@ -16,19 +16,27 @@ class Weather:
         self.lat = lat
         self.lon = lon
         self.error = None
+
+        self.points_response = {}
+        self.points_url = f'https://api.weather.gov/points/{lat},{lon}'
+
         self.forecast_response = {}
         self.forecast_url = ''
+
+        self.forecast_hourly_response = {}
+        self.forecast_hourly_url = ''
+
         self.period_name = ''
-        self.points_response = {}
+
         self.detailed_forecast = ''
         self.updated = datetime.now(timezone.utc)
 
     def get_points(self) -> bool:
-        url = f'https://api.weather.gov/points/{self.lat},{self.lon}'
-        response = requests.get(url, headers=self.headers)
+        response = requests.get(self.points_url, headers=self.headers)
         if response.status_code == 200:
             self.points_response = response.json()
             self.forecast_url = self.points_response['forecast']
+            self.forecast_hourly_url = self.points_response['forecastHourly']
             return True
         else:
             try:
@@ -52,6 +60,27 @@ class Weather:
             first_period = self.forecast_response['periods'][0]
             self.period_name = first_period['name']
             self.detailed_forecast = first_period['detailedForecast']
+            self.updated = datetime.now(timezone.utc)
+            return True
+        else:
+            try:
+                message = response.json()
+            except requests.exceptions.JSONDecodeError:
+                message = response.text or '(no message)'
+
+            self.error = {
+                'timestamp': self.updated.isoformat(sep=' ', timespec='seconds'),
+                'url': self.forecast_url,
+                'status_code': response.status_code,
+                'reason': response.reason,
+                'message': message,
+            }
+            return False
+
+    def get_forecast_hourly(self):
+        response = requests.get(self.forecast_hourly_url, headers=self.headers)
+        if response.status_code == 200:
+            self.forecast_hourly_response = response.json()
             self.updated = datetime.now(timezone.utc)
             return True
         else:
