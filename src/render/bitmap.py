@@ -8,8 +8,12 @@ from PIL import Image, ImageDraw, ImageFont
 from PIL.ImageFont import FreeTypeFont
 from utils import atomic_write
 
-from .constants import BLACK, ONE_BIT, WHITE
 from .screen import Screen
+
+
+BLACK = 0
+ONE_BIT = '1'
+WHITE = 1
 
 
 def write_bitmap(screen: Screen, web_root: Path):
