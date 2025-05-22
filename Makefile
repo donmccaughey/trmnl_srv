@@ -99,9 +99,11 @@ src_files := \
 		src/render/constants.py \
 		src/render/date_and_time.py \
 		src/render/forecast.py \
+		src/render/giants_games_today.py \
 		src/render/intro_screen.py \
 		src/render/logs.py \
 		src/render/options.py \
+		src/render/refresh_rate.py \
 		src/render/screen.py \
 		\
 		src/serve/__init__.py \
@@ -129,10 +131,7 @@ uv.lock : pyproject.toml .python-version
 
 $(TMP)/deploy.stamp : $(TMP)/trmnl_srv.tar.gz
 	rsync --archive $< don@10.0.0.100:~
-	ssh don@10.0.0.100 '/bin/bash -l -c "docker image load --input trmnl_srv.tar.gz"'
-	ssh don@10.0.0.100 '/bin/bash -l -c "docker image prune --force"'
-	ssh don@10.0.0.100 '/bin/bash -l -c "docker stop trmnl_srv"'
-	ssh don@10.0.0.100 '/bin/bash -l -c "docker rm trmnl_srv"'
+	ssh don@10.0.0.100 '/bin/bash -l -s' < scripts/deploy.sh
 	touch $@
 
 
