@@ -20,7 +20,8 @@ def is_log_file(path: Path) -> bool:
 
 
 def list_log_files(web_root: Path) -> list[Path]:
-    logs_dir = web_root / "logs"
+    logs_dir = web_root / 'logs'
+    logs_dir.mkdir(parents=True, exist_ok=True)
     return [
         path for path in sorted(logs_dir.iterdir())
         if is_log_file(path)
