@@ -3,7 +3,7 @@ from __future__ import annotations
 import json
 import sys
 
-from .api_display import write_api_display
+from .api_display import APIDisplay
 from .api_setup import APISetup
 from .bitmap import write_bitmap
 from .constants import CELL_HEIGHT, HEIGHT, WIDTH
@@ -39,7 +39,11 @@ else:
     if most_recent_log_file:
         write_log_message(most_recent_log_file, screen)
 write_bitmap(screen, options.web_root)
-write_api_display(content, options.base_url, options.web_root)
+APIDisplay(
+    base_url=options.base_url,
+    filename=content['updated'],
+    refresh_rate=content['refresh_rate'],
+).write(options.web_root)
 APISetup(options.base_url).write(options.web_root)
 
 

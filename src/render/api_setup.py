@@ -1,5 +1,3 @@
-from __future__ import annotations
-
 import json
 
 from pathlib import Path
@@ -25,8 +23,10 @@ class APISetup(Encodable, Serializable):
     def to_json(self) -> str:
         return json.dumps(self.encode(), indent=4, sort_keys=True)
 
-    def write(self, web_root: Path):
+    def write(
+            self, root_dir: Path, subdir: Path = Path('api/setup/index.json')
+    ):
         atomic_write(
-            web_root / 'api/setup/index.json',
+            root_dir / subdir,
             lambda f: f.write(self.to_json()),
         )
