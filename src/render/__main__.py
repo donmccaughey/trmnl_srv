@@ -15,15 +15,12 @@ from .giants_games_today import write_giants_games_today
 from .intro_screen import write_intro_screen
 from .logs import list_log_files, write_log_message
 from .options import Options
-from .refresh_rate import get_refresh_rate
 from .screen import Screen
 
 
 options = Options.parse()
 
 print('Rendering...')
-
-now = datetime.now()
 
 
 content_file = options.web_root / 'content/index.json'
@@ -32,8 +29,6 @@ with content_file.open('r') as f:
 
 log_files = list_log_files(options.web_root)
 most_recent_log_file = log_files[-1] if log_files else None
-
-refresh_rate = get_refresh_rate(now)
 
 
 if options.intro_screen:
@@ -46,7 +41,7 @@ else:
     if most_recent_log_file:
         write_log_message(most_recent_log_file, screen)
 write_bitmap(screen, options.web_root)
-write_api_display(content, options.base_url, refresh_rate, options.web_root)
+write_api_display(content, options.base_url, options.web_root)
 write_api_setup(options.base_url, options.web_root)
 
 

@@ -7,16 +7,21 @@ from utils import atomic_write
 
 from .giants_games import GiantsGame
 from .options import Options
+from .refresh_rate import get_refresh_rate
 
 
 options = Options.parse()
 
 print('Gathering...')
 
-updated = datetime.now(timezone.utc)
+now = datetime.now()
+updated = now.astimezone(timezone.utc)
+
+
 content = {
     'forecast': {},
     'giants_games_today': [],
+    'refresh_rate': get_refresh_rate(now),
     '~source_data': {
         'forecast_response': {},
         'forecast_hourly_response': {},
@@ -45,7 +50,6 @@ else:
 
 
 giants_games = GiantsGame.get_games()
-now = datetime.now()
 todays_games = [game for game in giants_games if game.is_today(now)]
 if todays_games:
     content['giants_games_today'] = [

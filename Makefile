@@ -87,6 +87,7 @@ src_files := \
 		src/gather/giants_games.py \
 		src/gather/giants_games_test.py \
 		src/gather/options.py \
+		src/gather/refresh_rate.py \
 		src/gather/weather.py \
 		src/gather/weather_test.py \
 		\
@@ -103,7 +104,6 @@ src_files := \
 		src/render/intro_screen.py \
 		src/render/logs.py \
 		src/render/options.py \
-		src/render/refresh_rate.py \
 		src/render/screen.py \
 		\
 		src/serve/__init__.py \
