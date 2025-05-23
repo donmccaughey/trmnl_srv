@@ -55,6 +55,7 @@ RUN ln -sf /etc/profile.d/color_prompt.sh.disabled \
 RUN mkdir -p /usr/lib
 COPY src/gather /usr/lib/gather
 COPY src/render /usr/lib/render
+COPY src/serialize /usr/lib/serialize
 COPY src/serve /usr/lib/serve
 COPY src/utils /usr/lib/utils
 

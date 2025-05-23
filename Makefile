@@ -106,6 +106,13 @@ src_files := \
 		src/render/options.py \
 		src/render/screen.py \
 		\
+		src/serialize/__init__.py \
+		src/serialize/decodable.py \
+		src/serialize/deserializable.py \
+		src/serialize/encodable.py \
+		src/serialize/jsontype.py \
+		src/serialize/serializable.py \
+		\
 		src/serve/__init__.py \
 		src/serve/__main__.py \
 		src/serve/handler.py \
