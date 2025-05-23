@@ -149,7 +149,7 @@ $(TMP)/docker-build-deploy.stamp : \
 		$(src_files) \
 		| $$(dir $$@)
 	docker build \
-		--build-arg DEPLOY_BASE_URL="$(DEPLOY_BASE_URL)" \
+		--build-arg BASE_URL="$(DEPLOY_BASE_URL)" \
 		--file container/Dockerfile \
 		--platform linux/amd64 \
 		--tag $(deploy_image) \
@@ -163,7 +163,7 @@ $(TMP)/docker-build-dev.stamp : \
 		$(src_files) \
 		| $$(dir $$@)
 	docker build \
-		--build-arg DEV_BASE_URL="$(DEV_BASE_URL)" \
+		--build-arg BASE_URL="$(DEV_BASE_URL)" \
 		--file container/Dockerfile \
 		--platform linux/amd64 \
 		--tag $(dev_image) \
@@ -179,7 +179,7 @@ $(TMP)/docker-run.stamp : \
 	-docker rm $(container)
 	docker run \
 		--detach \
-		--env DEV_BASE_URL="$(DEV_BASE_URL)" \
+		--env BASE_URL="$(DEV_BASE_URL)" \
 		--init \
 		--name $(container) \
 		--platform linux/amd64 \
