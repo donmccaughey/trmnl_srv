@@ -23,11 +23,8 @@ class GiantsGame:
 
     @staticmethod
     def read_schedule() -> list[dict[str, Any]]:
-        if package_name := __package__:
-            with resources.path(package_name, 'giants-schedule.json') as schedule_path:
-                return json.load(open(schedule_path))
-        else:
-            return []
+        with resources.open_binary(__package__, 'giants-schedule.json') as f:
+            return json.load(f)
 
     @classmethod
     def parse_games(cls, schedule_json: list[dict[str, Any]]) -> list[GiantsGame]:
