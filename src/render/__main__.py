@@ -3,10 +3,8 @@ from __future__ import annotations
 import json
 import sys
 
-from datetime import datetime
-
 from .api_display import write_api_display
-from .api_setup import write_api_setup
+from .api_setup import APISetup
 from .bitmap import write_bitmap
 from .constants import CELL_HEIGHT, HEIGHT, WIDTH
 from .date_and_time import write_date_and_time
@@ -42,7 +40,7 @@ else:
         write_log_message(most_recent_log_file, screen)
 write_bitmap(screen, options.web_root)
 write_api_display(content, options.base_url, options.web_root)
-write_api_setup(options.base_url, options.web_root)
+APISetup(options.base_url).write(options.web_root)
 
 
 sys.exit(0)
