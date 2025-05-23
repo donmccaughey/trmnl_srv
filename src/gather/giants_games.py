@@ -23,7 +23,8 @@ class GiantsGame:
 
     @staticmethod
     def read_schedule() -> list[dict[str, Any]]:
-        with resources.open_binary(__package__, 'giants-schedule.json') as f:
+        filename = 'giants-schedule.json'
+        with resources.files().joinpath(filename).open('rb') as f:
             return json.load(f)
 
     @classmethod

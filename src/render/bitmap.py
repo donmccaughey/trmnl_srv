@@ -38,7 +38,8 @@ def write_bitmap(screen: Screen, web_root: Path):
 
 def load_font(cell_height: int) -> FreeTypeFont | ImageFont:
     try:
-        with resources.open_binary(__package__, 'AtkinsonHyperlegibleMono-Regular.otf') as f:
+        filename = 'AtkinsonHyperlegibleMono-Regular.otf'
+        with resources.files().joinpath(filename).open('rb') as f:
             return ImageFont.truetype(f, cell_height)
     except:
         sys.stderr.write('Unable to load font.\n')

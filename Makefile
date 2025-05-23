@@ -94,7 +94,9 @@ src_files := \
 		src/render/__init__.py \
 		src/render/__main__.py \
 		src/render/api_display.py \
+		src/render/api_display_test.py \
 		src/render/api_setup.py \
+		src/render/api_setup_test.py \
 		src/render/AtkinsonHyperlegibleMono-Regular.otf \
 		src/render/bitmap.py \
 		src/render/constants.py \
