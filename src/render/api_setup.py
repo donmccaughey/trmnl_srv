@@ -14,9 +14,9 @@ class APISetup(Encodable, Serializable):
 
     def encode(self) -> JSONDict:
         return {
-            'image_url': self.image_url,
             'api_key': self.api_key,
             'friendly_id': self.friendly_id,
+            'image_url': self.image_url,
             'message': self.message,
         }
 
