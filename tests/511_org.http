@@ -1,0 +1,25 @@
+### GET GTFS Operators
+GET http://api.511.org/transit/gtfsoperators?api_key={{FIVE11_ORG_KEY}}
+
+
+### GET GTFS Realtime Service Alerts
+GET http://api.511.org/transit/servicealerts?api_key={{FIVE11_ORG_KEY}}&agency=SF&format=json
+
+
+### Get Lines (NeXEx)
+http://api.511.org/transit/lines?api_key={{FIVE11_ORG_KEY}}&operator_id=SF
+
+
+### GET Stops (NeXEx)
+GET http://api.511.org/transit/stops?api_key={{FIVE11_ORG_KEY}}&operator_id=SF&line_id=T
+
+
+### GET Real-time Stop Monitoring (SIRI)
+GET http://api.511.org/transit/StopMonitoring?api_key={{FIVE11_ORG_KEY}}&agency=SF&stopcode=17166
+
+
+### GET Service Holidays (NeTEx)
+GET http://api.511.org/transit/holidays?api_key={{FIVE11_ORG_KEY}}&operator_id=SF
+
+
+###
