@@ -1,5 +1,6 @@
 DEPLOY_BASE_URL := http://10.0.0.100:4000
 DEV_BASE_URL ?= http://127.0.0.1:4000
+FIVE11_ORG_KEY ?= $(shell cat secrets/five11-org-key.txt)
 PORT ?= 4000
 TMP ?= $(abspath tmp)
 
@@ -139,8 +140,14 @@ uv.lock : pyproject.toml .python-version
 	touch $@
 
 
-$(TMP)/deploy.stamp : $(TMP)/trmnl_srv.tar.gz
-	rsync --archive $< don@10.0.0.100:~
+$(TMP)/deploy.stamp : \
+		$(TMP)/trmnl_srv.env \
+		$(TMP)/trmnl_srv.tar.gz \
+		| $$(dir $$@)
+	rsync --archive \
+		$(TMP)/trmnl_srv.env \
+		$(TMP)/trmnl_srv.tar.gz \
+		don@10.0.0.100:~
 	ssh don@10.0.0.100 '/bin/bash -l -s' < scripts/deploy.sh
 	touch $@
 
@@ -175,12 +182,13 @@ $(TMP)/docker-build-dev.stamp : \
 
 $(TMP)/docker-run.stamp : \
 		$(TMP)/docker-build-dev.stamp \
+		$(TMP)/trmnl_srv.env \
 		| $$(dir $$@)
 	-docker stop $(container)
 	-docker rm $(container)
 	docker run \
 		--detach \
-		--env BASE_URL="$(DEV_BASE_URL)" \
+		--env-file $(TMP)/trmnl_srv.env \
 		--init \
 		--name $(container) \
 		--platform linux/amd64 \
@@ -195,6 +203,13 @@ $(TMP)/pytest.stamp : \
 		| $$(dir $$@)
 	uv run -m pytest --quiet --quiet
 	touch $@
+
+
+$(TMP)/trmnl_srv.env : secrets/five11-org-key.txt | $$(dir $$@)
+	touch $@
+	chmod 600 $@
+	printf "BASE_URL=%s\n" "$(DEV_BASE_URL)" >> $@
+	printf "FIVE11_ORG_KEY=%s\n" "$(FIVE11_ORG_KEY)" >> $@
 
 
 $(TMP)/trmnl_srv.tar.gz : \
