@@ -199,6 +199,7 @@ $(TMP)/docker-run.stamp : \
 
 $(TMP)/pytest.stamp : \
 		$(python_files) \
+		$(TMP)/trmnl_srv.env \
 		$(TMP)/uv-sync.stamp \
 		| $$(dir $$@)
 	uv run -m pytest --quiet --quiet
