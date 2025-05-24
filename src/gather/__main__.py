@@ -6,6 +6,7 @@ from gather.weather import Weather
 from utils import atomic_write
 
 from .giants_games import GiantsGame
+from .logs import get_log
 from .options import Options
 from .refresh_rate import get_refresh_rate
 
@@ -21,6 +22,7 @@ updated = now.astimezone(timezone.utc)
 content = {
     'forecast': {},
     'giants_games_today': [],
+    'log': get_log(options.web_root, skip_old=False),
     'refresh_rate': get_refresh_rate(now),
     '~source_data': {
         'forecast_response': {},

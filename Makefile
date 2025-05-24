@@ -86,6 +86,7 @@ src_files := \
 		src/gather/giants-schedule.json \
 		src/gather/giants_games.py \
 		src/gather/giants_games_test.py \
+		src/gather/logs.py \
 		src/gather/options.py \
 		src/gather/refresh_rate.py \
 		src/gather/weather.py \
