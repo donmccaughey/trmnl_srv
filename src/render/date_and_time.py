@@ -1,11 +1,11 @@
 from datetime import datetime
-from typing import Any
+from serialize import JSONDict
 from zoneinfo import ZoneInfo
 
 from .screen import Screen
 
 
-def write_date_and_time(content: dict[str, Any], screen: Screen):
+def write_date_and_time(content: JSONDict, screen: Screen):
     time_zone = ZoneInfo('America/Los_Angeles')
     updated_utc = datetime.fromisoformat(content['updated'])
     updated_pt = updated_utc.astimezone(time_zone)

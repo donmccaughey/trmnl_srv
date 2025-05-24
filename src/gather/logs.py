@@ -2,7 +2,7 @@ import json
 
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
-from typing import Any
+from serialize import JSONDict
 
 
 SKIP_MESSAGES = [
@@ -10,7 +10,7 @@ SKIP_MESSAGES = [
 ]
 
 
-def get_log(web_root: Path, skip_old: bool = True) -> dict[str, Any]:
+def get_log(web_root: Path, skip_old: bool = True) -> JSONDict:
     log = {}
 
     log_files = list_log_files(web_root)

@@ -4,11 +4,11 @@ import json
 
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any
+from serialize import JSONDict
 
 
 class LogEntry:
-    def __init__(self, logs_dir: Path, log_entry_json: dict[str, Any]):
+    def __init__(self, logs_dir: Path, log_entry_json: JSONDict):
         self.logs_dir = logs_dir
         self.json = log_entry_json
 

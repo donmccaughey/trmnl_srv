@@ -1,10 +1,10 @@
+from serialize import JSONDict
 from textwrap import wrap
-from typing import Any
 
 from .screen import Screen
 
 
-def write_forecast(content: dict[str, Any], screen: Screen):
+def write_forecast(content: JSONDict, screen: Screen):
     if 'error' in content['forecast']:
         screen.write(1, 2, 'Weather:')
 

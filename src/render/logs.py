@@ -1,10 +1,10 @@
+from serialize import JSONDict
 from textwrap import wrap
-from typing import Any
 
 from .screen import Screen
 
 
-def write_log_message(content: dict[str, Any], screen: Screen):
+def write_log_message(content: JSONDict, screen: Screen):
     log = content.get('log', {})
     volts = f"{log['volts']:.1f} v" if 'volts' in log else None
     if 'message' in log:

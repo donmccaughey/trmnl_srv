@@ -1,10 +1,10 @@
 from datetime import time
-from typing import Any
+from serialize import JSONDict
 
 from .screen import Screen
 
 
-def write_giants_games_today(content: dict[str, Any], screen: Screen):
+def write_giants_games_today(content: JSONDict, screen: Screen):
     if content['giants_games_today']:
         game_times = [
             time.fromisoformat(game_time).strftime('%I:%M %p')
