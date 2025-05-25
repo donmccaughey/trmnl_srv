@@ -1,4 +1,4 @@
-cat trmnl_srv.env > /run/trmnl_srv.env
+cat trmnl_srv_deploy.env > /run/trmnl_srv.env
 docker image load --input trmnl_srv.tar.gz
 docker image prune --force
 docker stop trmnl_srv
