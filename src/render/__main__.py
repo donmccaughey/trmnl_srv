@@ -12,6 +12,7 @@ from .forecast import write_forecast
 from .giants_games_today import write_giants_games_today
 from .intro_screen import write_intro_screen
 from .logs import write_log_message
+from .next_muni import write_next_muni
 from .options import Options
 from .screen import Screen
 
@@ -31,6 +32,7 @@ if options.intro_screen:
 else:
     screen = Screen(WIDTH, HEIGHT, CELL_HEIGHT)
     write_date_and_time(content, screen)
+    write_next_muni(content, screen)
     write_forecast(content, screen)
     write_giants_games_today(content, screen)
     write_log_message(content, screen)

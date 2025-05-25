@@ -5,6 +5,7 @@ from datetime import datetime, timezone
 from gather.weather import Weather
 from utils import atomic_write
 
+from .five11 import Five11
 from .giants_games import GiantsGame
 from .logs import get_log
 from .options import Options
@@ -22,7 +23,8 @@ updated = now.astimezone(timezone.utc)
 content = {
     'forecast': {},
     'giants_games_today': [],
-    'log': get_log(options.web_root, skip_old=False),
+    'log': get_log(options.web_root),
+    'muni': {},
     'refresh_rate': get_refresh_rate(now),
     '~source_data': {
         'forecast_response': {},
@@ -59,6 +61,19 @@ if todays_games:
     ]
 else:
     content['giants_games_today'] = []
+
+
+muni_t = Five11(options.five11_org_key)
+if muni_t.get_stop_monitoring():
+    content['~source_data']['stop_monitoring_response'] = muni_t.stop_monitoring_response
+
+    if muni_t.expected_arrival_times:
+        content['muni']['expected_arrival_times'] = [
+            arrival_time.isoformat(sep=' ', timespec='seconds')
+            for arrival_time in muni_t.expected_arrival_times
+        ]
+    else:
+        content['muni']['error'] = muni_t.error
 
 
 atomic_write(

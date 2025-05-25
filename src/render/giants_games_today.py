@@ -12,4 +12,4 @@ def write_giants_games_today(content: JSONDict, screen: Screen):
         ]
         when = ','.join(game_times)
         message = f'Giants game today at {when}.'
-        screen.write(1, 7, message)
+        screen.write(1, 10, message)

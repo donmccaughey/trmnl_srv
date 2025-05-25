@@ -84,6 +84,8 @@ container_files := \
 src_files := \
 		src/gather/__init__.py \
 		src/gather/__main__.py \
+		src/gather/five11.py \
+		src/gather/five11_test.py \
 		src/gather/giants-schedule.json \
 		src/gather/giants_games.py \
 		src/gather/giants_games_test.py \
@@ -107,6 +109,7 @@ src_files := \
 		src/render/giants_games_today.py \
 		src/render/intro_screen.py \
 		src/render/logs.py \
+		src/render/next_muni.py \
 		src/render/options.py \
 		src/render/screen.py \
 		\

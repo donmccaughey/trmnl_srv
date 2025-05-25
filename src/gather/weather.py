@@ -27,8 +27,8 @@ class Weather:
         self.forecast_hourly_url = ''
 
         self.period_name = ''
-
         self.detailed_forecast = ''
+
         self.updated = datetime.now(timezone.utc)
 
     def get_points(self) -> bool:
@@ -42,11 +42,11 @@ class Weather:
             try:
                 message = response.json()
             except requests.exceptions.JSONDecodeError:
-                message = response.text or '(no message)'
+                message = response.text or None
 
             self.error = {
                 'timestamp': self.updated.isoformat(sep=' ', timespec='seconds'),
-                'url': url,
+                'url': self.points_url,
                 'status_code': response.status_code,
                 'reason': response.reason,
                 'message': message,
