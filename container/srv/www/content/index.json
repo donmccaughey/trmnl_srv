@@ -1,7 +1,21 @@
 {
     "forecast": {
+        "detailed_forecast": "Sunny, with a high near 64. West wind around 17 mph, with gusts as high as 23 mph.",
         "period_name": "This Afternoon",
-        "detailed_forecast": "Sunny, with a high near 64. West wind around 17 mph, with gusts as high as 23 mph."
+        "updated": "1970-01-01 00:00:00+00:00"
     },
-    "updated": "1970-01-01 00:00:00+00:00"
+    "giants_games_today": [],
+    "log": {},
+    "muni": {
+        "expected_arrival_times": [],
+        "updated": "1970-01-01 00:00:00+00:00"
+    },
+    "refresh_rate": 300,
+    "updated": "1970-01-01 00:00:00+00:00",
+    "~source_data": {
+        "forecast_response": {},
+        "forecast_hourly_response": {},
+        "points_response": {},
+        "stop_monitoring_response": {}
+    }
 }
