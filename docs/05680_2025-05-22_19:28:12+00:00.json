@@ -1,0 +1,24 @@
+{
+    "additional_info": {
+        "filename_current": "2025-05-22 19:27:01+00:00",
+        "filename_new": ""
+    },
+    "created": "2025-05-22 19:28:12+00:00",
+    "creation_timestamp": 1747942092,
+    "device_status_stamp": {
+        "battery_voltage": 3.968,
+        "current_fw_version": "1.5.4",
+        "free_heap_size": 212804,
+        "max_alloc_size": 192500,
+        "refresh_rate": 60,
+        "special_function": "none",
+        "time_since_last_sleep_start": 61,
+        "wakeup_reason": "timer",
+        "wifi_rssi_level": -38,
+        "wifi_status": "connected"
+    },
+    "log_codeline": 1530,
+    "log_id": 5680,
+    "log_message": "HTTP Client failed with error: connection refused",
+    "log_sourcefile": "src/bl.cpp"
+}
