@@ -95,6 +95,12 @@ src_files := \
 		src/gather/weather.py \
 		src/gather/weather_test.py \
 		\
+		src/http_message/__init__.py \
+		src/http_message/header.py \
+		src/http_message/header_test.py \
+		src/http_message/message.py \
+		src/http_message/message_test.py \
+		\
 		src/render/__init__.py \
 		src/render/__main__.py \
 		src/render/api_display.py \
