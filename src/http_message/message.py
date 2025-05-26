@@ -1,3 +1,6 @@
+from itertools import islice
+from typing import Generator
+
 from .header import Header
 
 
@@ -19,17 +22,7 @@ class Message:
         parts.append('')
 
         if isinstance(self.body, bytes):
-            size = len(self.body)
-            count = 10
-            if size < 320:
-                count = size // 32 + 1
-            for i in range(count):
-                begin = i * 32
-                end = min((i + 1) * 32, size)
-                hex_dump = self.body[begin:end].hex(' ', 2)
-                parts.append(hex_dump)
-            if size > 320:
-                parts.append(f'... ({size:,} bytes)')
+            parts.extend(octet_stream_preview(self.body))
         elif isinstance(self.body, str):
             parts.append(self.body)
         elif self.body is None:
@@ -38,3 +31,55 @@ class Message:
             raise TypeError(f'body is {type(self.body)}')
 
         return '\n'.join(parts)
+
+
+def ascii_bytes(buffer: bytes, sep: str = ' ', bytes_per_sep: int = 4) -> str:
+    chars = []
+    for i, byte in enumerate(buffer):
+        if i and not i % bytes_per_sep:
+            chars.append(sep)
+        ch = chr(byte) if 0x20 <= byte < 0x7f else '.'
+        chars.append(ch)
+    return ''.join(chars)
+
+
+def enumerate_segments(buffer: bytes, segment_size: int = 16, segment_count: int = 8) -> Generator[tuple[int, bytes], None, None]:
+    yield from enumerate(
+        islice(
+            split_buffer(buffer, segment_size),
+            segment_count
+        )
+    )
+
+
+def octet_stream_preview(buffer: bytes) -> Generator[str, None, None]:
+    segment_size = 16
+    segment_count = 9
+    total_bytes = len(buffer)
+    return (
+        octet_stream_preview_line(i, segment, segment_count, total_bytes)
+        for i, segment in enumerate_segments(buffer, segment_size, segment_count)
+    )
+
+
+def octet_stream_preview_line(i: int, segment: bytes, segment_count: int, total_bytes: int) -> str:
+    last_segment_index = segment_count - 1
+    if i == last_segment_index:
+        return f'... ({total_bytes:,} bytes total)'
+    else:
+        return segment_preview(segment)
+
+
+def segment_preview(segment: bytes, sep: str = ' ', bytes_per_sep: int = 4) -> str:
+    hex_dump = segment.hex(sep, -bytes_per_sep)
+    ascii_dump = ascii_bytes(segment, sep, bytes_per_sep)
+    return f'{hex_dump:35} | {ascii_dump}'
+
+
+def split_buffer(buffer: bytes, segment_size: int = 16) -> Generator[bytes, None, None]:
+    buffer_end = len(buffer)
+    for i in range(0, buffer_end, segment_size):
+        end = i + segment_size
+        if end > buffer_end:
+            end = buffer_end
+        yield buffer[i:end]

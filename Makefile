@@ -100,6 +100,8 @@ src_files := \
 		src/http_message/header_test.py \
 		src/http_message/message.py \
 		src/http_message/message_test.py \
+		src/http_message/request.py \
+		src/http_message/response.py \
 		\
 		src/render/__init__.py \
 		src/render/__main__.py \
