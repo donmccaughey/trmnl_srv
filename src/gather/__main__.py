@@ -28,11 +28,11 @@ content = {
         'updated': '1970-01-01 00:00:00+00:00',
     },
     'giants_games_today': [],
-    'log': get_log(options.web_root),
+    'log': {},
     'muni': {
         'updated': '1970-01-01 00:00:00+00:00',
     },
-    'refresh_rate': get_refresh_rate(now),
+    'refresh_rate': 60,
     '~source_data': {
         'forecast_response': {},
         'forecast_hourly_response': {},
@@ -89,6 +89,9 @@ else:
     content['giants_games_today'] = []
 
 
+content['log'] = get_log(options.web_root)
+
+
 last_muni_update = datetime.fromisoformat(content['muni']['updated'])
 time_since_last_muni_update = now - last_muni_update
 if time_since_last_muni_update >= TWO_MINUTES:
@@ -109,6 +112,9 @@ if time_since_last_muni_update >= TWO_MINUTES:
         else:
             content['muni']['error'] = muni_t.error
     content['muni']['updated'] = now_iso_date
+
+
+content['refresh_rate'] = get_refresh_rate(now)
 
 
 atomic_write(
