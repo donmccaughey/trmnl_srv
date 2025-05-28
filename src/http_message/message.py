@@ -17,7 +17,7 @@ class Message:
 
     def __str__(self) -> str:
         parts = [self.start_line]
-        for header in self.headers:
+        for header in sorted(self.headers):
             parts.append(str(header))
         parts.append('')
 

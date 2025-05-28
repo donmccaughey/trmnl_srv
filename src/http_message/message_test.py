@@ -50,6 +50,28 @@ def test_message_with_no_body():
     assert str(message) == expected
 
 
+def test_message_headers_are_sorted():
+    headers = [
+        Header('User-Agent', 'Python'),
+        Header('Host', 'www.example.com'),
+        Header('Content-Length', 71234),
+        Header('Accept', 'application/json'),
+        Header('Content-Type', 'text/plain'),
+    ]
+    message = Message('TEST message', headers, body=None)
+
+    expected = (
+        'TEST message\n'
+        'Accept: application/json\n'
+        'Content-Length: 71234\n'
+        'Content-Type: text/plain\n'
+        'Host: www.example.com\n'
+        'User-Agent: Python\n'
+        '\n'
+    )
+    assert str(message) == expected
+
+
 def test_message_with_string_body():
     headers = [
         Header('Content-Type', 'text/plain'),
