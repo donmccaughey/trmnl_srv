@@ -55,9 +55,9 @@ time_since_last_weather_update = now - last_weather_update
 if time_since_last_weather_update >= HALF_HOUR:
     print('- fetching from api.weather.gov')
 
-    del content['~source_data']['points_response']
-    del content['~source_data']['forecast_response']
-    del content['~source_data']['forecast_hourly_response']
+    content['~source_data']['points_response'] = {}
+    content['~source_data']['forecast_response'] = {}
+    content['~source_data']['forecast_hourly_response'] = {}
 
     weather = Weather()
     if weather.get_points():
@@ -97,8 +97,7 @@ time_since_last_muni_update = now - last_muni_update
 if time_since_last_muni_update >= TWO_MINUTES:
     print('- fetching from api.511.org')
 
-    if 'stop_monitoring_response' in content['~source_data']:
-        del content['~source_data']['stop_monitoring_response']
+    content['~source_data']['stop_monitoring_response'] = {}
 
     muni_t = Five11(options.five11_org_key)
     if muni_t.get_stop_monitoring():
