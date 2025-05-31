@@ -34,20 +34,20 @@ def test_enumerate_segments_for_small_final_segment():
     assert segments[-1] == (1, bytes(range(16, 20)))
 
 
-def test_message_with_no_body():
+def test_message_headers_indexed():
     headers = [
-        Header('Accept', 'application/json'),
         Header('User-Agent', 'Python'),
+        Header('Host', 'www.example.com'),
+        Header('Content-Length', 71234),
+        Header('Accept', 'application/json'),
+        Header('Content-Type', 'text/plain'),
     ]
     message = Message('TEST message', headers, body=None)
 
-    expected = (
-        'TEST message\n'
-        'Accept: application/json\n'
-        'User-Agent: Python\n'
-        '\n'
-    )
-    assert str(message) == expected
+    assert 'Accept' in message
+    assert message['Accept'] == 'application/json'
+
+    assert 'Content-Disposition' not in message
 
 
 def test_message_headers_are_sorted():
@@ -66,6 +66,31 @@ def test_message_headers_are_sorted():
         'Content-Length: 71234\n'
         'Content-Type: text/plain\n'
         'Host: www.example.com\n'
+        'User-Agent: Python\n'
+        '\n'
+    )
+    assert str(message) == expected
+
+
+def test_message_repr():
+    headers = [
+        Header('Accept', 'application/json'),
+        Header('User-Agent', 'Python'),
+    ]
+    message = Message('This is a test', headers, body=None)
+    assert repr(message) == '<Message: This is a test>'
+
+
+def test_message_with_no_body():
+    headers = [
+        Header('Accept', 'application/json'),
+        Header('User-Agent', 'Python'),
+    ]
+    message = Message('TEST message', headers, body=None)
+
+    expected = (
+        'TEST message\n'
+        'Accept: application/json\n'
         'User-Agent: Python\n'
         '\n'
     )

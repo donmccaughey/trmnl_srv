@@ -1,3 +1,4 @@
+from datetime import datetime
 from itertools import islice
 from typing import Generator
 
@@ -14,6 +15,21 @@ class Message:
         self.start_line = start_line
         self.headers = headers
         self.body = body
+
+    def __contains__(self, item: str) -> bool:
+        for header in self.headers:
+            if header.name == item:
+                return True
+        return False
+
+    def __getitem__(self, item: str) -> str | int | datetime:
+        for header in self.headers:
+            if header.name == item:
+                return header.value
+        raise KeyError(item)
+
+    def __repr__(self) -> str:
+        return f'<{self.__class__.__name__}: {self.start_line}>'
 
     def __str__(self) -> str:
         parts = [self.start_line]
