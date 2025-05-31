@@ -28,6 +28,12 @@ class Message:
                 return header.value
         raise KeyError(item)
 
+    def get(self, item: str, default=None, /) -> str | int | datetime:
+        for header in self.headers:
+            if header.name == item:
+                return header.value
+        return default
+
     def __repr__(self) -> str:
         return f'<{self.__class__.__name__}: {self.start_line}>'
 

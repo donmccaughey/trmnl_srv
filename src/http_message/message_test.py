@@ -34,7 +34,7 @@ def test_enumerate_segments_for_small_final_segment():
     assert segments[-1] == (1, bytes(range(16, 20)))
 
 
-def test_message_headers_indexed():
+def test_message_headers_implements_contains_and_getitem():
     headers = [
         Header('User-Agent', 'Python'),
         Header('Host', 'www.example.com'),
@@ -48,6 +48,21 @@ def test_message_headers_indexed():
     assert message['Accept'] == 'application/json'
 
     assert 'Content-Disposition' not in message
+
+
+def test_message_headers_get():
+    headers = [
+        Header('User-Agent', 'Python'),
+        Header('Host', 'www.example.com'),
+        Header('Content-Length', 71234),
+        Header('Accept', 'application/json'),
+        Header('Content-Type', 'text/plain'),
+    ]
+    message = Message('TEST message', headers, body=None)
+
+    assert message.get('Accept') == 'application/json'
+    assert message.get('Content-Disposition') is None
+    assert message.get('Connection', 'close') == 'close'
 
 
 def test_message_headers_are_sorted():
