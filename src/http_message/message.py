@@ -1,3 +1,5 @@
+import json
+
 from datetime import datetime
 from itertools import islice
 from typing import Generator
@@ -6,6 +8,8 @@ from .header import Header
 
 
 class Message:
+    PREVIEW_LINES = 8
+
     def __init__(
             self,
             start_line: str,
@@ -44,9 +48,9 @@ class Message:
         parts.append('')
 
         if isinstance(self.body, bytes):
-            parts.extend(octet_stream_preview(self.body))
+            parts.extend(octet_stream_preview(self))
         elif isinstance(self.body, str):
-            parts.append(self.body)
+            parts.extend(str_preview(self))
         elif self.body is None:
             parts.append('')
         else:
@@ -74,13 +78,28 @@ def enumerate_segments(buffer: bytes, segment_size: int = 16, segment_count: int
     )
 
 
-def octet_stream_preview(buffer: bytes) -> Generator[str, None, None]:
+def json_preview(message: Message, max_lines: int = Message.PREVIEW_LINES) -> Generator[str, None, None]:
+    try:
+        parsed = json.loads(message.body)
+        lines = json.dumps(parsed, ensure_ascii=True, indent=4, sort_keys=True).splitlines()
+        if len(lines) <= max_lines:
+            yield from lines
+        else:
+            yield from lines[:max_lines - 1]
+            yield f'    ... ({len(lines)} lines total)'
+            yield lines[-1]
+    except:
+        yield from text_preview(message)
+
+
+def octet_stream_preview(message: Message, max_lines: int = Message.PREVIEW_LINES) -> Generator[str, None, None]:
     segment_size = 16
-    segment_count = 9
-    total_bytes = len(buffer)
+    segment_count = max_lines + 1
+    total_bytes = len(message.body)
     return (
         octet_stream_preview_line(i, segment, segment_count, total_bytes)
-        for i, segment in enumerate_segments(buffer, segment_size, segment_count)
+        for i, segment
+        in enumerate_segments(message.body, segment_size, segment_count)
     )
 
 
@@ -105,3 +124,14 @@ def split_buffer(buffer: bytes, segment_size: int = 16) -> Generator[bytes, None
         if end > buffer_end:
             end = buffer_end
         yield buffer[i:end]
+
+
+def str_preview(message: Message) -> Generator[str, None, None]:
+    if 'application/json' == message.get('Content-Type'):
+        yield from json_preview(message)
+    else:
+        yield from text_preview(message)
+
+
+def text_preview(message: Message) -> Generator[str, None, None]:
+    yield message.body

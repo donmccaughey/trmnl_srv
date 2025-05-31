@@ -128,6 +128,49 @@ def test_message_with_string_body():
     assert str(message) == expected
 
 
+def test_message_with_short_json_body():
+    headers = [
+        Header('Content-Type', 'application/json'),
+    ]
+    body = '{"foo":"bar","baz":42}'
+    message = Message('TEST message', headers, body)
+
+    expected = (
+        'TEST message\n'
+        'Content-Type: application/json\n'
+        '\n'
+        '{\n'
+        '    "baz": 42,\n'
+        '    "foo": "bar"\n'
+        '}'
+    )
+    assert str(message) == expected
+
+
+def test_message_with_long_json_body():
+    headers = [
+        Header('Content-Type', 'application/json'),
+    ]
+    body = '{"1":1,"2":2,"3":3,"4":4,"5":5,"6":6,"7":7,"8":8}'
+    message = Message('TEST message', headers, body)
+
+    expected = (
+        'TEST message\n'
+        'Content-Type: application/json\n'
+        '\n'
+        '{\n'
+        '    "1": 1,\n'
+        '    "2": 2,\n'
+        '    "3": 3,\n'
+        '    "4": 4,\n'
+        '    "5": 5,\n'
+        '    "6": 6,\n'
+        '    ... (10 lines total)\n'
+        '}'
+    )
+    assert str(message) == expected
+
+
 def test_message_with_bytes_body():
     headers = [
         Header('Content-Type', 'application/octet-stream'),

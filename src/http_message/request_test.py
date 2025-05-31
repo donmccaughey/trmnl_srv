@@ -70,8 +70,8 @@ def test_request_with_json_body():
         'User-Agent: Python\n'
         '\n'
         '{\n'
-        '    "foo": "bar",\n'
-        '    "baz": 42\n'
+        '    "baz": 42,\n'
+        '    "foo": "bar"\n'
         '}'
     )
     assert str(request) == expected
