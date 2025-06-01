@@ -1,6 +1,7 @@
 from datetime import datetime, timezone
 from urllib.parse import urlparse
 
+from .entity import Entity
 from .header import Header
 from .message import Message
 
@@ -11,10 +12,10 @@ class Request(Message):
             method: str,
             url: str,
             headers: list[Header],
-            body: bytes | str | None
+            entity: Entity | None,
     ):
         request_line = f'{method} {url} HTTP/1.1'
-        super().__init__(request_line, headers, body)
+        super().__init__(request_line, headers, entity)
 
         if not 'Date' in self:
             self.headers.append(Header('Date', datetime.now(tz=timezone.utc)))

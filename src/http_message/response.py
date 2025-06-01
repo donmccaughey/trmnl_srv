@@ -1,3 +1,4 @@
+from .entity import Entity
 from .header import Header
 from .message import Message
 
@@ -8,12 +9,12 @@ class Response(Message):
             status_code: int,
             reason_phrase: str,
             headers: list[Header],
-            body: bytes | str | None
+            entity: Entity | None,
     ):
         self.status_code = status_code
         self.reason_phrase = reason_phrase
         status_line = f'HTTP/1.1 {status_code} {reason_phrase}'
-        super().__init__(status_line, headers, body)
+        super().__init__(status_line, headers, entity)
 
     @property
     def status_line(self) -> str:

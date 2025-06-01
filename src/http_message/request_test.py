@@ -1,6 +1,7 @@
 from datetime import datetime
 from zoneinfo import ZoneInfo
 
+from .entity import Entity
 from .header import Header
 from .request import Request
 
@@ -10,7 +11,7 @@ def test_request_repr():
         Header('Accept', 'application/json'),
         Header('User-Agent', 'Python'),
     ]
-    message = Request('GET', 'http://example.com', headers, body=None)
+    message = Request('GET', 'http://example.com', headers, entity=None)
     assert repr(message) == '<Request: GET http://example.com HTTP/1.1>'
 
 
@@ -21,9 +22,9 @@ def test_request_with_no_host_no_user_agent_and_no_body():
         Header('Accept', 'application/json'),
         Header('Date', dt)
     ]
-    request = Request('GET', 'http://example.com', headers, body=None)
+    request = Request('GET', 'http://example.com', headers, entity=None)
 
-    expected = (
+    assert str(request) == (
         'GET http://example.com HTTP/1.1\n'
         'Accept: application/json\n'
         'Date: Mon, 26 May 2025 05:07:17 GMT\n'
@@ -31,7 +32,6 @@ def test_request_with_no_host_no_user_agent_and_no_body():
         'User-Agent: Python\n'
         '\n'
     )
-    assert str(request) == expected
 
 
 def test_request_with_no_date():
@@ -40,7 +40,7 @@ def test_request_with_no_date():
         Header('Host', 'www.example.com'),
         Header('User-Agent', 'Test'),
     ]
-    request = Request('GET', '/foo/bar', headers, body=None)
+    request = Request('GET', '/foo/bar', headers, entity=None)
 
     assert 'Date' in request
 
@@ -53,15 +53,15 @@ def test_request_with_json_body():
         Header('Content-Type', 'application/json'),
         Header('Date', dt)
     ]
-    body = (
+    entity = Entity(
         '{\n'
         '    "foo": "bar",\n'
         '    "baz": 42\n'
         '}'
     )
-    request = Request('POST', 'http://example.com', headers, body)
+    request = Request('POST', 'http://example.com', headers, entity)
 
-    expected = (
+    assert str(request) == (
         'POST http://example.com HTTP/1.1\n'
         'Accept: application/json\n'
         'Content-Type: application/json\n'
@@ -74,4 +74,3 @@ def test_request_with_json_body():
         '    "foo": "bar"\n'
         '}'
     )
-    assert str(request) == expected
