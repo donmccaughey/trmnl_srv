@@ -175,6 +175,5 @@ def test_message_with_large_bytes_body():
         '40414243 44454647 48494a4b 4c4d4e4f | @ABC DEFG HIJK LMNO',
         '50515253 54555657 58595a5b 5c5d5e5f | PQRS TUVW XYZ[ \\]^_',
         '60616263 64656667 68696a6b 6c6d6e6f | `abc defg hijk lmno',
-        '70717273 74757677 78797a7b 7c7d7e7f | pqrs tuvw xyz{ |}~.',
         '... (512 bytes total)',
     ]

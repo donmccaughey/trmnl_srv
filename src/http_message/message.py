@@ -45,6 +45,7 @@ class Message:
         lines = [self.start_line]
         for header in sorted(self.headers):
             lines.append(str(header))
+        
         lines.append('')
 
         if self.entity:

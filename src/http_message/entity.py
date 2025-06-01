@@ -58,7 +58,7 @@ def json_preview(body: Body, limit: int = -1) -> Generator[str, None, None]:
 
 def octet_stream_preview(body: Body, limit: int = -1) -> Generator[str, None, None]:
     segment_size = 16
-    segment_count = limit + 1
+    segment_count = limit
     total_bytes = len(body)
     return (
         octet_stream_preview_line(i, segment, segment_count, total_bytes)
