@@ -1,4 +1,25 @@
-from .octet_entity import ascii_bytes, enumerate_segments, segment_preview, split_buffer
+from .octet_entity import ascii_bytes, enumerate_segments, OctetEntity, segment_preview, split_buffer
+
+
+def test_short_bytes():
+    entity = OctetEntity(bytes.fromhex('deadbeef'))
+    assert list(entity.lines()) == [
+        'deadbeef                            | ....',
+    ]
+
+
+def test_long_bytes():
+    entity = OctetEntity(bytes((i % 256 for i in range(512))))
+    assert list(entity.lines(8)) == [
+        '00010203 04050607 08090a0b 0c0d0e0f | .... .... .... ....',
+        '10111213 14151617 18191a1b 1c1d1e1f | .... .... .... ....',
+        '20212223 24252627 28292a2b 2c2d2e2f |  !"# $%&\' ()*+ ,-./',
+        '30313233 34353637 38393a3b 3c3d3e3f | 0123 4567 89:; <=>?',
+        '40414243 44454647 48494a4b 4c4d4e4f | @ABC DEFG HIJK LMNO',
+        '50515253 54555657 58595a5b 5c5d5e5f | PQRS TUVW XYZ[ \\]^_',
+        '60616263 64656667 68696a6b 6c6d6e6f | `abc defg hijk lmno',
+        '... (512 bytes total)',
+    ]
 
 
 def test_ascii_bytes():
@@ -17,7 +38,7 @@ def test_ascii_bytes():
 
 def test_enumerate_segments():
     buffer = bytes((i % 256 for i in range(512)))
-    segments = list(enumerate_segments(buffer))
+    segments = list(enumerate_segments(buffer, segment_count=8))
 
     assert len(segments) == 8
     assert segments[0] == (0, bytes(range(16)))

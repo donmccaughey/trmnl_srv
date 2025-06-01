@@ -34,13 +34,16 @@ def ascii_bytes(buffer: bytes, sep: str = ' ', bytes_per_sep: int = 4) -> str:
     return ''.join(chars)
 
 
-def enumerate_segments(buffer: bytes, segment_size: int = 16, segment_count: int = 8) -> Generator[tuple[int, bytes], None, None]:
-    yield from enumerate(
-        islice(
-            split_buffer(buffer, segment_size),
-            segment_count
+def enumerate_segments(buffer: bytes, segment_size: int = 16, segment_count: int = -1) -> Generator[tuple[int, bytes], None, None]:
+    if -1 == segment_count:
+        yield from enumerate(split_buffer(buffer, segment_size))
+    else:
+        yield from enumerate(
+            islice(
+                split_buffer(buffer, segment_size),
+                segment_count
+            )
         )
-    )
 
 
 def octet_stream_preview_line(i: int, segment: bytes, segment_count: int, total_bytes: int) -> str:

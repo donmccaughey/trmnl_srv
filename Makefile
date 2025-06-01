@@ -96,13 +96,18 @@ src_files := \
 		src/gather/weather_test.py \
 		\
 		src/http_message/__init__.py \
+		src/http_message/entity.py \
 		src/http_message/header.py \
 		src/http_message/header_test.py \
 		src/http_message/message.py \
 		src/http_message/message_test.py \
+		src/http_message/octet_entity.py \
+		src/http_message/octet_entity_test.py \
 		src/http_message/request.py \
 		src/http_message/request_test.py \
 		src/http_message/response.py \
+		src/http_message/text_entity.py \
+		src/http_message/text_entity_test.py \
 		\
 		src/render/__init__.py \
 		src/render/__main__.py \
