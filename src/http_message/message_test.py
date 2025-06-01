@@ -103,6 +103,15 @@ def test_message_with_no_body():
     ]
     message = Message('TEST message', headers, body=None)
 
+    lines = [
+        'TEST message',
+        'Accept: application/json',
+        'User-Agent: Python',
+        '',
+        '',
+    ]
+    assert message.lines() == lines
+
     expected = (
         'TEST message\n'
         'Accept: application/json\n'

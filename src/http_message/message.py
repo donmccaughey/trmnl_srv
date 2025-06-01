@@ -42,21 +42,24 @@ class Message:
         return f'<{self.__class__.__name__}: {self.start_line}>'
 
     def __str__(self) -> str:
-        parts = [self.start_line]
+        return '\n'.join(self.lines())
+
+    def lines(self) -> list[str]:
+        lines = [self.start_line]
         for header in sorted(self.headers):
-            parts.append(str(header))
-        parts.append('')
+            lines.append(str(header))
+        lines.append('')
 
         if isinstance(self.body, bytes):
-            parts.extend(octet_stream_preview(self))
+            lines.extend(octet_stream_preview(self))
         elif isinstance(self.body, str):
-            parts.extend(str_preview(self))
+            lines.extend(str_preview(self))
         elif self.body is None:
-            parts.append('')
+            lines.append('')
         else:
             raise TypeError(f'body is {type(self.body)}')
 
-        return '\n'.join(parts)
+        return lines
 
 
 def ascii_bytes(buffer: bytes, sep: str = ' ', bytes_per_sep: int = 4) -> str:
