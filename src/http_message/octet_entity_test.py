@@ -1,4 +1,4 @@
-from .entity import ascii_bytes, enumerate_segments, segment_preview, split_buffer
+from .octet_entity import ascii_bytes, enumerate_segments, segment_preview, split_buffer
 
 
 def test_ascii_bytes():

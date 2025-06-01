@@ -1,6 +1,7 @@
-from .entity import Entity
 from .header import Header
 from .message import Message
+from .octet_entity import OctetEntity
+from .text_entity import TextEntity
 
 
 def test_message_headers_implements_contains_and_getitem():
@@ -91,7 +92,7 @@ def test_message_with_string_body():
     headers = [
         Header('Content-Type', 'text/plain'),
     ]
-    entity = Entity('This is a test message')
+    entity = TextEntity('This is a test message')
     message = Message('TEST message', headers, entity)
 
     assert message.lines(8) == [
@@ -106,7 +107,9 @@ def test_message_with_short_json_body():
     headers = [
         Header('Content-Type', 'application/json'),
     ]
-    entity = Entity('{"foo":"bar","baz":42}')
+    entity = TextEntity(
+        '{"foo":"bar","baz":42}', content_type='application/json'
+    )
     message = Message('TEST message', headers, entity)
 
     assert message.lines(8) == [
@@ -124,7 +127,10 @@ def test_message_with_long_json_body():
     headers = [
         Header('Content-Type', 'application/json'),
     ]
-    entity = Entity('{"1":1,"2":2,"3":3,"4":4,"5":5,"6":6,"7":7,"8":8}')
+    entity = TextEntity(
+        '{"1":1,"2":2,"3":3,"4":4,"5":5,"6":6,"7":7,"8":8}',
+        content_type='application/json',
+    )
     message = Message('TEST message', headers, entity)
 
     assert message.lines(8) == [
@@ -137,7 +143,7 @@ def test_message_with_long_json_body():
         '    "3": 3,',
         '    "4": 4,',
         '    "5": 5,',
-        '    ... (10 lines total)',
+        '    ... (3 lines omitted)',
         '}',
     ]
 
@@ -146,7 +152,7 @@ def test_message_with_bytes_body():
     headers = [
         Header('Content-Type', 'application/octet-stream'),
     ]
-    entity = Entity(bytes.fromhex('deadbeef'))
+    entity = OctetEntity(bytes.fromhex('deadbeef'))
     message = Message('TEST message', headers, entity)
 
     assert message.lines(8) == [
@@ -161,7 +167,7 @@ def test_message_with_large_bytes_body():
     headers = [
         Header('Content-Type', 'application/octet-stream'),
     ]
-    entity = Entity(bytes((i % 256 for i in range(512))))
+    entity = OctetEntity(bytes((i % 256 for i in range(512))))
     message = Message('TEST message', headers, entity)
 
     assert message.lines(8) == [

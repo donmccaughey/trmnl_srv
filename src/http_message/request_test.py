@@ -1,9 +1,9 @@
 from datetime import datetime
 from zoneinfo import ZoneInfo
 
-from .entity import Entity
 from .header import Header
 from .request import Request
+from .text_entity import TextEntity
 
 
 def test_request_repr():
@@ -53,11 +53,12 @@ def test_request_with_json_body():
         Header('Content-Type', 'application/json'),
         Header('Date', dt)
     ]
-    entity = Entity(
+    entity = TextEntity(
         '{\n'
         '    "foo": "bar",\n'
         '    "baz": 42\n'
-        '}'
+        '}',
+        content_type='application/json',
     )
     request = Request('POST', 'http://example.com', headers, entity)
 

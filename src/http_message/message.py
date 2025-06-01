@@ -47,8 +47,7 @@ class Message:
         lines.append('')
 
         if self.entity:
-            content_type = self.get('Content-Type', 'text/plain')
-            lines.extend(self.entity.lines(content_type, entity_lines_limit))
+            lines.extend(self.entity.lines(entity_lines_limit))
         else:
             lines.append('')
 
