@@ -5,8 +5,6 @@ from .header import Header
 
 
 class Message:
-    PREVIEW_LINES = 8
-
     def __init__(
             self,
             start_line: str,
@@ -45,7 +43,7 @@ class Message:
         lines = [self.start_line]
         for header in sorted(self.headers):
             lines.append(str(header))
-        
+
         lines.append('')
 
         if self.entity:
