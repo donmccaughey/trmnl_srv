@@ -1,10 +1,30 @@
-from .octet_entity import ascii_bytes, enumerate_segments, OctetEntity, segment_preview, split_buffer
+from .octet_entity import ascii_byte, ascii_bytes, enumerate_segments, OctetEntity, segment_preview, split_buffer
 
 
 def test_short_bytes():
     entity = OctetEntity(bytes.fromhex('deadbeef'))
     assert list(entity.lines()) == [
         'deadbeef                            | ....',
+    ]
+
+
+def test_bytes_shorter_than_limit__for_equal_segments():
+    entity = OctetEntity(bytes((i % 256 for i in range(64))))
+    assert list(entity.lines(8)) == [
+        '00010203 04050607 08090a0b 0c0d0e0f | .... .... .... ....',
+        '10111213 14151617 18191a1b 1c1d1e1f | .... .... .... ....',
+        '20212223 24252627 28292a2b 2c2d2e2f |  !"# $%&\' ()*+ ,-./',
+        '30313233 34353637 38393a3b 3c3d3e3f | 0123 4567 89:; <=>?',
+    ]
+
+
+def test_bytes_shorter_than_limit__for_short_final_segments():
+    entity = OctetEntity(bytes((i % 256 for i in range(63))))
+    assert list(entity.lines(8)) == [
+        '00010203 04050607 08090a0b 0c0d0e0f | .... .... .... ....',
+        '10111213 14151617 18191a1b 1c1d1e1f | .... .... .... ....',
+        '20212223 24252627 28292a2b 2c2d2e2f |  !"# $%&\' ()*+ ,-./',
+        '30313233 34353637 38393a3b 3c3d3e   | 0123 4567 89:; <=>',
     ]
 
 
@@ -22,18 +42,32 @@ def test_long_bytes():
     ]
 
 
+def test_ascii_byte():
+    assert ascii_byte(0x1f) == '.'
+    assert ascii_byte(0x20) == ' '
+    assert ascii_byte(0x41) == 'A'
+    assert ascii_byte(0x61) == 'a'
+    assert ascii_byte(0x7e) == '~'
+    assert ascii_byte(0x7f) == '.'
+
+
 def test_ascii_bytes():
     buffer = bytes(range(0, 16))
-    assert ascii_bytes(buffer) == '.... .... .... ....'
+    assert ''.join(ascii_bytes(buffer)) == '.... .... .... ....'
+    assert ''.join(ascii_bytes(buffer, sep='|')) == '....|....|....|....'
+    assert (
+            ''.join(ascii_bytes(buffer, sep='|', bytes_per_sep=6))
+            == '......|......|....'
+    )
 
     buffer = bytes(range(32, 48))
-    assert ascii_bytes(buffer) == ' !"# $%&\' ()*+ ,-./'
+    assert ''.join(ascii_bytes(buffer)) == ' !"# $%&\' ()*+ ,-./'
 
     buffer = bytes(range(64, 80))
-    assert ascii_bytes(buffer) == '@ABC DEFG HIJK LMNO'
+    assert ''.join(ascii_bytes(buffer)) == '@ABC DEFG HIJK LMNO'
 
     buffer = bytes(range(112, 128))
-    assert ascii_bytes(buffer) == 'pqrs tuvw xyz{ |}~.'
+    assert ''.join(ascii_bytes(buffer)) == 'pqrs tuvw xyz{ |}~.'
 
 
 def test_enumerate_segments():

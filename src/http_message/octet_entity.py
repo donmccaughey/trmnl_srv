@@ -24,14 +24,15 @@ class OctetEntity(Entity):
         )
 
 
-def ascii_bytes(buffer: bytes, sep: str = ' ', bytes_per_sep: int = 4) -> str:
-    chars = []
+def ascii_byte(byte: int) -> str:
+    return chr(byte) if 0x20 <= byte < 0x7f else '.'
+
+
+def ascii_bytes(buffer: bytes, sep: str = ' ', bytes_per_sep: int = 4) -> Generator[str, None, None]:
     for i, byte in enumerate(buffer):
         if i and not i % bytes_per_sep:
-            chars.append(sep)
-        ch = chr(byte) if 0x20 <= byte < 0x7f else '.'
-        chars.append(ch)
-    return ''.join(chars)
+            yield sep
+        yield ascii_byte(byte)
 
 
 def enumerate_segments(buffer: bytes, segment_size: int = 16, segment_count: int = -1) -> Generator[tuple[int, bytes], None, None]:
@@ -56,7 +57,7 @@ def octet_stream_preview_line(i: int, segment: bytes, segment_count: int, total_
 
 def segment_preview(segment: bytes, sep: str = ' ', bytes_per_sep: int = 4) -> str:
     hex_dump = segment.hex(sep, -bytes_per_sep)
-    ascii_dump = ascii_bytes(segment, sep, bytes_per_sep)
+    ascii_dump = ''.join(ascii_bytes(segment, sep, bytes_per_sep))
     return f'{hex_dump:35} | {ascii_dump}'
 
 
