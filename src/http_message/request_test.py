@@ -11,8 +11,8 @@ def test_request_repr():
         Header('Accept', 'application/json'),
         Header('User-Agent', 'Python'),
     ]
-    message = Request('GET', 'http://example.com', headers, entity=None)
-    assert repr(message) == '<Request: GET http://example.com HTTP/1.1>'
+    request = Request('GET', 'http://example.com', headers, entity=None)
+    assert repr(request) == '<Request: GET http://example.com HTTP/1.1>'
 
 
 def test_request_with_no_host_no_user_agent_and_no_body():
