@@ -8,7 +8,7 @@ def test_short_bytes():
     ]
 
 
-def test_bytes_shorter_than_limit__for_equal_segments():
+def test_bytes_shorter_than_limit_for_equal_segments():
     entity = OctetEntity(bytes((i % 256 for i in range(64))))
     assert list(entity.lines(8)) == [
         '00010203 04050607 08090a0b 0c0d0e0f | .... .... .... ....',
