@@ -18,7 +18,7 @@ class OctetEntity(Entity):
         segment_count = limit
         total_bytes = len(self.octets)
         return (
-            octet_stream_preview_line(i, segment, segment_count, total_bytes)
+            segment_line(segment, i, segment_count, total_bytes)
             for i, segment
             in enumerate_segments(self.octets, segment_size, segment_count)
         )
@@ -47,18 +47,18 @@ def enumerate_segments(buffer: bytes, segment_size: int = 16, segment_count: int
         )
 
 
-def octet_stream_preview_line(i: int, segment: bytes, segment_count: int, total_bytes: int) -> str:
+def segment_dump(segment: bytes, sep: str = ' ', bytes_per_sep: int = 4) -> str:
+    hex_dump = segment.hex(sep, -bytes_per_sep)
+    ascii_dump = ''.join(ascii_bytes(segment, sep, bytes_per_sep))
+    return f'{hex_dump:35} | {ascii_dump}'
+
+
+def segment_line(segment: bytes, i: int, segment_count: int, total_bytes: int) -> str:
     last_segment_index = segment_count - 1
     if i == last_segment_index:
         return f'... ({total_bytes:,} bytes total)'
     else:
-        return segment_preview(segment)
-
-
-def segment_preview(segment: bytes, sep: str = ' ', bytes_per_sep: int = 4) -> str:
-    hex_dump = segment.hex(sep, -bytes_per_sep)
-    ascii_dump = ''.join(ascii_bytes(segment, sep, bytes_per_sep))
-    return f'{hex_dump:35} | {ascii_dump}'
+        return segment_dump(segment)
 
 
 def split_buffer(buffer: bytes, segment_size: int = 16) -> Generator[bytes, None, None]:

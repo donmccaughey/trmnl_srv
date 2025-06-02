@@ -1,4 +1,4 @@
-from .octet_entity import ascii_byte, ascii_bytes, enumerate_segments, OctetEntity, segment_preview, split_buffer
+from .octet_entity import ascii_byte, ascii_bytes, enumerate_segments, OctetEntity, segment_dump, split_buffer
 
 
 def test_short_bytes():
@@ -88,16 +88,16 @@ def test_enumerate_segments_for_small_final_segment():
     assert segments[-1] == (1, bytes(range(16, 20)))
 
 
-def test_segment_preview():
+def test_segment_dump():
     segment = bytes(range(64, 80))
-    assert segment_preview(segment) == (
+    assert segment_dump(segment) == (
         '40414243 44454647 48494a4b 4c4d4e4f | @ABC DEFG HIJK LMNO'
     )
 
 
-def test_segment_preview_for_short_segment():
+def test_segment_dump_for_short_segment():
     segment = bytes.fromhex('deadbeef')
-    assert segment_preview(segment) == (
+    assert segment_dump(segment) == (
         'deadbeef                            | ....'
     )
 
