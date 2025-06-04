@@ -55,6 +55,9 @@ time_since_last_weather_update = now - last_weather_update
 if time_since_last_weather_update >= HALF_HOUR:
     print('- fetching from api.weather.gov')
 
+    content['forecast'] = {
+        'updated': now_iso_date,
+    }
     content['~source_data']['points_response'] = {}
     content['~source_data']['forecast_response'] = {}
     content['~source_data']['forecast_hourly_response'] = {}
@@ -76,7 +79,6 @@ if time_since_last_weather_update >= HALF_HOUR:
             content['forecast']['error'] = weather.error
     else:
         content['forecast']['error'] = weather.error
-    content['forecast']['updated'] = now_iso_date
 
 
 giants_games = GiantsGame.get_games()
@@ -97,6 +99,9 @@ time_since_last_muni_update = now - last_muni_update
 if time_since_last_muni_update >= TWO_MINUTES:
     print('- fetching from api.511.org')
 
+    content['muni'] = {
+        'updated': now_iso_date,
+    }
     content['~source_data']['stop_monitoring_response'] = {}
 
     muni_t = Five11(options.five11_org_key)
@@ -110,7 +115,6 @@ if time_since_last_muni_update >= TWO_MINUTES:
             ]
         else:
             content['muni']['error'] = muni_t.error
-    content['muni']['updated'] = now_iso_date
 
 
 content['refresh_rate'] = get_refresh_rate(now)
