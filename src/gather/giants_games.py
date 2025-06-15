@@ -2,9 +2,9 @@ from __future__ import annotations
 
 import json
 
+from common.serialize import Decodable, JSONDict, JSONList
 from datetime import date, datetime, time
 from importlib import resources
-from serialize import Decodable, JSONDict, JSONList
 from typing import Self
 from zoneinfo import ZoneInfo
 

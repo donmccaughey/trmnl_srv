@@ -1,4 +1,4 @@
-from serialize import JSONDict
+from common.serialize import JSONDict
 from textwrap import wrap
 
 from .screen import Screen

@@ -1,8 +1,8 @@
 import json
 
 from pathlib import Path
-from serialize import Encodable, JSONDict, Serializable
 from common import atomic_write
+from common.serialize import Encodable, JSONDict, Serializable
 
 
 class APISetup(Encodable, Serializable):

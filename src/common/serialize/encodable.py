@@ -1,4 +1,4 @@
-from serialize.jsontype import JSONDict, JSONList
+from common.serialize.jsontype import JSONDict, JSONList
 from typing import Protocol, runtime_checkable
 
 

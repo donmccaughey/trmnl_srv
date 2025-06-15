@@ -1,8 +1,8 @@
 import json
 
+from common.serialize import JSONDict
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
-from serialize import JSONDict
 
 
 SKIP_MESSAGES = [

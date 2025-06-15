@@ -2,7 +2,8 @@ import requests
 
 from datetime import datetime, timezone
 
-from serialize import JSONDict
+from common.serialize import JSONDict
+
 
 class Five11:
     def __init__(self, api_key: str):

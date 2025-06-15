@@ -82,6 +82,13 @@ container_files := \
 		container/Dockerfile
 
 src_files := \
+		src/common/serialize/__init__.py \
+		src/common/serialize/decodable.py \
+		src/common/serialize/deserializable.py \
+		src/common/serialize/encodable.py \
+		src/common/serialize/jsontype.py \
+		src/common/serialize/serializable.py \
+		\
 		src/common/__init__.py \
 		src/common/atomic_write.py \
 		\
@@ -129,13 +136,6 @@ src_files := \
 		src/render/next_muni.py \
 		src/render/options.py \
 		src/render/screen.py \
-		\
-		src/serialize/__init__.py \
-		src/serialize/decodable.py \
-		src/serialize/deserializable.py \
-		src/serialize/encodable.py \
-		src/serialize/jsontype.py \
-		src/serialize/serializable.py \
 		\
 		src/serve/__init__.py \
 		src/serve/__main__.py \

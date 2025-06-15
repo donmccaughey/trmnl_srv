@@ -1,5 +1,5 @@
+from common.serialize import JSONDict
 from datetime import time
-from serialize import JSONDict
 
 from .screen import Screen
 
