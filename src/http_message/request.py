@@ -22,16 +22,6 @@ class Request(Message):
     ):
         request_line = f'{method} {url} HTTP/1.1'
         super().__init__(request_line, headers, entity)
-
-        if not 'Date' in self:
-            self.headers.append(Header('Date', datetime.now(tz=timezone.utc)))
-        if not 'Host' in self:
-            url_parts = urlparse(url)
-            if url_parts.netloc:
-                self.headers.append(Header('Host', url_parts.netloc))
-        if not 'User-Agent' in self:
-            self.headers.append(Header('User-Agent', 'Python'))
-
         self.method = method
         self.url = url
 
