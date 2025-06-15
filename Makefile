@@ -82,6 +82,9 @@ container_files := \
 		container/Dockerfile
 
 src_files := \
+		src/common/__init__.py \
+		src/common/atomic_write.py \
+		\
 		src/gather/__init__.py \
 		src/gather/__main__.py \
 		src/gather/five11.py \
@@ -139,9 +142,7 @@ src_files := \
 		src/serve/handler.py \
 		src/serve/log_entry.py \
 		src/serve/options.py \
-		src/serve/server.py \
-		\
-		src/utils/__init__.py
+		src/serve/server.py
 
 python_files := $(filter %.py, $(src_files))
 

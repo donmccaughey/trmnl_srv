@@ -3,7 +3,7 @@ import sys
 
 from datetime import datetime, timedelta, timezone
 from gather.weather import Weather
-from utils import atomic_write
+from common import atomic_write
 
 from .five11 import Five11
 from .giants_games import GiantsGame

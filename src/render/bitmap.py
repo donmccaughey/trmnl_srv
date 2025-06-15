@@ -6,7 +6,7 @@ from importlib import resources
 from pathlib import Path
 from PIL import Image, ImageDraw, ImageFont
 from PIL.ImageFont import FreeTypeFont
-from utils import atomic_write
+from common import atomic_write
 
 from .screen import Screen
 
