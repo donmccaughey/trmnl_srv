@@ -82,6 +82,20 @@ container_files := \
 		container/Dockerfile
 
 src_files := \
+		src/common/http_message/__init__.py \
+		src/common/http_message/entity.py \
+		src/common/http_message/header.py \
+		src/common/http_message/header_test.py \
+		src/common/http_message/message.py \
+		src/common/http_message/message_test.py \
+		src/common/http_message/octet_entity.py \
+		src/common/http_message/octet_entity_test.py \
+		src/common/http_message/request.py \
+		src/common/http_message/request_test.py \
+		src/common/http_message/response.py \
+		src/common/http_message/text_entity.py \
+		src/common/http_message/text_entity_test.py \
+		\
 		src/common/serialize/__init__.py \
 		src/common/serialize/decodable.py \
 		src/common/serialize/deserializable.py \
@@ -104,20 +118,6 @@ src_files := \
 		src/gather/refresh_rate.py \
 		src/gather/weather.py \
 		src/gather/weather_test.py \
-		\
-		src/http_message/__init__.py \
-		src/http_message/entity.py \
-		src/http_message/header.py \
-		src/http_message/header_test.py \
-		src/http_message/message.py \
-		src/http_message/message_test.py \
-		src/http_message/octet_entity.py \
-		src/http_message/octet_entity_test.py \
-		src/http_message/request.py \
-		src/http_message/request_test.py \
-		src/http_message/response.py \
-		src/http_message/text_entity.py \
-		src/http_message/text_entity_test.py \
 		\
 		src/render/__init__.py \
 		src/render/__main__.py \
