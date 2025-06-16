@@ -3,14 +3,16 @@ from __future__ import annotations
 import sys
 
 from argparse import ArgumentParser, Namespace
-from dataclasses import dataclass
 from pathlib import Path
 from typing import Self
 
+from common.logs import LogStorage
 
-@dataclass
+
 class CommonOptions:
-    web_root: Path
+    def __init__(self, web_root: Path):
+        self.web_root = web_root
+        self.trmnl_logs = LogStorage(web_root)
 
     @classmethod
     def add_arguments(cls, parser: ArgumentParser):

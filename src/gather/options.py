@@ -3,15 +3,16 @@ from __future__ import annotations
 import os
 
 from argparse import Namespace
-from dataclasses import dataclass
+from pathlib import Path
 from typing import Self
 
 from common import CommonOptions
 
 
-@dataclass
 class Options(CommonOptions):
-    five11_org_key: str
+    def __init__(self, web_root: Path, five11_org_key: str):
+        super().__init__(web_root)
+        self.five11_org_key = five11_org_key
 
     @classmethod
     def from_namespace(cls, namespace: Namespace) -> Self:

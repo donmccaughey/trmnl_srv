@@ -1,15 +1,16 @@
 from __future__ import annotations
 
 from argparse import ArgumentParser, Namespace
-from dataclasses import dataclass
+from pathlib import Path
 from typing import Self
 
 from common import CommonOptions
 
 
-@dataclass
 class Options(CommonOptions):
-    port: int
+    def __init__(self, web_root: Path, port: int):
+        super().__init__(web_root)
+        self.port = port
 
     @classmethod
     def add_arguments(cls, parser: ArgumentParser):

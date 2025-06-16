@@ -1,10 +1,10 @@
 import email.utils
 import json
 
+from common.logs.trmnl_log_entry import TRMNLLogEntry
 from http.server import BaseHTTPRequestHandler
 from pathlib import Path
 
-from .log_entry import LogEntry
 from .server import Server
 
 
@@ -169,7 +169,7 @@ class Handler(BaseHTTPRequestHandler):
 
     def __write_log_messages(self, log_body: bytes):
         try:
-            entries = LogEntry.get_entries(self.server.logs_dir, log_body)
+            entries = TRMNLLogEntry.get_entries(self.server.trmnl_logs.path, log_body)
             entries.sort(key=lambda entry: entry.log_id)
             for entry in entries:
                 if not entry.path.exists():

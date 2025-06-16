@@ -1,8 +1,8 @@
 import json
 
+from common.logs import LogStorage
 from common.serialize import JSONDict
 from datetime import datetime, timedelta, timezone
-from pathlib import Path
 
 
 SKIP_MESSAGES = [
@@ -10,10 +10,10 @@ SKIP_MESSAGES = [
 ]
 
 
-def get_log(web_root: Path, skip_old: bool = True) -> JSONDict:
+def get_log(trmnl_logs: LogStorage, skip_old: bool = True) -> JSONDict:
     log = {}
 
-    log_files = list_log_files(web_root)
+    log_files = trmnl_logs.files()
     if not log_files:
         return log
 
@@ -38,22 +38,9 @@ def get_log(web_root: Path, skip_old: bool = True) -> JSONDict:
     return log
 
 
-def is_log_file(path: Path) -> bool:
-    return path.is_file() and path.suffix == '.json'
-
-
 def is_old(
         timestamp: int,
         now_utc: datetime = datetime.now(timezone.utc)
 ) -> bool:
     timestamp_utc = datetime.fromtimestamp(timestamp, tz=timezone.utc)
     return now_utc - timestamp_utc > timedelta(hours=1)
-
-
-def list_log_files(web_root: Path) -> list[Path]:
-    logs_dir = web_root / 'logs'
-    logs_dir.mkdir(parents=True, exist_ok=True)
-    return [
-        path for path in sorted(logs_dir.iterdir())
-        if is_log_file(path)
-    ]

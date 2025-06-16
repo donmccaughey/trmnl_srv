@@ -96,6 +96,10 @@ src_files := \
 		src/common/http_message/text_entity.py \
 		src/common/http_message/text_entity_test.py \
 		\
+		src/common/logs/__init__.py \
+		src/common/logs/log_storage.py \
+		src/common/logs/trmnl_log_entry.py \
+		\
 		src/common/serialize/__init__.py \
 		src/common/serialize/decodable.py \
 		src/common/serialize/deserializable.py \
@@ -144,7 +148,6 @@ src_files := \
 		src/serve/__init__.py \
 		src/serve/__main__.py \
 		src/serve/handler.py \
-		src/serve/log_entry.py \
 		src/serve/options.py \
 		src/serve/options_test.py \
 		src/serve/server.py

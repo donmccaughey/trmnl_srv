@@ -1,16 +1,17 @@
 from __future__ import annotations
 
 from argparse import ArgumentParser, Namespace
-from dataclasses import dataclass
+from pathlib import Path
 from typing import Self
 
 from common import CommonOptions
 
 
-@dataclass
 class Options(CommonOptions):
-    base_url: str
-    intro_screen: bool
+    def __init__(self, web_root: Path, base_url: str, intro_screen: bool):
+        super().__init__(web_root)
+        self.base_url = base_url
+        self.intro_screen = intro_screen
 
     @classmethod
     def add_arguments(cls, parser: ArgumentParser):

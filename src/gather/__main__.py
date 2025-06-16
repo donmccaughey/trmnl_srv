@@ -91,7 +91,7 @@ else:
     content['giants_games_today'] = []
 
 
-content['log'] = get_log(options.web_root)
+content['log'] = get_log(options.trmnl_logs)
 
 
 last_muni_update = datetime.fromisoformat(content['muni']['updated'])
