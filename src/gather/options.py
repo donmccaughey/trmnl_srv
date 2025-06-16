@@ -1,28 +1,20 @@
 from __future__ import annotations
 
 import os
-import sys
 
-from argparse import ArgumentParser
+from argparse import Namespace
 from dataclasses import dataclass
-from pathlib import Path
 from typing import Self
+
+from common import CommonOptions
 
 
 @dataclass
-class Options:
+class Options(CommonOptions):
     five11_org_key: str
-    web_root: Path
 
     @classmethod
-    def parse(cls, args: list[str] | None = None) -> Self:
-        if not args:
-            args = sys.argv[1:]
-
-        parser = ArgumentParser()
-        parser.add_argument('--web-root', type=Path, required=True)
-        namespace = parser.parse_args(args)
-
+    def from_namespace(cls, namespace: Namespace) -> Self:
         five11_org_key = os.environ['FIVE11_ORG_KEY']
 
         return cls(

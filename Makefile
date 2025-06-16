@@ -105,6 +105,8 @@ src_files := \
 		\
 		src/common/__init__.py \
 		src/common/atomic_write.py \
+		src/common/common_options.py \
+		src/common/common_options_test.py \
 		\
 		src/gather/__init__.py \
 		src/gather/__main__.py \
@@ -115,6 +117,7 @@ src_files := \
 		src/gather/giants_games_test.py \
 		src/gather/logs.py \
 		src/gather/options.py \
+		src/gather/options_test.py \
 		src/gather/refresh_rate.py \
 		src/gather/weather.py \
 		src/gather/weather_test.py \
@@ -135,6 +138,7 @@ src_files := \
 		src/render/logs.py \
 		src/render/next_muni.py \
 		src/render/options.py \
+		src/render/options_test.py \
 		src/render/screen.py \
 		\
 		src/serve/__init__.py \
@@ -142,6 +146,7 @@ src_files := \
 		src/serve/handler.py \
 		src/serve/log_entry.py \
 		src/serve/options.py \
+		src/serve/options_test.py \
 		src/serve/server.py
 
 python_files := $(filter %.py, $(src_files))

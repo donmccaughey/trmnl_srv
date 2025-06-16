@@ -1,28 +1,23 @@
 from __future__ import annotations
 
-import sys
-
-from argparse import ArgumentParser
+from argparse import ArgumentParser, Namespace
 from dataclasses import dataclass
-from pathlib import Path
 from typing import Self
+
+from common import CommonOptions
 
 
 @dataclass
-class Options:
+class Options(CommonOptions):
     port: int
-    web_root: Path
 
     @classmethod
-    def parse(cls, args: list[str] | None = None) -> Self:
-        if not args:
-            args = sys.argv[1:]
-
-        parser = ArgumentParser()
+    def add_arguments(cls, parser: ArgumentParser):
+        super().add_arguments(parser)
         parser.add_argument("--port", type=int, default=4001)
-        parser.add_argument('--web-root', type=Path, required=True)
 
-        namespace = parser.parse_args(args)
+    @classmethod
+    def from_namespace(cls, namespace: Namespace) -> Self:
         return cls(
             port=namespace.port,
             web_root=namespace.web_root
