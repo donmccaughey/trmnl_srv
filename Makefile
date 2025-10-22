@@ -130,8 +130,6 @@ src_files := \
 		src/serve/options_test.py \
 		src/serve/server.py
 
-python_files := $(filter %.py, $(src_files))
-
 
 uv.lock : pyproject.toml .python-version
 	uv sync
@@ -196,7 +194,7 @@ $(TMP)/docker-run.stamp : \
 
 
 $(TMP)/pytest.stamp : \
-		$(python_files) \
+		$(src_files) \
 		$(TMP)/trmnl_srv_dev.env \
 		$(TMP)/uv-sync.stamp \
 		| $$(dir $$@)
