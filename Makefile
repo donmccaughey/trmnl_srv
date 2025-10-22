@@ -132,12 +132,6 @@ src_files := \
 
 python_files := $(filter %.py, $(src_files))
 
-python_sources := $(filter-out %_test.py, $(python_files))
-
-python_tests := $(filter %_test.py, $(python_files))
-
-resource_files := $(filter-out %.py, $(src_files))
-
 
 uv.lock : pyproject.toml .python-version
 	uv sync
