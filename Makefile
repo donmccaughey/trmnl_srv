@@ -5,6 +5,9 @@ PORT ?= 4000
 TMP ?= $(abspath tmp)
 
 container := trmnl_srv
+container_files := \
+	.dockerignore \
+	$(shell find container/ -type f -not -name '.DS_Store')
 deploy_image := trmnl_srv
 dev_image := trmnl_srv_dev
 
@@ -55,31 +58,6 @@ stop :
 	-docker stop $(container)
 	rm -rf $(TMP)/docker-run.stamp
 
-
-container_files := \
-		.dockerignore \
-		container/etc/crontabs/root \
-		container/etc/nginx/nginx.conf \
-		container/etc/profile.d/dir.sh \
-		\
-		container/srv/www/api/display/index.json \
-		container/srv/www/api/setup/index.json \
-		\
-		container/srv/www/content/bitmap/index.png \
-		container/srv/www/content/index.json \
-		\
-		container/srv/www/fonts/Atkinson-Hyperlegible-Bold-102a.woff2 \
-		container/srv/www/fonts/Atkinson-Hyperlegible-BoldItalic-102a.woff2 \
-		container/srv/www/fonts/Atkinson-Hyperlegible-Italic-102a.woff2 \
-		container/srv/www/fonts/Atkinson-Hyperlegible-Regular-102a.woff2 \
-		\
-		container/srv/www/index.html \
-		\
-		container/usr/local/sbin/gather-render \
-		container/usr/local/sbin/serve \
-		container/usr/local/sbin/trmnl_srv \
-		\
-		container/Dockerfile
 
 src_files := \
 		src/common/http_message/__init__.py \
