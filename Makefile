@@ -7,9 +7,14 @@ TMP ?= $(abspath tmp)
 container := trmnl_srv
 container_files := \
 	.dockerignore \
-	$(shell find container/ -type f -not -name '.DS_Store')
+	$(shell find container -type f -not -name '.DS_Store')
 deploy_image := trmnl_srv
 dev_image := trmnl_srv_dev
+src_files := $(shell find src \
+	-type f \
+	-not -path '*/__pycache__/*' \
+	-not -name '.DS_Store' \
+)
 
 
 .SECONDEXPANSION :
@@ -59,76 +64,7 @@ stop :
 	rm -rf $(TMP)/docker-run.stamp
 
 
-src_files := \
-		src/common/http_message/__init__.py \
-		src/common/http_message/entity.py \
-		src/common/http_message/header.py \
-		src/common/http_message/header_test.py \
-		src/common/http_message/message.py \
-		src/common/http_message/message_test.py \
-		src/common/http_message/octet_entity.py \
-		src/common/http_message/octet_entity_test.py \
-		src/common/http_message/request.py \
-		src/common/http_message/request_test.py \
-		src/common/http_message/response.py \
-		src/common/http_message/text_entity.py \
-		src/common/http_message/text_entity_test.py \
-		\
-		src/common/logs/__init__.py \
-		src/common/logs/log_storage.py \
-		src/common/logs/trmnl_log_entry.py \
-		\
-		src/common/serialize/__init__.py \
-		src/common/serialize/decodable.py \
-		src/common/serialize/deserializable.py \
-		src/common/serialize/encodable.py \
-		src/common/serialize/jsontype.py \
-		src/common/serialize/serializable.py \
-		\
-		src/common/__init__.py \
-		src/common/atomic_write.py \
-		src/common/common_options.py \
-		src/common/common_options_test.py \
-		\
-		src/gather/__init__.py \
-		src/gather/__main__.py \
-		src/gather/five11.py \
-		src/gather/five11_test.py \
-		src/gather/giants-schedule.json \
-		src/gather/giants_games.py \
-		src/gather/giants_games_test.py \
-		src/gather/logs.py \
-		src/gather/options.py \
-		src/gather/options_test.py \
-		src/gather/refresh_rate.py \
-		src/gather/weather.py \
-		src/gather/weather_test.py \
-		\
-		src/render/__init__.py \
-		src/render/__main__.py \
-		src/render/api_display.py \
-		src/render/api_display_test.py \
-		src/render/api_setup.py \
-		src/render/api_setup_test.py \
-		src/render/AtkinsonHyperlegibleMono-Regular.otf \
-		src/render/bitmap.py \
-		src/render/constants.py \
-		src/render/date_and_time.py \
-		src/render/forecast.py \
-		src/render/giants_games_today.py \
-		src/render/intro_screen.py \
-		src/render/logs.py \
-		src/render/next_muni.py \
-		src/render/options.py \
-		src/render/options_test.py \
-		src/render/screen.py \
-		\
-		src/serve/__init__.py \
-		src/serve/__main__.py \
-		src/serve/handler.py \
-		src/serve/options.py \
-		src/serve/options_test.py \
-		src/serve/server.py
+## file targets
 
 
 uv.lock : pyproject.toml .python-version
